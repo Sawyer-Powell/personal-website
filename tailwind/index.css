@@ -16,7 +16,7 @@ svg {
 }
 
 .subtitle {
-	@apply text-2xl text-fg3 italic font-mono
+	@apply text-2xl text-fg3 italic font-mono leading-relaxed
 }
 
 code.hljs {
@@ -35,7 +35,12 @@ hr {
 }
 
 .intro > div > p {
-	@apply first-letter:text-6xl prose prose-gruvbox prose-lg max-w-none first-letter:float-left first-letter:mr-3 first-letter:font-bold first-letter:text-fg2 first-letter:border-b-2
+	@apply first-letter:text-6xl prose prose-gruvbox prose-lg max-w-none first-letter:float-left
+	first-letter:mr-3 first-letter:font-bold first-letter:text-fg2 first-letter:border-b-2
+}
+
+.intro > div > p > a {
+	@apply text-blue no-underline
 }
 
 .sidebar {
@@ -153,11 +158,11 @@ h2, h3, h4, h5, h6, h7 {
 }
 
 h4 {
-	@apply text-2xl 
+	@apply text-xl 
 }
 
 h5 {
-	@apply text-xl
+	@apply text-lg
 }
 
 h6 {

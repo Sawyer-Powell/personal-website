@@ -1,6 +1,6 @@
 :PROPERTIES:
 #+TITLE: Hey! I'm Sawyer.
-#+SUBTITLE: project manager / technical lead / developer at counterpart.biz
+#+SUBTITLE: project manager / technical lead / developer at [[https://counterpart.biz][Counterpart]]
 #+HERO: https://i.imgur.com/HfX05i1.jpg
 #+OPTIONS: html-style:nil
 #+MACRO: imglnk @@html:<img src="$1">@@
@@ -14,7 +14,7 @@
 
 There is an immense joy in creating systems which are truly useful.
 Computing offers us a platform to extend our own capabilities, but leveraging
-its power requires creativity, discipline, and an appreciation of of good
+its power requires creativity, discipline, and an appreciation of good
 design. In my work I hope to express and explore this beauty, and to
 pay respect to the incredible intelligence of the people who got us here. In
 every line of code, in every flash of pixels on our screens, is the life's work

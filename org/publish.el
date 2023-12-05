@@ -168,8 +168,8 @@
    "<link href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap\" rel=\"stylesheet\">\n"
    "</head>\n"))
 
-(with-current-buffer "index.org"
-  (org-export-to-buffer 'sawyerp-html "test_index.html"))
+;; (with-current-buffer "index.org"
+;;   (org-export-to-buffer 'sawyerp-html "test_index.html"))
 
 (org-export-define-derived-backend 'sawyer-html 'html
   :options-alist '((:hero "HERO" nil nil parse))
