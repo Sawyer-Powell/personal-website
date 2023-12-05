@@ -1,28 +1,36 @@
 (require 'ox-publish)
+(setq sidebar-links '(:about
+					  (("About" "about.html")
+					   ("Professional Work" "secrets.html")
+					   ("Personal Portfolio" "secrets.html"))
+					  :projects
+					  (("Perseus Cluster Project" "secrets.html"))
+					  :blog
+					  (("blog / notes / essays" "secrets.html"))))
 
-(setq org-publish-project-alist
-	  '(("org-notes"
-		 :base-directory "."
-		 :base-extension "org"
-		 :publishing-directory "../public_html"
-		 :recursive t
-		 :publishing-function org-html-publish-to-html
-		 :headline-levels 4
-		 :auto-preamble t)
-		("org-static"
-		 :base-directory "~/org/"
-		 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-		 :publishing-directory "~/public_html/"
-		 :recursive t
-		 :publishing-function org-publish-attachment)
-		("org" :components ("org-notes" "org-static"))))
+(defun prepare-sidebar-links (sidebar-links prop)
+  (apply #'concat
+		 (mapcar (lambda (l)
+				   (format "<li><a href=\"%s\">%s</a></li>\n"
+						   (nth 1 l)
+						   (nth 0 l)))
+				 (plist-get sidebar-links prop))))
 
-(org-export-define-derived-backend 'sawyerp-html 'html
-  :options-alist '((:hero "HERO" nil nil parse))
-  :translate-alist '((src-block . sawyer-html-src-block)
-					 (template . sawyer-html-template)
-					 (inner-template . sawyer-html-inner-template)
-					 (headline . sawyer-html-headline)))
+(setq sidebar
+	  (concat
+	   "<div class=\"sidebar\">\n"
+	   "<div class=\"flex items-center mb-5\" onclick=\"location.href='/'\">\n"
+	   "<img src=\"./images/horse.svg\" class=\"shadow-none h-12 rounded-none m-0\"/>\n"
+	   "<span class=\"block text-2xl text-fg0 font-bold font-mono ms-2\">sawyer-p</span>\n"
+	   "</div>\n"
+	   "<ul>\n"
+	   (prepare-sidebar-links sidebar-links :about)
+	   "<hr/>\n"
+	   (prepare-sidebar-links sidebar-links :projects)
+	   "<hr/>\n"
+	   (prepare-sidebar-links sidebar-links :blog)
+	   "</ul>\n"
+	   "</div>\n"))
 
 (defun sawyer-html-src-block (src-block contents info)
   (let* ((code (org-html-format-code src-block info))
@@ -36,27 +44,9 @@
    contents
    (org-html-footnote-section info)))
 
-(setq sidebar
-	  (concat
-	   "<div class=\"sidebar\">\n"
-	   "<div class=\"flex items-center mb-5\">\n"
-	   "<img src=\"./images/horse.svg\" class=\"shadow-none h-12 rounded-none m-0\"/>\n"
-	   "<span class=\"block text-2xl text-fg0 font-bold font-mono ms-2\">sawyer-p</span>\n"
-	   "</div>\n"
-	   "<ul>\n"
-	   "<li>About</li>\n"
-	   "<li>Professional Work</li>\n"
-	   "<li>Personal Portfolio</li>\n"
-	   "<hr/>\n"
-	   "<li>Perseus Cluster Project</li>\n"
-	   "<li>ngx-natlang</li>\n"
-	   "<li>spux</li>\n"
-	   "<hr/>\n"
-	   "<li>blog / notes / essays</li>\n"
-	   "<li>How I built this website</li>\n"
-	   "</ul>\n"
-	   "</div>\n"))
-
+;; Made some modifications to allow me to have an INTRO headline
+;; TODO probably would be good to find a better way to hook into this
+;; rather than c/p the original source code with a couple line modification
 (defun sawyer-html-headline (headline contents info)
   (unless (org-element-property :footnote-section-p headline)
     (let* ((numberedp (org-export-numbered-headline-p headline info))
@@ -150,13 +140,10 @@
 					 (org-export-data title info))))))
 	 (let ((hero (plist-get (nth 1 (nth 0 (plist-get info :hero))) :raw-link)))
 	   (format "<img src=\"%s\" class=\"hero\">\n" hero))
-
 	 (format "<div class=\"status\"><p class=\"author\">Written by <a target=\"_blank\" href=\"https://www.linkedin.com/in/sawyerhpowell/\">Sawyer Powell</a> - %s</p></div>\n"
 			 (format-time-string
 			  (plist-get info :html-metadata-timestamp-format)))
-
 	 "<img src=\"./images/tiger.svg\" class=\"justify-self-center shadow-none h-12 rounded-none m-0 mb-5\"/>\n"
-
 	 contents
 	 "</div>\n"
 	 (let ((depth (plist-get info :with-toc)))
@@ -184,3 +171,34 @@
 (with-current-buffer "index.org"
   (org-export-to-buffer 'sawyerp-html "test_index.html"))
 
+(org-export-define-derived-backend 'sawyer-html 'html
+  :options-alist '((:hero "HERO" nil nil parse))
+  :translate-alist '((src-block . sawyer-html-src-block)
+					 (template . sawyer-html-template)
+					 (inner-template . sawyer-html-inner-template)
+					 (headline . sawyer-html-headline)))
+
+(defun org-sawyer-html-publish-to-html (plist filename pub-dir)
+  (org-publish-org-to 'sawyer-html filename
+					  (concat (when (> (length org-html-extension) 0) ".")
+							  (or (plist-get plist :html-extension)
+								  org-html-extension
+								  "html"))
+					  plist pub-dir))
+
+(setq org-publish-project-alist
+	  '(("org-notes"
+		 :base-directory "."
+		 :base-extension "org"
+		 :publishing-directory "../public_html"
+		 :recursive t
+		 :publishing-function org-sawyer-html-publish-to-html
+		 :headline-levels 4
+		 :auto-preamble t)
+		("org-static"
+		 :base-directory "~/org/"
+		 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+		 :publishing-directory "~/public_html/"
+		 :recursive t
+		 :publishing-function org-publish-attachment)
+		("org" :components ("org-notes" "org-static"))))

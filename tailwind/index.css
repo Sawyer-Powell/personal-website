@@ -42,6 +42,10 @@ hr {
 	@apply p-5 transition-all rounded-2xl h-fit me-16 sticky top-6 border-4 border-fg4/0 text-fg2 min-w-fit !w-96 bg-bg opacity-10 hidden 2xl:block
 }
 
+.sidebar > div {
+	@apply cursor-pointer
+}
+
 .sidebar:hover {
 	@apply shadow-xl border-fg4 opacity-100
 }
@@ -54,6 +58,15 @@ hr {
 	@apply mt-2 p-1 w-fit font-mono rounded-lg
 }
 
+.sidebar > ul > li > a {
+	@apply text-fg1 
+}
+
+
+.sidebar > ul > li > a:hover {
+	@apply text-fg2 bg-fg/0 border-fg/0
+}
+
 .sidebar > ul > li:hover {
 	@apply bg-orange/50 shadow cursor-pointer
 }
@@ -63,7 +76,7 @@ hr {
 }
 
 .title {
-	@apply text-5xl font-bold text-fg2 mb-3 font-mono leading-normal
+	@apply text-5xl font-bold text-fg2 mb-3 font-mono leading-snug
 }
 
 #org-div-home-and-up {
