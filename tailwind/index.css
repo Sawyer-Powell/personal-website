@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+	@apply bg-bg0_h text-fg font-sans px-8 flex items-center flex-col
+}
+
+svg {
+	@apply fill-fg stroke-fg
+}
+
+.hero {
+	@apply mt-10
+}
+
+.subtitle {
+	@apply text-2xl text-fg3 italic font-mono
+}
+
+code.hljs {
+	@apply !font-mono 
+}
+
+hr {
+	@apply h-1 border-none bg-fg4/50 mt-3 mx-1 rounded
+}
+
+.status {
+	@apply justify-self-center text-center mb-8 mt-3
+}
+.content {
+	@apply flex flex-row w-full justify-center
+}
+
+.intro > div > p {
+	@apply first-letter:text-6xl prose prose-gruvbox prose-lg max-w-none first-letter:float-left first-letter:mr-3 first-letter:font-bold first-letter:text-fg2 first-letter:border-b-2
+}
+
+.sidebar {
+	@apply p-5 transition-all rounded-2xl h-fit me-16 sticky top-6 border-4 border-fg4/0 text-fg2 min-w-fit !w-96 bg-bg opacity-10 hidden 2xl:block
+}
+
+.sidebar:hover {
+	@apply shadow-xl border-fg4 opacity-100
+}
+
+.sidebar > ul {
+	@apply ps-0 mb-3 text-lg font-bold 
+}
+
+.sidebar > ul > li {
+	@apply mt-2 p-1 w-fit font-mono rounded-lg
+}
+
+.sidebar > ul > li:hover {
+	@apply bg-orange/50 shadow cursor-pointer
+}
+
+.org-content {
+	@apply lg:w-[800px] flex flex-col w-full py-10
+}
+
+.title {
+	@apply text-5xl font-bold text-fg2 mb-3 font-mono leading-normal
+}
+
+#org-div-home-and-up {
+	@apply mb-6
+}
+
+#table-of-contents > h2 {
+	@apply font-bold text-xl text-fg3 mb-2 font-mono m-0
+}
+
+#table-of-contents {
+	@apply w-fit sticky transition-all top-0 py-12 pe-5 rounded-xl
+	right-5 h-fit ms-10 overflow-auto hidden xl:block
+	max-h-[calc(100vh)] break-words 2xl:w-[400px] w-fit opacity-20
+}
+
+#table-of-contents:hover {
+	@apply opacity-100
+}
+
+#table-of-contents {
+	-webkit-mask-image: linear-gradient(180deg,transparent 0,rgb(249 245 215) 3rem calc(100% - 3rem),transparent);
+}
+
+::-webkit-scrollbar {
+    background-color: rgb(80 73 69);
+    color: rgb(249 245 215);
+	width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(124 111 100 / 0.3);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(249 245 215);
+}
+
+ul {
+	@apply ps-4
+}
+
+ol {
+	@apply ps-4 text-lg list-decimal
+}
+
+.org-ol {
+	@apply font-bold text-fg3
+}
+
+.org-ol > li {
+	@apply mb-5 border-s-2 ps-4 border-fg4/0
+}
+
+a {
+	@apply text-blue
+}
+
+a:hover {
+	@apply bg-blue/10 border-b
+}
+
+h2 {
+	@apply text-3xl font-bold text-fg3 font-mono
+}
+
+h2, h3, h4, h5, h6, h7 {
+	@apply font-bold font-mono text-fg2 mt-8 mb-2
+}
+
+.section-number-2, .section-number-3, .section-number-4, .section-number-5 {
+	@apply text-fg4
+}
+
+h4 {
+	@apply text-2xl 
+}
+
+h5 {
+	@apply text-xl
+}
+
+h6 {
+	@apply text-lg
+}
+
+h3 {
+	@apply text-2xl
+}
+
+.status {
+	@apply text-bg4
+}
+
+.validation {
+	@apply hidden
+}
+
+.outline-text-2, .outline-text-3, .outline-text-4, .outline-text-5, .outline-text-6 {
+	@apply prose prose-gruvbox prose-lg max-w-none prose-a:no-underline
+	prose-a:text-blue prose-p:font-sans prose-pre:p-0 prose-pre:bg-fg/0
+	prose-pre:m-0 prose-pre:my-5 prose-th:text-fg2 prose-table:bg-bg0
+	prose-table:p-5 prose-table:rounded-xl prose-table:shadow
+	prose-tr:border-fg4/20 prose-th:px-5 prose-td:px-5 prose-thead:border-fg4/40
+	prose-blockquote:border-fg3/20 prose-blockquote:text-fg2
+}
+
+.outline-text-2, .outline-text-3, .outline-text-4, .outline-text-5, .outline-text-6 {
+	@apply font-normal
+}
+
+.outline-text-2 > ol, .outline-text-3 > ol, .outline-text-4 > ol,
+.outline-text-5 > ol, .outline-text-6 > ol {
+	@apply font-normal text-fg1
+}
+
+pre code.hljs {
+	@apply !m-0 !rounded-xl !p-5
+}
+
+b {
+	@apply text-fg4 font-bold
+}
+
+img {
+	@apply rounded-2xl shadow-xl mb-3
+}

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<!-- 2023-12-04 Mon 23:10 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MapReduce</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<script defer src="./js/fontawesome/all.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/gruvbox-light-medium.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+<div class="sidebar">
+<div class="flex items-center mb-5">
+<img src="./images/horse.svg" class="shadow-none h-12 rounded-none m-0"/>
+<span class="block text-2xl text-fg0 font-bold font-mono ms-2">sawyer-p</span>
+</div>
+<ul>
+<li>About</li>
+<li>Professional Work</li>
+<li>Personal Portfolio</li>
+<hr/>
+<li>Perseus Cluster Project</li>
+<li>ngx-natlang</li>
+<li>spux</li>
+<hr/>
+<li>blog / notes / essays</li>
+<li>How I built this website</li>
+</ul>
+</div>
+<div class="org-content">
+<h1 class="title">MapReduce</h1>
+<div class="subtitle">Google's greatest masterpiece</div>
+<img src="https://i.imgur.com/GxLwEEm.png" class="hero">
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2023-12-04 Mon 23:10</p></div>
+<img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
+
+<div id="outline-container-org7b8ba84" class="intro">
+<div class="outline-text-2" id="text-org7b8ba84">
+<p>
+In the early days of Google, they were indexing a good portion of the internet. Which, even in the early 2000s, amounted to
+terabytes upon terabytes of data. They needed to take that data, and apply some processing to it so they could establish how the web is connected, and so they could
+process the page rank. They needed a framework that could allow their engineers to design processes that could efficiently scale to hundreds (thousands) of
+computers without the programmer needing to be a distributed systems expert. The
+two main interfaces they wanted to accomplish this with were the <code>map</code> function
+and the <code>reduce</code> function.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org959358d" class="outline-2">
+<h2 id="org959358d">High level view of the solution</h2>
+<div class="outline-text-2" id="text-org959358d">
+<p>
+It assumes that there is some input, and that input is split up into a bunch of files or chunks in some way.
+</p>
+
+<p>
+Let's say that it has three inputs <code>i1</code>, <code>i2</code>, <code>i3</code>
+</p>
+<ul class="org-ul">
+<li>These inputs might each individually be html scraped from the web, or a file might contain many html documents.</li>
+</ul>
+</div>
+
+<div id="outline-container-orga6be7c1" class="outline-3">
+<h3 id="orga6be7c1">Running the <code>Map</code> step</h3>
+<div class="outline-text-3" id="text-orga6be7c1">
+<p>
+Map reduce will then run the <code>map</code> function defined by the programmer on each of the input files
+<i>(note that there's some parallelism that can be achieved)</i>
+</p>
+
+<p>
+<code>map</code> should produce a list of key/value pairs
+</p>
+
+<p>
+Let's take for example a <code>map</code> function that takes a file and adds an element <code>{word, 1}</code> to the list for every word that it finds
+</p>
+
+<p>
+In effect, we are creating a list which contains all words in the file, where each element of the list is a key value pair with
+the word as the key and the value <code>1</code>. (This is gonna be useful soon when we call reduce on this list)
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">A</th>
+<th scope="col" class="org-left">B</th>
+<th scope="col" class="org-left">C</th>
+<th scope="col" class="org-left">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>i1</code></td>
+<td class="org-left"><code>{a, 1}</code></td>
+<td class="org-left"><code>{b, 1}</code></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>i2</code></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><code>{b, 1}</code></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>i3</code></td>
+<td class="org-left"><code>{a, 1}</code></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><code>{c, 1}</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgdf88cfb" class="outline-3">
+<h3 id="orgdf88cfb">Running the <code>Reduce</code> Step</h3>
+<div class="outline-text-3" id="text-orgdf88cfb">
+<p>
+After the map has been generated for each file, it's going to collect all the same keys across all the files.
+</p>
+<ul class="org-ul">
+<li>So, first it will collect all the dicts with the <code>a</code> across <code>i1</code>, <code>i2</code>, and <code>i3</code> and run the reduce function on them
+<ul class="org-ul">
+<li>For <code>a</code> the reduce will produce <code>{a,2}</code></li>
+</ul></li>
+<li>It then does the same for <code>b</code> and <code>c</code></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbbe115c" class="outline-2">
+<h2 id="orgbbe115c">Important terminology</h2>
+<div class="outline-text-2" id="text-orgbbe115c">
+<ul class="org-ul">
+<li><b>Job</b>: The entire process of running MapReduce</li>
+<li><b>Task</b>: The individual action taken in the job.</li>
+</ul>
+
+<p>
+MapReduce involves one job, that contains many map tasks and many subsequent reduce tasks.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaa53d9b" class="outline-2">
+<h2 id="orgaa53d9b">The main functions</h2>
+<div id="outline-container-org2d2aadd" class="outline-3">
+<h3 id="org2d2aadd"><code>Map(k, v)</code></h3>
+<div class="outline-text-3" id="text-org2d2aadd">
+<ul class="org-ul">
+<li>The key (<code>k</code>) typically refers to the name of the input file that is passed in,
+and <code>v</code> typically refers to the content of the input file</li>
+
+<li>Within the implementation of <code>Map</code> the programmer can call <code>emit(k, v)</code> which will
+emit a key value pair to the framework.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org517a532" class="outline-3">
+<h3 id="org517a532"><code>Reduce(k,v)</code></h3>
+<div class="outline-text-3" id="text-org517a532">
+<ul class="org-ul">
+<li>The key <code>k</code> is the key that this reduce function is operating on</li>
+<li>The value <code>v</code> is a vector of all the values associated with that key</li>
+
+<li>The programmer can also call <code>emit(v)</code> within reduce to submit the output of this reduce
+to the framework</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9895545" class="outline-2">
+<h2 id="org9895545">Architecture</h2>
+<div class="outline-text-2" id="text-org9895545">
+<p>
+At the time of writing the paper, Google had tens of thousands of computers as part of their server
+infrastructure. These computers were, by today's standards, pretty low powered linux machines,
+with about 2-4gb of RAM each.
+</p>
+
+<p>
+An engineer would import a C++ library into their environment called <code>mapreduce</code> which provided an
+interface for that engineer to write their <code>Map</code> and <code>Reduce</code> methods. Google's mapreduce library,
+in 2004, required the engineer to write two classes, one that implements the <code>Mapper</code> interface,
+and another that implements the <code>Reducer</code> interface.
+</p>
+
+<p>
+The engineer then registers these classes with the library, and configures mapreduce with the files
+that they want to process, the destination that the output files should go to, the number of reducer
+workers that they want to use, as well as the maximum number of machines that they want dedicated
+to their job.
+</p>
+
+<p>
+Once they have everything ready, they call the <code>MapReduce</code> function.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd49d377" class="outline-2">
+<h2 id="orgd49d377">The Job</h2>
+<div class="outline-text-2" id="text-orgd49d377">
+<p>
+When the engineer calls the MapReduce function, a master server is spun up to control and administer the job.
+</p>
+
+<ol class="org-ol">
+<li>The master first generates <code>M</code> splits over the input space.
+<ul class="org-ul">
+<li>These splits usually are around 16-64mb each. In the Google File System files
+were already split up in this way, one file would be chopped up and replicated
+many times across the server infrastructure, so this approach made sense.</li>
+</ul></li>
+<li>The master then chooses servers in the network to act as the mappers, based on the
+splits that it generated. It wants to find servers which aren't too busy, but also
+have a copy of the splits that it wants them to process.</li>
+<li>Once the mappers are chosen, the master replicates the mapping code from the user
+across them and gives them the command to start processing.</li>
+<li>The mappers generate the key,value pairs for their split(s) and writes them out into
+files on their disk.</li>
+<li>Optionally, the mapper can be configured to call a combiner function, which is equivalent
+to running the reduce code against its generated output before the reducer picks up the
+mapper's generated file.</li>
+<li>Once the mapper finishes, it notifies the master and provides information on where a reducer
+can find its generated file(s).</li>
+<li>The master then spins up <code>R</code> (specified by the user) reducer workers to process the map files.
+Each reducer worker is assigned a set of files to process.</li>
+<li>The reducer begins by sorting all the key value pairs in the file. Then, for each unique key,
+it runs the <code>Reduce</code> function against all of its values.</li>
+<li>The reducer worker then writes its output into a file and notifies the master that it is done.</li>
+<li>Once all the reducer workers are done. The master returns the list of files (alongside some other
+useful metadata) back to the user's program.</li>
+<li>The information spread across these files then needs to be combined somehow. The user can run those
+files through map-reduce again, reducing the number of reducer workers (<code>R</code>) to narrow down the
+output. Or, they could use another distributed program for combining file contents.</li>
+</ol>
+
+<p>
+<b>NB</b> There's some other super interesting information about how they handle fault tolerance in the paper
+that's worth referring back to.
+</p>
+</div>
+</div>
+</div>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org959358d">High level view of the solution</a>
+<ul>
+<li><a href="#orga6be7c1">Running the <code>Map</code> step</a></li>
+<li><a href="#orgdf88cfb">Running the <code>Reduce</code> Step</a></li>
+</ul>
+</li>
+<li><a href="#orgbbe115c">Important terminology</a></li>
+<li><a href="#orgaa53d9b">The main functions</a>
+<ul>
+<li><a href="#org2d2aadd"><code>Map(k, v)</code></a></li>
+<li><a href="#org517a532"><code>Reduce(k,v)</code></a></li>
+</ul>
+</li>
+<li><a href="#org9895545">Architecture</a></li>
+<li><a href="#orgd49d377">The Job</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fixed bottom-10 flex space-x-3"><div class="h-12 w-12 p-2 rounded-full bg-aqua text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white 2xl:hidden"><i class="fa-regular fa-bars-sort fa-xl" style="color:white"></i></div><div class="h-12 w-12 p-2 rounded-full bg-blue text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white xl:hidden"><i class="fa-regular fa-list-tree fa-xl" style="color:white"></i></div></div></body>
+<script>hljs.highlightAll();</script>
+</html>

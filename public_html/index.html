@@ -1,52 +1,743 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<!-- 2023-12-02 Sat 11:37 -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sawyer Powell</title>
-<meta name="generator" content="Org Mode" />
-</head>
-<body>
-<div id="org-div-home-and-up">
- <a accesskey="h" href=""> UP </a>
- |
- <a accesskey="H" href="./index.html"> HOME </a>
-</div><div id="content" class="content">
-<h1 class="title">Sawyer Powell</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgfa45a21">1. This is Sawyer's website!</a>
-<ul>
-<li><a href="#orgdc9415f">1.1. It is important to be happy every once in a while</a></li>
-</ul>
-</li>
-<li><a href="#org9b4c732">2. <span class="done DONE">DONE</span> I need to do this thing.</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgfa45a21" class="outline-2">
-<h2 id="orgfa45a21"><span class="section-number-2">1.</span> This is Sawyer's website!</h2>
-<div class="outline-text-2" id="text-1">
-</div>
-<div id="outline-container-orgdc9415f" class="outline-3">
-<h3 id="orgdc9415f"><span class="section-number-3">1.1.</span> It is important to be happy every once in a while</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-Happiness brings a lot of benefits to your health!
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org9b4c732" class="outline-2">
-<h2 id="org9b4c732"><span class="section-number-2">2.</span> <span class="done DONE">DONE</span> I need to do this thing.</h2>
-</div>
-</div>
-<div id="postamble" class="status">
-<p class="date">Created: 2023-12-02 Sat 11:37</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
-</div>
-</body>
+  <head>
+	<!-- 2023-12-02 Sat 14:02 -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Configuring Entity Framework</title>
+	<meta name="generator" content="Org Mode" />
+
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+	<script defer src="./js/fontawesome/all.min.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/gruvbox-light-medium.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com"/>
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+	<div id="content" class="content">
+	  <div class="sidebar">
+		<div class="flex items-center mb-5">
+		  <img src="./images/horse.svg" class="shadow-none h-12 rounded-none m-0"/>
+		  <span class="block text-2xl text-fg0 font-bold font-mono ms-2">sawyer-p</span>
+		</div>
+		<ul>
+		  <li>About</li>
+		  <li>Professional Work</li>
+		  <li>Personal Portfolio</li>
+		  <hr/>
+		  <li>Perseus Cluster Project</li>
+		  <li>ngx-natlang</li>
+		  <li>spux</li>
+		  <hr/>
+		  <li>blog / notes / essays</li>
+		  <li>How I built this website</li>
+		</ul>
+	  </div>
+	  <div class="org-content">
+		<h1 class="title">The War on Text</h1>
+		<div class="subtitle">
+		  or, how developers lost the machine
+		</div>
+		<p>
+		  <img src="./images/war_on_text.png"/>
+		</p>
+
+		<div class="status">
+		  <p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2023-12-02 Sat 14:02</p>
+		</div>
+
+		<img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-6"/>
+
+		<div class="intro">
+		  Major modes – particularly programming major modes – are often complex because they have to deal with the raw complexity of interfacing with the syntax of a language: font locking, so the text is highlighted; indentation, so you can format your code; navigation, to help you go where you need to; and editing, so you can avail yourself of Emacs’s complex editing facilities. Major modes are often layered: one major mode deriving some of its complexity from another major mode; others, still, depend on a litany of complex interactions with other parts of Emacs to function. To unravel one complex major mode, you’ll spend weeks pulling at strings woven into the cloth that Emacs is cut from.
+		</div>
+
+		<div id="outline-container-orgefc1afc" class="outline-2">
+		  <h2 id="orgefc1afc"><span class="section-number-2">1.</span> Installing EF Core</h2>
+		  <div class="outline-text-2" id="text-1">
+			<p>
+			  Major modes – particularly programming major modes – are often complex because they have to deal with the raw complexity of interfacing with the syntax of a language: font locking, so the text is highlighted; indentation, so you can format your code; navigation, to help you go where you need to; and editing, so you can avail yourself of Emacs’s complex editing facilities. Major modes are often layered: one major mode deriving some of its complexity from another major mode; others, still, depend on a litany of complex interactions with other parts of Emacs to function. To unravel one complex major mode, you’ll spend weeks pulling at strings woven into the cloth that Emacs is cut from.
+			</p>
+
+			<p>
+			  Can be installed using the .NET cli
+			</p>
+			<div class="org-src-container"><pre class="src src-bash"><code>dotnet add package Microsoft.EntityFrameworkCore.SqlServer</code></pre></div>
+
+			<p>
+			  For creating and managing migrations, make sure to have the .NET core EF cli tools installed:
+			</p>
+
+			  <pre><code>dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design # enables doing migrations</code></pre>
+		  </div>
+		</div>
+
+		<div id="outline-container-org0d59967" class="outline-2">
+		  <h2 id="org0d59967"><span class="section-number-2">2.</span> Starter Code</h2>
+		  <div class="outline-text-2" id="text-2">
+			<div class="org-src-container">
+			  <pre class="src src-csharp"><code>using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
+namespace Intro;
+
+public class BloggingContext : DbContext
+{
+	public DbSet&lt;Blog&gt; Blogs { get; set; }
+	public DbSet&lt;Post&gt; Posts { get; set; }
+
+	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+	{
+		optionsBuilder.UseSqlServer(
+		@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True");
+	}
+}
+
+public class Blog
+{
+	public int BlogId { get; set; }
+	public string Url { get; set; }
+	public int Rating { get; set; }
+	public List&lt;Post&gt; Posts { get; set; }
+}
+
+public class Post
+{
+	public int PostId { get; set; }
+	public string Title { get; set; }
+	public string Content { get; set; }
+
+	public int BlogId { get; set; }
+	public Blog Blog { get; set; }
+}</code></pre>
+			</div>
+		  </div>
+		</div>
+
+		<div id="outline-container-org9ed106f" class="outline-2">
+		  <h2 id="org9ed106f"><span class="section-number-2">3.</span> Doing migrations</h2>
+		  <div class="outline-text-2" id="text-3">
+			<p>
+			  Ensure that everything is installed correctly and that the project has a DbContext setup,
+			  with <code>OnConfiguring</code> setup correctly
+			</p>
+
+			<div class="org-src-container">
+			  <pre class="src src-bash">dotnet ef migrations add MigrationNameHere
+				dotnet ef database update # this creates the database and applies the new migration to it
+			  </pre>
+			</div>
+		  </div>
+		</div>
+
+		<div id="outline-container-orgd0c180a" class="outline-2">
+		  <h2 id="orgd0c180a"><span class="section-number-2">4.</span> The EF Model</h2>
+		  <div class="outline-text-2" id="text-4">
+		  </div>
+		  <div id="outline-container-orgf6ed2f1" class="outline-3">
+			<h3 id="orgf6ed2f1"><span class="section-number-3">4.1.</span> Entities</h3>
+			<div class="outline-text-3" id="text-4-1">
+			</div>
+			<div id="outline-container-org1041a03" class="outline-4">
+			  <h4 id="org1041a03"><span class="section-number-4">4.1.1.</span> Overview</h4>
+			  <div class="outline-text-4" id="text-4-1-1">
+				<p>
+				  Entities are classes which represent data structures that can be queried from the database,
+				  the most common type of Entity is one which represents a database table.
+				</p>
+
+				<p>
+				  We can apply configuration to these entity types to define database specific things like
+				  foreign key relationships, column datatypes, and others.
+				</p>
+
+				<p>
+				  There are two main ways to configure the entities used in an EF model:
+				</p>
+				<ul class="org-ul">
+				  <li>Configuring using data annotations</li>
+				  <li>Configuring using the Fluent API</li>
+				</ul>
+
+				<p>
+				  (more info can be found <a href="https://learn.microsoft.com/en-us/ef/core/modeling/">here</a>)
+				</p>
+			  </div>
+			</div>
+
+			<div id="outline-container-org7c41b96" class="outline-4">
+			  <h4 id="org7c41b96"><span class="section-number-4">4.1.2.</span> Configuring using data annotations (recommended)</h4>
+			  <div class="outline-text-4" id="text-4-1-2">
+			  </div>
+			  <div id="outline-container-org54032e7" class="outline-5">
+				<h5 id="org54032e7"><span class="section-number-5">4.1.2.1.</span> Example</h5>
+				<div class="outline-text-5" id="text-4-1-2-1">
+				  <div class="org-src-container">
+					<pre class="src src-csharp">using System.ComponentModel.DataAnnotations;
+					  using System.ComponentModel.DataAnnotations.Schema;
+					  using Microsoft.EntityFrameworkCore;
+
+					  namespace EFModeling.EntityProperties.DataAnnotations.Annotations;
+
+					  internal class MyContext : DbContext
+					  {
+					  public DbSet&lt;Blog&gt; Blogs { get; set; }
+					  }
+
+					  [Table("Blogs")]
+					  public class Blog
+					  {
+					  public int BlogId { get; set; }
+
+					  [Required]
+					  public string Url { get; set; }
+					  }
+					</pre>
+				  </div>
+				</div>
+			  </div>
+
+			  <div id="outline-container-org5d180e2" class="outline-5">
+				<h5 id="org5d180e2"><span class="section-number-5">4.1.2.2.</span> Excluding entities from the model</h5>
+				<div class="outline-text-5" id="text-4-1-2-2">
+				  <div class="org-src-container">
+					<pre class="src src-csharp">[NotMapped] // &lt;--
+					  public class BlogMetadata
+					  {
+					  public DateTime LoadedFromDatabase { get; set; }
+					  }
+					</pre>
+				  </div>
+				</div>
+			  </div>
+
+			  <div id="outline-container-org58531cb" class="outline-5">
+				<h5 id="org58531cb"><span class="section-number-5">4.1.2.3.</span> Defining table names</h5>
+				<div class="outline-text-5" id="text-4-1-2-3">
+				  <div class="org-src-container">
+					<pre class="src src-csharp">[Table("blogs")]
+					  public class Blog
+					  {
+					  public int BlogId { get; set; }
+					  public string Url { get; set; }
+					  }
+					</pre>
+				  </div>
+				</div>
+			  </div>
+
+			  <div id="outline-container-org8c8cf09" class="outline-5">
+				<h5 id="org8c8cf09"><span class="section-number-5">4.1.2.4.</span> Defining schema</h5>
+				<div class="outline-text-5" id="text-4-1-2-4">
+				  <div class="org-src-container">
+					<pre class="src src-csharp">[Table("blogs", Schema = "blogging")]
+					  public class Blog
+					  {
+					  public int BlogId { get; set; }
+					  public string Url { get; set; }
+					  }
+					</pre>
+				  </div>
+
+				  <p>
+					Or, this can be defined by default in the <code>OnModelCreating</code> method in the <code>DbContext</code>
+				  </p>
+
+				  <div class="org-src-container">
+					<pre class="src src-csharp">protected override void OnModelCreating(ModelBuilder modelBuilder)
+					  {
+					  modelBuilder.HasDefaultSchema("blogging");
+					  }
+					</pre>
+				  </div>
+				</div>
+			  </div>
+
+			  <div id="outline-container-orgff67ee0" class="outline-5">
+				<h5 id="orgff67ee0"><span class="section-number-5">4.1.2.5.</span> Excluding columns from entity</h5>
+				<div class="outline-text-5" id="text-4-1-2-5">
+				  <div class="org-src-container">
+					<pre class="src src-csharp">public class Blog
+					  {
+					  public int BlogId { get; set; }
+					  public string Url { get; set; }
+
+					  [NotMapped]
+					  public DateTime LoadedFromDatabase { get; set; }
+					  }
+					</pre>
+				  </div>
+				</div>
+			  </div>
+
+			  <div id="outline-container-org0556fc8" class="outline-5">
+				<h5 id="org0556fc8"><span class="section-number-5">4.1.2.6.</span> Defining column names</h5>
+				<div class="outline-text-5" id="text-4-1-2-6">
+				  <div class="org-src-container">
+					<pre class="src src-csharp">public class Blog
+					  {
+					  [Column("blog_id")]
+					  public int BlogId { get; set; }
+
+					  public string Url { get; set; }
+					  }
+					</pre>
+				  </div>
+				</div>
+			  </div>
+
+			  <div id="outline-container-orgad56580" class="outline-5">
+				<h5 id="orgad56580"><span class="section-number-5">4.1.2.7.</span> Defining data types for columns</h5>
+				<div class="outline-text-5" id="text-4-1-2-7">
+				  <div class="org-src-container">
+					<pre class="src src-csharp">public class Blog
+					  {
+					  public int BlogId { get; set; }
+
+					  [Column(TypeName = "varchar(200)")]
+					  public string Url { get; set; }
+
+					  [Column(TypeName = "decimal(5, 2)")]
+					  public decimal Rating { get; set; }
+					  }
+					</pre>
+				  </div>
+				</div>
+			  </div>
+
+			  <div id="outline-container-orgfaa5f89" class="outline-5">
+				<h5 id="orgfaa5f89"><span class="section-number-5">4.1.2.8.</span> Handling nullable columns</h5>
+				<div class="outline-text-5" id="text-4-1-2-8">
+				  <div class="org-src-container">
+					<pre class="src src-csharp">public class Customer
+					  {
+					  public int Id { get; set; }
+					  public string FirstName { get; set; } // Required by convention
+					  public string LastName { get; set; } // Required by convention
+					  public string? MiddleName { get; set; } // Optional by convention
+
+					  // Note the following use of constructor binding, which avoids compiled warnings
+					  // for uninitialized non-nullable properties.
+					  public Customer(string firstName, string lastName, string? middleName = null)
+					  {
+					  FirstName = firstName;
+					  LastName = lastName;
+					  MiddleName = middleName;
+					  }
+					  }
+					</pre>
+				  </div>
+				</div>
+			  </div>
+
+			  <div id="outline-container-org04a0484" class="outline-5">
+				<h5 id="org04a0484"><span class="section-number-5">4.1.2.9.</span> Defining Primary Keys</h5>
+				<div class="outline-text-5" id="text-4-1-2-9">
+				  <p>
+					By default, any property name which ends in <code>Id</code> will be treated as the primary key
+				  </p>
+
+				  <div class="org-src-container">
+					<pre class="src src-csharp">internal class Car
+					  {
+					  public string Id { get; set; } // Will be treated as the primary key by default
+
+					  public string Make { get; set; }
+					  public string Model { get; set; }
+					  }
+
+					  internal class Truck
+					  {
+					  public string TruckId { get; set; } // Will be treated as the primary key by default
+
+					  public string Make { get; set; }
+					  public string Model { get; set; }
+					  }
+					</pre>
+				  </div>
+
+				  <p>
+					Primary keys can also be explicitly denoted
+				  </p>
+				  <div class="org-src-container">
+					<pre class="src src-csharp">internal class Car
+					  {
+					  [Key]
+					  public string LicensePlate { get; set; }
+
+					  public string Make { get; set; }
+					  public string Model { get; set; }
+					  }
+					</pre>
+				  </div>
+
+				  <p>
+					<b>NOTE</b> Primary keys are automatically configured to generate their own
+					values upon entity creation, read more <a href="https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties?tabs=data-annotations#primary-keys">here</a>
+				  </p>
+				</div>
+			  </div>
+
+			  <div id="outline-container-org90ed68f" class="outline-5">
+				<h5 id="org90ed68f"><span class="section-number-5">4.1.2.10.</span> Defining Indexes</h5>
+				<div class="outline-text-5" id="text-4-1-2-10">
+				  <p>
+					<b>NOTE</b> By default, EF creates indexes on foreign key columns
+				  </p>
+
+				  <p>
+					Read more about defining indexes <a href="https://learn.microsoft.com/en-us/ef/core/modeling/indexes?tabs=data-annotations">here</a>
+				  </p>
+				</div>
+
+				<ol class="org-ol">
+				  <li><a id="orgfdc8be8"></a>Creating an index on one column<br>
+					<div class="outline-text-6" id="text-4-1-2-10-1">
+					  <div class="org-src-container">
+						<pre class="src src-csharp">[Index(nameof(Url))]
+						  public class Blog
+						  {
+						  public int BlogId { get; set; }
+						  public string Url { get; set; }
+						  }
+						</pre>
+					  </div>
+					</div>
+				  </li>
+
+				  <li><a id="org3a4b665"></a>Creating an index on multiple columns<br>
+					<div class="outline-text-6" id="text-4-1-2-10-2">
+					  <div class="org-src-container">
+						<pre class="src src-csharp">[Index(nameof(FirstName), nameof(LastName))]
+						  public class Person
+						  {
+						  public int PersonId { get; set; }
+						  public string FirstName { get; set; }
+						  public string LastName { get; set; }
+						  }
+						</pre>
+					  </div>
+					</div>
+				  </li>
+				</ol>
+			  </div>
+			</div>
+
+			<div id="outline-container-org7a89dcb" class="outline-4">
+			  <h4 id="org7a89dcb"><span class="section-number-4">4.1.3.</span> Configuring using the Fluent API (has some extra functionality missing from above)</h4>
+			  <div class="outline-text-4" id="text-4-1-3">
+			  </div>
+			  <div id="outline-container-orgaf93649" class="outline-5">
+				<h5 id="orgaf93649"><span class="section-number-5">4.1.3.1.</span> Using the EntityTypeConfigurationAttribute (recommended)</h5>
+				<div class="outline-text-5" id="text-4-1-3-1">
+				  <p>
+					An ergonomic way to do this is by using the EntityTypeConfigurationAttribute on entity types.
+					Collocating the configuration and the entity type definition in the same file.
+				  </p>
+
+				  <div class="org-src-container">
+					<pre class="src src-csharp">public class BookEntityTypeConfiguration : IEntityTypeConfiguration&lt;Book&gt;
+					  {
+					  public void Configure(EntityTypeBuilder&lt;Book&gt; builder)
+					  {
+					  builder
+					  .Property(b =&gt; b.Title)
+					  .IsRequired();
+					  }
+					  }
+
+					  [EntityTypeConfiguration(typeof(BookConfiguration))]
+					  public class Book
+					  {
+					  public int Id { get; set; }
+					  public string Title { get; set; }
+					  public string Isbn { get; set; }
+					  }
+					</pre>
+				  </div>
+
+				  <p>
+					This means, when the book entity is registered to the DbContext, everything works, with no need
+					to manage an <code>OnModelCreating</code> method in the context.
+				  </p>
+
+				  <div class="org-src-container">
+					<pre class="src src-csharp">public class BooksContext : DbContext
+					  {
+					  public DbSet&lt;Book&gt; Books { get; set; }
+
+					  //...
+					</pre>
+				  </div>
+				</div>
+			  </div>
+
+			  <div id="outline-container-orgab240f4" class="outline-5">
+				<h5 id="orgab240f4"><span class="section-number-5">4.1.3.2.</span> Timestamping row creation</h5>
+				<div class="outline-text-5" id="text-4-1-3-2">
+				  <p>
+					(Can be modified to use the same pattern as the configuration attribute used above)
+				  </p>
+				  <div class="org-src-container">
+					<pre class="src src-csharp">protected override void OnModelCreating(ModelBuilder modelBuilder)
+					  {
+					  modelBuilder.Entity&lt;Blog&gt;()
+					  .Property(b =&gt; b.Created)
+					  .HasDefaultValueSql("getdate()");
+					  }
+					</pre>
+				  </div>
+				</div>
+			  </div>
+			</div>
+
+			<div id="outline-container-org29bdaee" class="outline-4">
+			  <h4 id="org29bdaee"><span class="section-number-4">4.1.4.</span> Shadow Properties</h4>
+			  <div class="outline-text-4" id="text-4-1-4">
+				<p>
+				  <b>Shadow Properties are often created automatically when a foreign key dependency is required</b>
+				</p>
+			  </div>
+
+			  <div id="outline-container-org7184cf4" class="outline-5">
+				<h5 id="org7184cf4"><span class="section-number-5">4.1.4.1.</span> Example</h5>
+				<div class="outline-text-5" id="text-4-1-4-1">
+				  <p>
+					In the code below, a shadow property of BlogId is automatically added to the Post entity to
+					enable the foreign key relationship.
+				  </p>
+
+				  <div class="org-src-container">
+					<pre class="src src-csharp">internal class MyContext : DbContext
+					  {
+					  public DbSet&lt;Blog&gt; Blogs { get; set; }
+					  public DbSet&lt;Post&gt; Posts { get; set; }
+					  }
+
+					  public class Blog
+					  {
+					  public int BlogId { get; set; }
+					  public string Url { get; set; }
+
+					  public List&lt;Post&gt; Posts { get; set; }
+					  }
+
+					  public class Post
+					  {
+					  public int PostId { get; set; }
+					  public string Title { get; set; }
+					  public string Content { get; set; }
+
+					  // Since there is no CLR property which holds the foreign
+					  // key for this relationship, a shadow property is created.
+					  public Blog Blog { get; set; }
+					  }
+					</pre>
+				  </div>
+				</div>
+			  </div>
+			</div>
+
+			<div id="outline-container-orgcc153ce" class="outline-4">
+			  <h4 id="orgcc153ce"><span class="section-number-4">4.1.5.</span> Foreign Keys and Navigations</h4>
+			  <div class="outline-text-4" id="text-4-1-5">
+				<p>
+				  Foreign keys are often discovered by convention. For example, this setup will automatically create
+				  a foreign key relationship between posts and blogs.
+				</p>
+
+				<div class="org-src-container">
+				  <pre class="src src-csharp">// Principal (parent)
+					public class Blog
+					{
+					public int Id { get; set; }
+					public ICollection&lt;Post&gt; Posts { get; } = new List&lt;Post&gt;(); // Collection navigation containing dependents
+					}
+
+					// Dependent (child)
+					public class Post
+					{
+					public int Id { get; set; }
+					public int BlogId { get; set; } // Required foreign key property
+					public Blog Blog { get; set; } = null!; // optional reference navigation to principal
+					}
+				  </pre>
+				</div>
+
+				<p>
+				  Navigations are a layer built on top of foreign keys that allow the programmer to
+				  navigate foreign key relatinoships using an object oriented approach.
+				</p>
+
+				<p>
+				  Learn more about defining foreign key relationships outside of convention <a href="https://learn.microsoft.com/en-us/ef/core/modeling/relationships/foreign-and-principal-keys">here</a>
+				</p>
+			  </div>
+			</div>
+		  </div>
+
+		  <div id="outline-container-org586455c" class="outline-3">
+			<h3 id="org586455c"><span class="section-number-3">4.2.</span> Conventions</h3>
+			<div class="outline-text-3" id="text-4-2">
+			  <p>
+				Conventions establish default behavior that is used by EF for managing its model.
+			  </p>
+
+			  <p>
+				An example of a convention that is used by default in EF is establishing an index on foreign keys
+				across all tables.
+			  </p>
+
+			  <p>
+				A list of all default conventions can be found <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.metadata.conventions.iconvention?view=efcore-7.0">here</a>
+			  </p>
+			</div>
+		  </div>
+		</div>
+
+		<div id="outline-container-org31b2465" class="outline-2">
+		  <h2 id="org31b2465"><span class="section-number-2">5.</span> Performance</h2>
+		  <div class="outline-text-2" id="text-5">
+		  </div>
+		  <div id="outline-container-org2120996" class="outline-3">
+			<h3 id="org2120996"><span class="section-number-3">5.1.</span> Logging queries (and their execution times)</h3>
+			<div class="outline-text-3" id="text-5-1">
+			</div>
+			<div id="outline-container-org2f1d58a" class="outline-4">
+			  <h4 id="org2f1d58a"><span class="section-number-4">5.1.1.</span> Enabling Logging</h4>
+			  <div class="outline-text-4" id="text-5-1-1">
+				<div class="org-src-container">
+				  <pre class="src src-csharp">protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+					{
+					optionsBuilder
+					.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True")
+					.LogTo(Console.WriteLine, LogLevel.Information);
+					}
+				  </pre>
+				</div>
+
+				<p>
+				  Gives log mirroring:
+				</p>
+
+				<pre class="example">
+				  info: 06/12/2020 09:12:36.117 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command)
+				  Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+				  SELECT [b].[Id], [b].[Name]
+				  FROM [Blogs] AS [b]
+				  WHERE [b].[Name] = N'foo'
+				</pre>
+			  </div>
+			</div>
+			<div id="outline-container-orge0422c5" class="outline-4">
+			  <h4 id="orge0422c5"><span class="section-number-4">5.1.2.</span> Tracing SQL queries back to linq queries</h4>
+			  <div class="outline-text-4" id="text-5-1-2">
+				<p>
+				  Use the <code>TagWith</code> method on the entity when forming the query
+				</p>
+
+				<div class="org-src-container">
+				  <pre class="src src-csharp">var myLocation = new Point(1, 2);
+					var nearestPeople = (from f in context.People.TagWith("This is my spatial query!")
+					orderby f.Location.Distance(myLocation) descending
+					select f).Take(5).ToList();
+				  </pre>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div id="outline-container-orgcc5ddea" class="outline-2">
+		  <h2 id="orgcc5ddea"><span class="section-number-2">6.</span> Lingering</h2>
+		  <div class="outline-text-2" id="text-6">
+		  </div>
+		  <div id="outline-container-orgd7e6e70" class="outline-3">
+			<h3 id="orgd7e6e70"><span class="section-number-3">6.1.</span> <span class="todo TODO">TODO</span> Write notes on how the Change Tracker works</h3>
+		  </div>
+		</div>
+		<div id="outline-container-orgbe5ca25" class="outline-2">
+		  <h2 id="orgbe5ca25"><span class="section-number-2">7.</span> Tips from the field</h2>
+		  <div class="outline-text-2" id="text-7">
+		  </div>
+		  <div id="outline-container-org04177a4" class="outline-3">
+			<h3 id="org04177a4"><span class="section-number-3">7.1.</span> SSL issues when establishing connection to the server with localhost</h3>
+			<div class="outline-text-3" id="text-7-1">
+			  <ol class="org-ol">
+				<li>Add Encrypt=False to the connectionstring (best option for localhost)</li>
+				<li>Add TrustServerCertificate=True to the connectionstring</li>
+				<li>Install a valid certificate.</li>
+			  </ol>
+			</div>
+		  </div>
+		  <div id="outline-container-org38776fa" class="outline-3">
+			<h3 id="org38776fa"><span class="section-number-3">7.2.</span> Login Failed for user '' (localhost)</h3>
+			<div class="outline-text-3" id="text-7-2">
+			  <p>
+				Include <code>Integrated Security=SSPI;</code> in the connection string, in place
+				of a username and password.
+			  </p>
+			</div>
+		  </div>
+
+		  <div id="outline-container-org7602520" class="outline-3">
+			<h3 id="org7602520"><span class="section-number-3">7.3.</span> Recommended connection string for localhost</h3>
+			<div class="outline-text-3" id="text-7-3">
+			  <p>
+				<code>Server=localhost;Database={DB_Name};Encrypt=False;Integrated Security=SSPI;</code>
+			  </p>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <div id="table-of-contents" role="doc-toc">
+		<h2>Table of Contents</h2>
+		<div id="text-table-of-contents" role="doc-toc">
+		  <ul>
+			<li><a href="#orgefc1afc">1. Installing EF Core</a></li>
+			<li><a href="#org0d59967">2. Starter Code</a></li>
+			<li><a href="#org9ed106f">3. Doing migrations</a></li>
+			<li><a href="#orgd0c180a">4. The EF Model</a>
+			  <ul>
+				<li><a href="#orgf6ed2f1">4.1. Entities</a></li>
+				<li><a href="#org586455c">4.2. Conventions</a></li>
+			  </ul>
+			</li>
+			<li><a href="#org31b2465">5. Performance</a>
+			  <ul>
+				<li><a href="#org2120996">5.1. Logging queries (and their execution times)</a></li>
+			  </ul>
+			</li>
+			<li><a href="#orgcc5ddea">6. Lingering</a>
+			  <ul>
+				<li><a href="#orgd7e6e70">6.1. <span class="todo TODO">TODO</span> Write notes on how the Change Tracker works</a></li>
+			  </ul>
+			</li>
+			<li><a href="#orgbe5ca25">7. Tips from the field</a>
+			  <ul>
+				<li><a href="#org04177a4">7.1. SSL issues when establishing connection to the server with localhost</a></li>
+				<li><a href="#org38776fa">7.2. Login Failed for user '' (localhost)</a></li>
+				<li><a href="#org7602520">7.3. Recommended connection string for localhost</a></li>
+			  </ul>
+			</li>
+		  </ul>
+		</div>
+	  </div>
+	</div> 
+	<div class="fixed bottom-10 flex space-x-3">
+	  <div class="h-12 w-12 p-2 rounded-full bg-aqua text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white 2xl:hidden">
+		<i class="fa-regular fa-bars-sort fa-xl" style="color:white"></i>
+	  </div>
+	  <div class="h-12 w-12 p-2 rounded-full bg-blue text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white lg:hidden">
+		<i class="fa-regular fa-list-tree fa-xl" style="color:white"></i>
+	  </div>
+	</div>
+  </body>
+  <script>hljs.highlightAll();</script>
 </html>
