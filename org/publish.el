@@ -18,7 +18,7 @@
 
 (setq sidebar
 	  (concat
-	   "<div class=\"sidebar\">\n"
+	   "<div id=\"sidebar\" class=\"sidebar\">\n"
 	   "<div class=\"flex items-center mb-5\" onclick=\"location.href='/'\">\n"
 	   "<img src=\"./images/horse.svg\" class=\"shadow-none h-12 rounded-none m-0\"/>\n"
 	   "<span class=\"block text-2xl text-fg0 font-bold font-mono ms-2\">sawyer-p</span>\n"
@@ -163,6 +163,7 @@
    "<script defer src=\"./js/fontawesome/all.min.js\"></script>\n"
    "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/gruvbox-light-medium.min.css\">\n"
    "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js\"></script>\n"
+   "<script src=\"./js/index.js\"></script>\n"
    "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"/>\n"
    "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin/>\n"
    "<link href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap\" rel=\"stylesheet\">\n"

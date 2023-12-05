@@ -745,6 +745,10 @@ video {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) !important;
 }
 
+.opaque {
+  opacity: 1 !important;
+}
+
 body {
   display: flex;
   flex-direction: column;

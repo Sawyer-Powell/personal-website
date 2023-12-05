@@ -1,6 +1,6 @@
 :PROPERTIES:
 #+TITLE: Hey! I'm Sawyer.
-#+SUBTITLE: project manager / technical lead / developer at [[https://counterpart.biz][Counterpart]]
+#+SUBTITLE: project manager / technical lead / developer at [[https://counterpart.biz][counterpart]]
 #+HERO: https://i.imgur.com/HfX05i1.jpg
 #+OPTIONS: html-style:nil
 #+MACRO: imglnk @@html:<img src="$1">@@
