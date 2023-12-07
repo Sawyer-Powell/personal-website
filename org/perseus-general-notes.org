@@ -1,0 +1,210 @@
+:PROPERTIES:
+#+TITLE: Perseus Cluster Project (Random Notes)
+#+SUBTITLE: [[file:perseus.org][project page]] 
+#+HERO: https://i.imgur.com/0cKujzR.png
+#+OPTIONS: html-style:nil
+#+MACRO: imglnk @@html:<img src="$1">@@
+#+OPTIONS: num:nil
+:END:
+
+* Initial Brainstorm
+I want to be able to easily interface with the system through a shell,
+and by virtue of that, through my programming language of choice.
+
+I would also like to have easy Emacs integration.
+
+I would like to have a simple way of deploying and managing dev applications
+with a strong CI/CD pipeline/concepts.
+- Something based on NIX would be interesting, so I can avoid touching docker
+  with a thirty foot pole
+
+I would also like a way of running applications that can take advantage of the
+distributed system.
+- Ability to develop a distributed database (Bigtable esque? would like to write my own database that supports SQL)
+- Ability to develop a distributed filestore (GFS)
+- Run Map/Reduce operations on the cluster
+- Really a strong conceptual foundation and good API for writing and expressing
+  distributed algorithms
+ 
+It would be cool to have the hardware/network set up such that I can just hook
+any old computer up, go through a setup process, and have it able to contribute
+itself to the cluster. 
+
+It seems something fundamental to this problem is task delegation? It seems that I'm going to need
+some sort of master computer, which can delegate tasks out to children computers. Fundamental to this
+there seems to be a few concepts that need further elaboration:
+1. Task Structure
+2. Delegation
+3. Standardization
+
+** Task Structure
+A task needs to be a specification of a computation that a computer needs to perform. Computation is
+fundamentally just transforming data. So, a task should consist of two parts
+1. A program specifying the computation
+2. The input data for that computation
+
+*** This lends itself towards being a sort of /distributed shell/ :keyidea:
+In this model, the task delegation is the easy part, what's hard is making a distributed stdout
+
+**** There will need to be a notion of a /distributed stdout/ which means understanding distributed filestores is fundamental :keyidea:
+
+Programs will need an (optionally) distributed way to access stdin and a default way
+of writing to a distributed stdout.
+
+An initial thought is that we write this stdout to a distributed filestore
+- This gives me the impression that I need to investigate more into how GFS works,
+  this could be the first thing that I need to enable the cluster to be capable of.
+   
+*** There needs to be a standard protocol for initializing and communicating completion of a task :keyidea:
+Probably would be a good idea to build this around grpc
+
+** Delegation
+Using classic web protocols to actually distribute the tasks will be important.
+
+However, within the delegation there needs to be a notion of which computer to delegate to.
+
+In this sense, there needs to be monitoring into how busy the computers actually are, and
+some scaling involved given how many resources they actually have.
+
+*** There will likely need to be a scheduler running on the master server :keyidea:  
+
+** Standardization
+
+All of the computers should be runnning the same operating system and should have some
+unified standard procedure of setting them up and connecting them to the network.
+
+*** The computers could be running NixOs, this way there can be an easily scriptable way to set up and tear down dev environments :keyidea:
+*** The same computer that operates as the master/scheduler can also be responsible for routing all traffic within the network :keyidea:
+* Networking the test setup
+** Cluster network overview
+One raspberry pi will act as the router for the network.
+Other pis will connect to it through a powered network switch.
+The routing pi will use its wifi card to connect to the broader
+network for internet traffic.
+The user can just plug their laptop into the switch through
+ethernet to interact with the pis.
+
+*Advantages*
+- Allows me to take the cluster pretty much anywhere that has wifi
+  and be able to program and develop on it.
+
+** Setting up a raspberry pi as a simple router
+*** Overview
+When devices first connect to the network, if they are configured to do so,
+the first thing that they will do is send a *DHCPDISCOVER* message to
+the whole network.
+
+In order to assign that device an IP address, there needs to be a device
+on that network which can respond to that message with a *DHCPOFFER* message.
+
+A DHCP Server can be managed with a utility called =dnsmasq=
+
+Of course, the routing PI cannot automatically assign an ip for itself, therefore
+the first thing that we need to do is assign it a static ip. Then,
+we'll set up the DNS and DHCP services, enable ip forwarding (so the device
+can forward packets between its network interfaces). Finally, we'll set up
+NAT (network address translation) so the PI can translate internal IP
+addresses into "parent-network" addresses.
+
+*** Pro tips
+- Make sure port 53 is open on the firewall for DNS!
+- Make sure ports 67 and 68 are open for DHCP!
+- Make sure port 22 is open for SSH!
+
+*** Assign a static IP
+#+begin_src plaintext
+    sudo ifconfig eth0 192.168.1.1 netmask 255.255.255.0
+#+end_src
+*** Apply IP Forwarding and set up NAT using =ufw=
+**** Configuring the kernel for forwarding
+=/etc/sysctl.conf=
+#+begin_src plaintext 
+  net.ipv4.ip_forward=1
+#+end_src
+
+Then run
+#+begin_src bash
+  sudo sysctl -p
+#+end_src
+To apply the changes made to sysctl.conf
+
+**** Configuring the ufw for forwarding & NAT
+#+begin_src bash
+  sudo ufw default allow forward
+#+end_src
+
+Configure the ufw rules
+
+=/etc/ufw/before.rules=
+#+begin_src plaintext
+  *nat
+  :POSTROUTING ACCEPT [0:0]
+  -A POSTROUTING -s 192.168.1.0/24 -o wlan0 -j MASQUERADE
+  COMMIT
+#+end_src
+
+- Applies to the =nat= table which is responsible for network
+  address translation.
+- =-A POSTROUTING= appends a rule to the post-routing chain where
+  NAT is handled.
+- =-o wlan0= specifies outgoing network interface. We're forwarding packets from our eth0 interface to our wlan0 interface
+- =-j MASQUERADE= hides the private IP addresses of devices on the
+  local network behind the Pi's IP.
+
+#+begin_src bash
+  sudo ufw enable
+#+end_src
+
+If it isn't already enabled
+
+#+begin_src bash 
+  sudo ufw reload
+#+end_src
+
+To be super certain that the changes were applied
+  
+*** Configure =dnsmasq=
+#+begin_src bash
+  sudo apt-get install dnsmasq
+#+end_src
+
+=/etc/dnsmasq.conf=
+#+begin_src plaintext 
+  # Ensure that the router can function as a DNS server, working over port 53
+  port=53
+  interface=eth0
+  dhcp-range=192.168.1.50,192.168.1.150,24h
+  dhcp-authoritative
+
+  # Enable logging for DNS queries
+  log-queries
+  # Enable logginf for DHCP messages
+  log-dhcp
+  # Enable some logging niceties
+  log-async
+  log-facility=/var/log/dnsmasq.log
+
+  # Optional - enable 1.1.1.1 DNS resolution
+  server=1.1.1.1
+#+end_src
+
+- Serves DHCP requests on `eth0`.
+- Assigns IP addresses from 192.168.1.50 to 192.168.1.150.
+- The lease is valid for 24 hours (`24h`).
+- =dhcp-authoritative= configures the DHCP server to take control of all leases on the server
+  Clients connecting to a server for the first time might have a record of their existing
+  DHCP lease. They'll often broadcast this lease over the network. Authoritative mode configures
+  dnsmasq to take control of these leases and manage them, whether it has a record of them or not.
+
+  This avoids long timeouts when devices connect to the network anew. Since they'll wait for a while
+  for a DHCP server to respond to their lease before asking for a new one.
+
+  
+
+*NB* =dnsmasq= requires a daemon to be running for the DHCP server to be active
+(also look into =dhcpd= for an alternative to =dnsmasq=)
+
+**** Restart/manage the =dnsmasq= daemon through systemd
+#+begin_src bash
+  sudo systemctl restart dnsmasq 
+#+end_src

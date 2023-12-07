@@ -753,8 +753,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 245 215 / var(--tw-bg-opacity));
+  background-color: rgb(249 245 215 / 0.7);
   padding-left: 2rem;
   padding-right: 2rem;
   font-family: Noto Sans, sans-serif;

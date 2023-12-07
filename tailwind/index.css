@@ -8,7 +8,7 @@
 }
 
 body {
-	@apply bg-bg0_h text-fg font-sans px-8 flex items-center flex-col
+	@apply bg-bg0_h/70 text-fg font-sans px-8 flex items-center flex-col
 }
 
 svg {

@@ -1,10 +1,10 @@
 (require 'ox-publish)
 (setq sidebar-links '(:about
 					  (("About" "about.html")
-					   ("Professional Work" "secrets.html")
+					   ("Professional Work" "professional-work.html")
 					   ("Personal Portfolio" "secrets.html"))
 					  :projects
-					  (("Perseus Cluster Project" "secrets.html"))
+					  (("Perseus Cluster Project" "perseus.html"))
 					  :blog
 					  (("blog / notes / essays" "secrets.html"))))
 

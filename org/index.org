@@ -22,10 +22,10 @@ of hundreds of thousands of people. It's vast, and stunning.
 Use this blog to explore my essays and projects. A good amount of my technical
 notes are also available.
 
-* Blog
-Here are some of my blog posts
-- [[file:secrets.org::*There are some secret secrets here][Find some secrets here]]
+* Explore
 
-* Projects
-Here are some of my projects
-- [[file:secrets.org::*There are some secret secrets here][Find some secrets here]]
+For those interested in me professionally, check out my [[file:professional-work.org][professional work]]. Or reach out to me by email at
+[[mailto:sawyer@sawyer-p.me][sawyer@sawyer-p.me]].
+
+** Projects
+- [[file:perseus.org][Perseus Cluster Project]] 

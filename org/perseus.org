@@ -1,0 +1,24 @@
+:PROPERTIES:
+#+TITLE: Perseus Cluster Project
+#+SUBTITLE: a personal cloud for everyone  
+#+HERO: https://i.imgur.com/0cKujzR.png
+#+OPTIONS: html-style:nil
+#+MACRO: imglnk @@html:<img src="$1">@@
+#+OPTIONS: num:nil
+:END:
+
+* INTRO
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+
+The Perseus Cluster Project has the goal of allowing anyone and everyone to easily, and quickly, set up a home cloud
+computing cluster. Old computers aren't slow, they lack good software. PCP hopes to unlock the power in our old technology,
+allowing hackers, tinkerers, and those interested in distributed computing to easily explore the field with their old laptops
+and desktops. PCP is designed to be fully transparent, modifiable and extensible, embodying a software philosophy
+pioneered by the Emacs editor. I work on this project in my free time after work, you can find my notes and (more structured)
+blog posts on this page. 
+
+* Notes & Blog posts
+
+- [[file:perseus-general-notes.org][General Notes]] 

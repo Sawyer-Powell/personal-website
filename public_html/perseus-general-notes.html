@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<!-- 2023-12-07 Thu 14:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Perseus Cluster Project (Random Notes)</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<script defer src="./js/fontawesome/all.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/gruvbox-light-medium.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="./js/index.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+<div id="sidebar" class="sidebar">
+<div class="flex items-center mb-5" onclick="location.href='/'">
+<img src="./images/horse.svg" class="shadow-none h-12 rounded-none m-0"/>
+<span class="block text-2xl text-fg0 font-bold font-mono ms-2">sawyer-p</span>
+</div>
+<ul>
+<li><a href="about.html">About</a></li>
+<li><a href="professional-work.html">Professional Work</a></li>
+<li><a href="secrets.html">Personal Portfolio</a></li>
+<hr/>
+<li><a href="perseus.html">Perseus Cluster Project</a></li>
+<hr/>
+<li><a href="secrets.html">blog / notes / essays</a></li>
+</ul>
+</div>
+<div class="org-content">
+<h1 class="title">Perseus Cluster Project (Random Notes)</h1>
+<div class="subtitle"><a href="perseus.html">project page</a></div>
+<img src="https://i.imgur.com/0cKujzR.png" class="hero">
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2023-12-07 Thu 14:07</p></div>
+<img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
+
+<div id="outline-container-orgf02a879" class="outline-2">
+<h2 id="orgf02a879">Initial Brainstorm</h2>
+<div class="outline-text-2" id="text-orgf02a879">
+<p>
+I want to be able to easily interface with the system through a shell,
+and by virtue of that, through my programming language of choice.
+</p>
+
+<p>
+I would also like to have easy Emacs integration.
+</p>
+
+<p>
+I would like to have a simple way of deploying and managing dev applications
+with a strong CI/CD pipeline/concepts.
+</p>
+<ul class="org-ul">
+<li>Something based on NIX would be interesting, so I can avoid touching docker
+with a thirty foot pole</li>
+</ul>
+
+<p>
+I would also like a way of running applications that can take advantage of the
+distributed system.
+</p>
+<ul class="org-ul">
+<li>Ability to develop a distributed database (Bigtable esque? would like to write my own database that supports SQL)</li>
+<li>Ability to develop a distributed filestore (GFS)</li>
+<li>Run Map/Reduce operations on the cluster</li>
+<li>Really a strong conceptual foundation and good API for writing and expressing
+distributed algorithms</li>
+</ul>
+
+<p>
+It would be cool to have the hardware/network set up such that I can just hook
+any old computer up, go through a setup process, and have it able to contribute
+itself to the cluster. 
+</p>
+
+<p>
+It seems something fundamental to this problem is task delegation? It seems that I'm going to need
+some sort of master computer, which can delegate tasks out to children computers. Fundamental to this
+there seems to be a few concepts that need further elaboration:
+</p>
+<ol class="org-ol">
+<li>Task Structure</li>
+<li>Delegation</li>
+<li>Standardization</li>
+</ol>
+</div>
+
+<div id="outline-container-org3fcb424" class="outline-3">
+<h3 id="org3fcb424">Task Structure</h3>
+<div class="outline-text-3" id="text-org3fcb424">
+<p>
+A task needs to be a specification of a computation that a computer needs to perform. Computation is
+fundamentally just transforming data. So, a task should consist of two parts
+</p>
+<ol class="org-ol">
+<li>A program specifying the computation</li>
+<li>The input data for that computation</li>
+</ol>
+</div>
+
+<div id="outline-container-org7cd27ca" class="outline-4">
+<h4 id="org7cd27ca">This lends itself towards being a sort of <i>distributed shell</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
+<div class="outline-text-4" id="text-org7cd27ca">
+<p>
+In this model, the task delegation is the easy part, what's hard is making a distributed stdout
+</p>
+</div>
+
+<div id="outline-container-orgaa9090b" class="outline-5">
+<h5 id="orgaa9090b">There will need to be a notion of a <i>distributed stdout</i> which means understanding distributed filestores is fundamental&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h5>
+<div class="outline-text-5" id="text-orgaa9090b">
+<p>
+Programs will need an (optionally) distributed way to access stdin and a default way
+of writing to a distributed stdout.
+</p>
+
+<p>
+An initial thought is that we write this stdout to a distributed filestore
+</p>
+<ul class="org-ul">
+<li>This gives me the impression that I need to investigate more into how GFS works,
+this could be the first thing that I need to enable the cluster to be capable of.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbb997a3" class="outline-4">
+<h4 id="orgbb997a3">There needs to be a standard protocol for initializing and communicating completion of a task&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
+<div class="outline-text-4" id="text-orgbb997a3">
+<p>
+Probably would be a good idea to build this around grpc
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8a0ef45" class="outline-3">
+<h3 id="org8a0ef45">Delegation</h3>
+<div class="outline-text-3" id="text-org8a0ef45">
+<p>
+Using classic web protocols to actually distribute the tasks will be important.
+</p>
+
+<p>
+However, within the delegation there needs to be a notion of which computer to delegate to.
+</p>
+
+<p>
+In this sense, there needs to be monitoring into how busy the computers actually are, and
+some scaling involved given how many resources they actually have.
+</p>
+</div>
+
+<div id="outline-container-org2dbf65b" class="outline-4">
+<h4 id="org2dbf65b">There will likely need to be a scheduler running on the master server&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
+</div>
+</div>
+
+<div id="outline-container-org51788ee" class="outline-3">
+<h3 id="org51788ee">Standardization</h3>
+<div class="outline-text-3" id="text-org51788ee">
+<p>
+All of the computers should be runnning the same operating system and should have some
+unified standard procedure of setting them up and connecting them to the network.
+</p>
+</div>
+
+<div id="outline-container-org7f9c882" class="outline-4">
+<h4 id="org7f9c882">The computers could be running NixOs, this way there can be an easily scriptable way to set up and tear down dev environments&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
+</div>
+<div id="outline-container-org57c48c4" class="outline-4">
+<h4 id="org57c48c4">The same computer that operates as the master/scheduler can also be responsible for routing all traffic within the network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
+</div>
+</div>
+</div>
+<div id="outline-container-org39dea54" class="outline-2">
+<h2 id="org39dea54">Networking the test setup</h2>
+<div id="outline-container-org22240a2" class="outline-3">
+<h3 id="org22240a2">Cluster network overview</h3>
+<div class="outline-text-3" id="text-org22240a2">
+<p>
+One raspberry pi will act as the router for the network.
+Other pis will connect to it through a powered network switch.
+The routing pi will use its wifi card to connect to the broader
+network for internet traffic.
+The user can just plug their laptop into the switch through
+ethernet to interact with the pis.
+</p>
+
+<p>
+<b>Advantages</b>
+</p>
+<ul class="org-ul">
+<li>Allows me to take the cluster pretty much anywhere that has wifi
+and be able to program and develop on it.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2ca79a9" class="outline-3">
+<h3 id="org2ca79a9">Setting up a raspberry pi as a simple router</h3>
+<div id="outline-container-org6ce69d2" class="outline-4">
+<h4 id="org6ce69d2">Overview</h4>
+<div class="outline-text-4" id="text-org6ce69d2">
+<p>
+When devices first connect to the network, if they are configured to do so,
+the first thing that they will do is send a <b>DHCPDISCOVER</b> message to
+the whole network.
+</p>
+
+<p>
+In order to assign that device an IP address, there needs to be a device
+on that network which can respond to that message with a <b>DHCPOFFER</b> message.
+</p>
+
+<p>
+A DHCP Server can be managed with a utility called <code>dnsmasq</code>
+</p>
+
+<p>
+Of course, the routing PI cannot automatically assign an ip for itself, therefore
+the first thing that we need to do is assign it a static ip. Then,
+we'll set up the DNS and DHCP services, enable ip forwarding (so the device
+can forward packets between its network interfaces). Finally, we'll set up
+NAT (network address translation) so the PI can translate internal IP
+addresses into "parent-network" addresses.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd096514" class="outline-4">
+<h4 id="orgd096514">Pro tips</h4>
+<div class="outline-text-4" id="text-orgd096514">
+<ul class="org-ul">
+<li>Make sure port 53 is open on the firewall for DNS!</li>
+<li>Make sure ports 67 and 68 are open for DHCP!</li>
+<li>Make sure port 22 is open for SSH!</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8b333ff" class="outline-4">
+<h4 id="org8b333ff">Assign a static IP</h4>
+<div class="outline-text-4" id="text-org8b333ff">
+<pre><code class="language-plaintext">sudo ifconfig eth0 192.168.1.1 netmask 255.255.255.0
+</code></pre>
+</div>
+</div>
+<div id="outline-container-orgb86dc6e" class="outline-4">
+<h4 id="orgb86dc6e">Apply IP Forwarding and set up NAT using <code>ufw</code></h4>
+<div id="outline-container-org9ef90b0" class="outline-5">
+<h5 id="org9ef90b0">Configuring the kernel for forwarding</h5>
+<div class="outline-text-5" id="text-org9ef90b0">
+<p>
+<code>/etc/sysctl.conf</code>
+</p>
+<pre><code class="language-plaintext">net.ipv4.ip_forward=1
+</code></pre>
+
+<p>
+Then run
+</p>
+<pre><code class="language-bash">sudo sysctl -p
+</code></pre>
+<p>
+To apply the changes made to sysctl.conf
+</p>
+</div>
+</div>
+
+<div id="outline-container-org24f4b95" class="outline-5">
+<h5 id="org24f4b95">Configuring the ufw for forwarding &amp; NAT</h5>
+<div class="outline-text-5" id="text-org24f4b95">
+<pre><code class="language-bash">sudo ufw default allow forward
+</code></pre>
+
+<p>
+Configure the ufw rules
+</p>
+
+<p>
+<code>/etc/ufw/before.rules</code>
+</p>
+<pre><code class="language-plaintext">*nat
+:POSTROUTING ACCEPT [0:0]
+-A POSTROUTING -s 192.168.1.0/24 -o wlan0 -j MASQUERADE
+COMMIT
+</code></pre>
+
+<ul class="org-ul">
+<li>Applies to the <code>nat</code> table which is responsible for network
+address translation.</li>
+<li><code>-A POSTROUTING</code> appends a rule to the post-routing chain where
+NAT is handled.</li>
+<li><code>-o wlan0</code> specifies outgoing network interface. We're forwarding packets from our eth0 interface to our wlan0 interface</li>
+<li><code>-j MASQUERADE</code> hides the private IP addresses of devices on the
+local network behind the Pi's IP.</li>
+</ul>
+
+<pre><code class="language-bash">sudo ufw enable
+</code></pre>
+
+<p>
+If it isn't already enabled
+</p>
+
+<pre><code class="language-bash">sudo ufw reload
+</code></pre>
+
+<p>
+To be super certain that the changes were applied
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3e0972f" class="outline-4">
+<h4 id="org3e0972f">Configure <code>dnsmasq</code></h4>
+<div class="outline-text-4" id="text-org3e0972f">
+<pre><code class="language-bash">sudo apt-get install dnsmasq
+</code></pre>
+
+<p>
+<code>/etc/dnsmasq.conf</code>
+</p>
+<pre><code class="language-plaintext"># Ensure that the router can function as a DNS server, working over port 53
+port=53
+interface=eth0
+dhcp-range=192.168.1.50,192.168.1.150,24h
+dhcp-authoritative
+
+# Enable logging for DNS queries
+log-queries
+# Enable logginf for DHCP messages
+log-dhcp
+# Enable some logging niceties
+log-async
+log-facility=/var/log/dnsmasq.log
+
+# Optional - enable 1.1.1.1 DNS resolution
+server=1.1.1.1
+</code></pre>
+
+<ul class="org-ul">
+<li>Serves DHCP requests on `eth0`.</li>
+<li>Assigns IP addresses from 192.168.1.50 to 192.168.1.150.</li>
+<li>The lease is valid for 24 hours (`24h`).</li>
+<li><p>
+<code>dhcp-authoritative</code> configures the DHCP server to take control of all leases on the server
+Clients connecting to a server for the first time might have a record of their existing
+DHCP lease. They'll often broadcast this lease over the network. Authoritative mode configures
+dnsmasq to take control of these leases and manage them, whether it has a record of them or not.
+</p>
+
+<p>
+This avoids long timeouts when devices connect to the network anew. Since they'll wait for a while
+for a DHCP server to respond to their lease before asking for a new one.
+</p></li>
+</ul>
+
+
+
+<p>
+<b>NB</b> <code>dnsmasq</code> requires a daemon to be running for the DHCP server to be active
+(also look into <code>dhcpd</code> for an alternative to <code>dnsmasq</code>)
+</p>
+</div>
+
+<div id="outline-container-org6b33470" class="outline-5">
+<h5 id="org6b33470">Restart/manage the <code>dnsmasq</code> daemon through systemd</h5>
+<div class="outline-text-5" id="text-org6b33470">
+<pre><code class="language-bash">sudo systemctl restart dnsmasq 
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf02a879">Initial Brainstorm</a>
+<ul>
+<li><a href="#org3fcb424">Task Structure</a>
+<ul>
+<li><a href="#org7cd27ca">This lends itself towards being a sort of <i>distributed shell</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a>
+<ul>
+<li><a href="#orgaa9090b">There will need to be a notion of a <i>distributed stdout</i> which means understanding distributed filestores is fundamental&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
+</ul>
+</li>
+<li><a href="#orgbb997a3">There needs to be a standard protocol for initializing and communicating completion of a task&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
+</ul>
+</li>
+<li><a href="#org8a0ef45">Delegation</a>
+<ul>
+<li><a href="#org2dbf65b">There will likely need to be a scheduler running on the master server&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
+</ul>
+</li>
+<li><a href="#org51788ee">Standardization</a>
+<ul>
+<li><a href="#org7f9c882">The computers could be running NixOs, this way there can be an easily scriptable way to set up and tear down dev environments&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
+<li><a href="#org57c48c4">The same computer that operates as the master/scheduler can also be responsible for routing all traffic within the network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org39dea54">Networking the test setup</a>
+<ul>
+<li><a href="#org22240a2">Cluster network overview</a></li>
+<li><a href="#org2ca79a9">Setting up a raspberry pi as a simple router</a>
+<ul>
+<li><a href="#org6ce69d2">Overview</a></li>
+<li><a href="#orgd096514">Pro tips</a></li>
+<li><a href="#org8b333ff">Assign a static IP</a></li>
+<li><a href="#orgb86dc6e">Apply IP Forwarding and set up NAT using <code>ufw</code></a>
+<ul>
+<li><a href="#org9ef90b0">Configuring the kernel for forwarding</a></li>
+<li><a href="#org24f4b95">Configuring the ufw for forwarding &amp; NAT</a></li>
+</ul>
+</li>
+<li><a href="#org3e0972f">Configure <code>dnsmasq</code></a>
+<ul>
+<li><a href="#org6b33470">Restart/manage the <code>dnsmasq</code> daemon through systemd</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fixed bottom-10 flex space-x-3"><div class="h-12 w-12 p-2 rounded-full bg-aqua text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white 2xl:hidden"><i class="fa-regular fa-bars-sort fa-xl" style="color:white"></i></div><div class="h-12 w-12 p-2 rounded-full bg-blue text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white xl:hidden"><i class="fa-regular fa-list-tree fa-xl" style="color:white"></i></div></div></body>
+<script>hljs.highlightAll();</script>
+</html>
