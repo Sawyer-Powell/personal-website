@@ -149,7 +149,12 @@
 	 (let ((depth (plist-get info :with-toc)))
        (when depth (org-html-toc depth info)))
 	 "</div>\n"
-	 "<div class=\"fixed bottom-10 flex space-x-3\"><div class=\"h-12 w-12 p-2 rounded-full bg-aqua text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white 2xl:hidden\"><i class=\"fa-regular fa-bars-sort fa-xl\" style=\"color:white\"></i></div><div class=\"h-12 w-12 p-2 rounded-full bg-blue text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white xl:hidden\"><i class=\"fa-regular fa-list-tree fa-xl\" style=\"color:white\"></i></div></div>"
+	 "<div class=\"fixed bottom-10 flex space-x-3\">"
+	 "<div id=\"menu-btn\" class=\"h-12 w-12 p-2 rounded-full bg-aqua text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white 2xl:hidden\">"
+	 "<i class=\"fa-regular fa-bars-sort fa-xl\" style=\"color:white\"></i>"
+	 "</div>"
+	 "<div id=\"toc-btn\" class=\"h-12 w-12 p-2 rounded-full bg-blue text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white xl:hidden\"><i class=\"fa-regular fa-list-tree fa-xl\" style=\"color:white\"></i>"
+	 "</div></div>"
 	 "</body>\n"
 	 "<script>hljs.highlightAll();</script>\n" ; Does syntax highlighting on code blocks
 	 "</html>"))
