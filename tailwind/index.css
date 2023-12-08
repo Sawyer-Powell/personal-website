@@ -86,7 +86,7 @@ hr {
 #table-of-contents.unhide {
     --tw-bg-opacity: 1;
     -webkit-mask-image: none;
-    padding: 2rem;
+    padding: 1.25rem;
     font-size: 18px;
 }
 
