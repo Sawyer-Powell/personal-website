@@ -22,10 +22,18 @@ of hundreds of thousands of people. It's vast, and stunning.
 Use this blog to explore my essays and projects. A good amount of my technical
 notes are also available.
 
-* Explore
+* Projects
+- [[file:perseus.org][Perseus Cluster Project]]
+- [[file:deep-learning.org][Deep Learning]]
+
+* Essays
+- [[file:we-need-better-tools.org][We Need Better Tools]] 
+
+* Professional Inquiries
 
 For those interested in me professionally, check out my [[file:professional-work.org][professional work]]. Or reach out to me by email at
 [[mailto:sawyer@sawyer-p.me][sawyer@sawyer-p.me]].
 
-** Projects
-- [[file:perseus.org][Perseus Cluster Project]] 
+* Great websites
+- [[https://shiraz-k.com/][Shiraz Khan's Blog]]
+

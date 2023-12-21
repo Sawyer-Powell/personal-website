@@ -1,0 +1,126 @@
+:PROPERTIES:
+#+TITLE: We Need Better Tools
+#+SUBTITLE: Or, how to make software that doesn't suck 
+#+HERO: https://i.imgur.com/hVjmLUL.jpeg
+#+OPTIONS: html-style:nil
+#+MACRO: imglnk @@html:<img src="$1">@@
+#+OPTIONS: num:nil
+:END:
+
+* INTRO
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+
+The state of modern software is awful. Our computers are faster than
+ever, we have access to incredibly powerful AI models, but the
+experience of using software, especially modern business software, is
+painful. Modern software, especially on the web, is incredibly
+complicated. Website bundle sizes are, in general, huge. Sometimes
+needing to load in /megabytes/ of javascript to run. The modern web
+was built to share static documents, this rigidity, combined with
+runaway complexity, has made it extremely difficult to deploy truly
+extensible and flexible software.
+
+* Lament
+
+When I first started work after college I was hired as a project
+manager at a custom software company called [[https://counterpart.biz][Counterpart]], which has a
+unique approach to software project management. Counterpart operates
+entirely on fixed bid, which means the client pays a fixed amount for
+each feature, which includes design, development, and testing. The
+login and user management systems might be $5,000, a custom content
+builder might be $10,000 or so. Each feature of the software is
+itemized with an associated price, which forms the total cost of the
+project to the client.
+
+These items are then scheduled in a pipeline, almost like an assembly
+line. Each features starts in the architecture phase, where the whole
+team works with the client to fully specify a feature. This then gets
+passed to the design mockup phase, where the designer creates renders
+with Adobe XD (or Figma), of the feature's UI. These mockups are then
+used to create the HTML+CSS, which are then used for development,
+which are ultimately tested by the project's tester. Every two weeks a
+feature moves to the next phase of the pipeline. This schedule married
+with an internal time tracking system helps PMs keep track of what
+everyone is doing, which helps update and build out new project
+schedules.
+
+When I arrived, the company was operating entirely on
+spreadsheets. This worked okay, the company only had a couple dozen
+employees, but created headaches for us project managers since
+information was scattered across Google Drive.
+
+If you're in this position, as a person skilled at programming, what
+do you do? What options are there? Here's the ones that I thought of:
+- We can create a custom project management app specifically tailored
+  to our workflow.
+  - *Pros* It will (hopefully) meet all of our needs and relieve
+    headaches
+  - *Cons* It will create a massive development burden, as well as a
+    ton of legacy code that will need to change if we ever have to
+    adapt our business.
+- We can try to make use of an off the shelf project management tool
+  like Asana
+  - *Pros* Not much new development work needed
+  - *Cons* We'll have to create hacky systems in the software to
+    approximate how our business actually works, constantly fighting
+    it to get it to do what we want. We'll also be at the mercy of a
+    company who knows nothing about us, who might, at any time, go
+    belly up or remove critical features.
+- We can write a Google Sheets integration which aggregates all of our
+  data
+  - *Pros* Eliminates the problem of having data scattered all over Google
+    Drive.
+  - *Cons* Doesn't solve the problem of needing custom data-entry workflows,
+    we're also still tied to displaying information in spreadsheet form.
+  - /(This is the option I ended up choosing)/
+
+Every option has its tradeoffs, as everything does, but the real issue
+is that none of the options above really /solve/ our problem. A real
+solution would involve a system that has easy and quick extensibility
+and customizability, with the ability to create arbitrary interactions
+and visualizations. This is the promise of webapps, so why is our
+software so rigid?
+
+Web frameworks are in general great at creating modern websites, but
+the suck at creating extensible websites. Few people are thinking
+about what a truly extensible/customizable website would look
+like. I'm looking for something that would allow me to put together a
+full project/business management system in a matter of days, rather
+than months. One that is /fast/ (i.e. low latency, a criteria almost
+all off the shelf solutions fail), and one that preserves its
+extensibility, at least relatively well, the more code I write for it.
+This doesn't need to be a website, in the loftiest reaches of my
+imagination it could be a small component in a fully extensible
+computing system.
+
+A tool like this /can/ exist, many software projects in the past have
+gotten very close. This is the kind of tool that can genuinely
+empower everyone who uses a computer, but most people don't understand
+that this is a problem, or keep missing the mark. 
+
+* Emacs, the POSIX Dream, and Composition
+
+Back in the early days of computing extensibility and flexibility were
+major philosophical concerns in the study of computing systems. Unix,
+and the subsequent POSIX standard, were huge leaps forward in the
+design of extensible, and most importantly /composable/,
+systems. Being able to pipe the output of one program into the input
+of another allows a programmer to quickly run extremely complex data
+transformations using terse syntax. If the computer can't do
+something, write a program that combines other programs to achieve
+that thing you're trying to do. People love to talk about how to fully
+adhere to the Unix Philosophy your software should only do one thing,
+and do that thing well. I don't think this is a useful framing. Great
+POSIX compliant programs are extremely /composable/. Composability
+should be the primary focus, not how many things your program does.
+
+This is part of why there are such big communities of programmers who
+are enthusiastic about living on the command line. The linux shell
+provides a fully composable, extensible, and most importantly, /turing
+complete/ environment for interacting with your computer. Turing
+completeness in your environment means the full power of computing has
+been preserved going up the chain of abstraction. Great computing
+environments /always/ preserve this, they are an isomorphism of the
+computer itself.

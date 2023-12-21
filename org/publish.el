@@ -1,11 +1,12 @@
 (require 'ox-publish)
 (setq sidebar-links '(:about
 					  (("About" "about.html")
-					   ("Professional Work" "professional-work.html")
+					   ("Professional Work" "professional-work.html"))
 					  :projects
-					  (("Perseus Cluster Project" "perseus.html"))
+					  (("Perseus Cluster Project" "perseus.html")
+					   ("Deep Learning" "deep-learning.html"))
 					  :blog
-					  (("Deep Learning" "deep-learning.html"))))
+					  (("Posts" "posts.html"))))
 
 (defun prepare-sidebar-links (sidebar-links prop)
   (apply #'concat

@@ -1,0 +1,10 @@
+:PROPERTIES:
+#+TITLE: Posts
+#+HERO: https://i.imgur.com/hVjmLUL.jpeg
+#+OPTIONS: html-style:nil
+#+MACRO: imglnk @@html:<img src="$1">@@
+#+OPTIONS: num:nil
+:END:
+
+* General
+- [[file:we-need-better-tools.org][We Need Better Tools]] 

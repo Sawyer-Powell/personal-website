@@ -36,7 +36,7 @@ Deep learning is a collection of techniques for internalizing
 relationships.  The relationships that deep learning is typically used
 to understand are complex and difficult to articulate.  Tesla might
 use deep learning to understand the relationship between the body
-language of a person crossing the street, and there expected position
+language of a person crossing the street, and their expected position
 on the street after a given period of time. Once this relationship is
 understood, Tesla could use it to help their self-driving vehicles
 better avoid collisions with jaywalkers. Much like how our intuitive
