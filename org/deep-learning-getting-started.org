@@ -1,0 +1,193 @@
+:PROPERTIES:
+#+TITLE: Deep Learning: The Journey Begins
+#+SUBTITLE: Dipping my toes into fast.ai
+#+HERO: https://i.imgur.com/fHVhNrK.png
+#+OPTIONS: html-style:nil
+#+MACRO: imglnk @@html:<img src="$1">@@
+#+OPTIONS: num:nil
+:END:
+
+* INTRO
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+
+Deep Learning is a complex topic, one that has always interested me,
+but one that I've struggled to get a foothold in learning. I've been
+fortunate to have discovered the learning material provided by
+[[https://fast.ai][fast.ai]], a nonprofit research group dedicated to making AI more
+accessible.  Led by the inspiring [[https://jeremy.fast.ai/][Jeremy Howard]], he and his team have
+provided masterful education material on a swath of AI topics. Their
+teaching methodology is simple, direct, and laser focused on
+empowering you to solve real problems. Best of all, it's totally free.
+
+* [[https://course.fast.ai/Resources/book.html][Deep Learning for Coders with fast.ai and PyTorch]]
+
+On a recent flight from San Francisco to visit family in Indianapolis,
+I got through the first 100 or so pages of this book. It's been a long
+time that any book has kept my attention like this has. I hope to
+summarize some of the things that I've learned in the book so far, as
+well as provide some code examples of some of the initial models I
+have trained.
+
+** What is Deep Learning?
+
+Deep learning is a collection of techniques for internalizing
+relationships.  The relationships that deep learning is typically used
+to understand are complex and difficult to articulate.  Tesla might
+use deep learning to understand the relationship between the body
+language of a person crossing the street, and there expected position
+on the street after a given period of time. Once this relationship is
+understood, Tesla could use it to help their self-driving vehicles
+better avoid collisions with jaywalkers. Much like how our intuitive
+understanding of the relationship between the movement and position of
+objects helps us to do activities like juggling and baseball.
+
+Understanding relationships helps us to make predictions, it also
+helps us to classify things. When I look out at the world, I'm able to
+break down what I see into various different /things/. That's an
+apple, that's my laptop, that's a blanket. How am I able to do this?
+My brain is able to understand the relationship between patterns of
+light and a huge dictionary of objects and things. This relationship
+can be understood almost like a mathematical function, which takes
+light as input and produces a name as output.
+
+If I want to do the same thing with my phone's camera, like what
+[[https://lens.google/][Google Lens]] does, I'll need to somehow teach my phone the relationship
+between patterns of pixels in its images and a huge dictionary of
+objects and things.  Getting those relationships is basically an
+intractable problem for traditional algorithms (imagine trying to
+write a program that could identify a corgi in an image, knowing that,
+at the pixel level, different corgi images would be, effectively,
+/completely/ different). Deep learning provides state of the art
+techniques for internalizing relationships, like that between an image
+and a label. One such deep learning technique, or more precisely
+/architecture/, is the Convolutional Neural Network (or CNN for
+short). CNNs were originally designed to help us to model
+relationships where images are the input. This leads to products like
+Google Lens where it seems the program, almost magically, /knows/ what
+it is looking at.
+
+Deep learning models are computer programs, and like any computer
+program they take data as input and produce data as output. All deep
+learning programs start as an implementation of a certain
+architecture, like the CNN, which defines a blueprint for their
+structure. Much like a fisherman would design their net in such a way
+to pick up only the fish they wanted from the sea, a deep learning
+program's architecture is specifically designed to capture only the
+type of relationships the data scientist is interested in.
+
+Once the architecture is configured (in the real world this is
+typically a data structure in PyTorch or TensorFlow) data is fed into
+the program. The output of the program is measured against some
+criteria, which allows us to adjust the internals of the program to
+(hopefully) produce an output closer to what we expect. We keep
+feeding inputs into the program, measuring its outputs, and tweaking
+its internals until we are satisfied with its behavior. Of course,
+this feedback loop is not a manual process, but one that is managed by
+a host of clever machine learning algorithms.
+
+Once a deep learning program is behaving how we like it, we can say
+our program implements a deep learning /model/. We have /modeled/ the
+relationship that we were interested in. These /models/ can usually be
+exported from the program into a file and shared. Websites like
+[[https://huggingface.co/][Hugging Face]] allow netizens to share and develop such models with each
+other.
+
+*** In Short
+
+Deep learning architectures allow us to internalize relationships in
+data. Deep learning programs allow us to generate and make use of deep
+learning /models/, which encode these relationships. The
+/Convolutional Neural Network/ (CNN) is a type of deep learning
+architecture which allows us to capture relationships involving
+images, specifically where the image needs to be the input in a deep
+learning program.
+
+** A CNN for Classifying Cats and Dogs
+
+[[https://colab.research.google.com/drive/1AWW7TiMhmPKFYR4mx1y3ODK2gnBcWIVG?usp=sharing][Colab Notebook]]
+
+*** Getting the data
+
+#+begin_src python
+from fastai.vision.all import * path = untar_data(URLs.PETS)/'images'
+#+end_src
+
+This imports all the functions from the fast.ai vision library and
+downloads all the images from the Oxford IIIT Pet dataset from the
+fast.ai datasets collection.  =untar_data= downloads and extracts all
+the images from the provided URL into a directory on your computer (it
+was =/root/.fastai/data= on my colab container).
+
+The =untar_data= function returns a python =Path= object, which
+enables the nifty =/'images'= syntax.
+
+In the downloaded dataset, in the =images= folder, is a list of over
+7,000 images of dogs and cats.  Each image is labeled with the breed
+of the animal, alongside a number.  E.g. =shih-tzu-12.jpg= indicates
+that this image is the 12th Shih-Tzu that's appeared in the dataset.
+By convention, the dataset capitalizes the first letter of the file if
+it contains a cat, and doesn't if it contains a dog.
+
+*** Preparing the Data
+
+#+begin_src python
+dls = ImageDataLoaders.from_name_func(
+    path, get_image_files(path),
+    lambda x: x[0].isupper(), valid_pct=0.2,
+    seed=42, item_tfms=Resize(224))
+#+end_src
+
+Next, we need to prepare our data for being fed into a deep learning
+program. To do this, fast.ai provides a whole host of wrappers around
+the =DataLoader= object provided by PyTorch.  fast.ai's =DataLoader=
+objects offer convenient ways of quickly formatting and preprocessing
+our training data. In the code above, we pass in the path of where to
+save an export of our model (in our case we just choose the same
+folder as our dataset, it's arbitrary), next we pass in a list of
+image file paths, as a shorthand we use fast.ai's =get_image_files=
+function to retrieve all the image files in our =path= variable. Next,
+we define our labelling function, which in our case should be a
+function that returns =true= if the image is of a cat and =false= if
+it's a dog. Remember, we can distinguish between the two based on
+whether the first letter of the filename is capitalized.
+
+=valid_pct= defines how much of our training set should be set aside
+for use as a validation set. We set aside a portion of our data for
+validating our model against. If we trained on all the data, the model
+might simply memorize the relationships between the inputs and
+outputs. This is called /overfitting/ and is a major concern in deep
+learning, as well as many other fields in machine learning. So, we set
+aside a /validation/ set that we only use to validate how well our
+model is performing. In the above, we ask fast.ai to set aside 20% of
+our training data.
+
+Since deep learning employs the use of random numbers we set =seed= to
+be an arbitrary number, this way we can get reproducible results on
+repeated training attempts. This makes it easier for us to qualify
+performance improvements we're making to our models.
+
+Finally, we define an item transform. Item transforms are functions
+that are applied to all of items (in our case, files) in our
+dataset. We set our images to be resized to 224px squares, that are
+maximized either in height or in width. 224px is a historical
+standard, anything can be used here. It's important though that they
+are all the same size, with larger sizes creating a tradeoff in
+increased model performance vs increased training time. This has to do
+with how the model ingests the data and learns (partially since deep
+learning models accept a fixed amount of input parameters).
+
+/Full function signature for reference/
+
+#+begin_src text
+ImageDataLoaders.from_name_func(path:str|Path, fnames:list, label_func:callable, valid_pct=0.2, seed=None, item_tfms=None, batch_tfms=None, img_cls=, bs:int=64, val_bs:int=None, shuffle:bool=True, device=None)
+#+end_src
+
+*** Learning from the Data
+
+#+begin_src python
+learn = cnn_learner(dls, resnet34, metrics=error_rate)
+learn.fine_tune(1)
+#+end_src
+

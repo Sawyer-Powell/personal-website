@@ -1,0 +1,24 @@
+:PROPERTIES:
+#+TITLE: Deep Learning
+#+SUBTITLE: Posts, thoughts, and notes on Deep Learning/AI
+#+HERO: https://i.imgur.com/fHVhNrK.png
+#+OPTIONS: html-style:nil
+#+MACRO: imglnk @@html:<img src="$1">@@
+#+OPTIONS: num:nil
+:END:
+
+* INTRO
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+
+Deep learning powers some of the most profound technologies of
+the modern era. Deep learning gives machines the ability to internalize
+arbitrarily complex patterns, permitting them to truly interact
+with the world. I don't have a background in deep learning, but am
+enthusiastically exploring the tech that will very likely define
+this century.
+
+* Posts
+
+- [[file:deep-learning-getting-started.org][Getting Started]]

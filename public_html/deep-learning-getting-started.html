@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<!-- 2023-12-20 Wed 19:58 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Deep Learning: The Journey Begins</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<script defer src="./js/fontawesome/all.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/gruvbox-light-medium.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="./js/index.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+<div id="sidebar" class="sidebar">
+<div class="flex items-center mb-5" onclick="location.href='/'">
+<img src="./images/horse.svg" class="shadow-none h-12 rounded-none m-0"/>
+<span class="block text-2xl text-fg0 font-bold font-mono ms-2">sawyer-p</span>
+</div>
+<ul>
+<li><a href="about.html">About</a></li>
+<li><a href="professional-work.html">Professional Work</a></li>
+<hr/>
+<li><a href="perseus.html">Perseus Cluster Project</a></li>
+<hr/>
+<li><a href="deep-learning.html">Deep Learning</a></li>
+</ul>
+</div>
+<div class="org-content">
+<h1 class="title">Deep Learning: The Journey Begins</h1>
+<div class="subtitle">Dipping my toes into fast.ai</div>
+<img src="https://i.imgur.com/fHVhNrK.png" class="hero">
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2023-12-20 Wed 19:58</p></div>
+<img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
+
+<div id="outline-container-org63c7250" class="intro">
+<div class="outline-text-2" id="text-org63c7250">
+<p>
+Deep Learning is a complex topic, one that has always interested me,
+but one that I've struggled to get a foothold in learning. I've been
+fortunate to have discovered the learning material provided by
+<a href="https://fast.ai">fast.ai</a>, a nonprofit research group dedicated to making AI more
+accessible.  Led by the inspiring <a href="https://jeremy.fast.ai/">Jeremy Howard</a>, he and his team have
+provided masterful education material on a swath of AI topics. Their
+teaching methodology is simple, direct, and laser focused on
+empowering you to solve real problems. Best of all, it's totally free.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6a57b2e" class="outline-2">
+<h2 id="org6a57b2e"><a href="https://course.fast.ai/Resources/book.html">Deep Learning for Coders with fast.ai and PyTorch</a></h2>
+<div class="outline-text-2" id="text-org6a57b2e">
+<p>
+On a recent flight from San Francisco to visit family in Indianapolis,
+I got through the first 100 or so pages of this book. It's been a long
+time that any book has kept my attention like this has. I hope to
+summarize some of the things that I've learned in the book so far, as
+well as provide some code examples of some of the initial models I
+have trained.
+</p>
+</div>
+
+<div id="outline-container-org0928bce" class="outline-3">
+<h3 id="org0928bce">What is Deep Learning?</h3>
+<div class="outline-text-3" id="text-org0928bce">
+<p>
+Deep learning is a collection of techniques for internalizing
+relationships.  The relationships that deep learning is typically used
+to understand are complex and difficult to articulate.  Tesla might
+use deep learning to understand the relationship between the body
+language of a person crossing the street, and there expected position
+on the street after a given period of time. Once this relationship is
+understood, Tesla could use it to help their self-driving vehicles
+better avoid collisions with jaywalkers. Much like how our intuitive
+understanding of the relationship between the movement and position of
+objects helps us to do activities like juggling and baseball.
+</p>
+
+<p>
+Understanding relationships helps us to make predictions, it also
+helps us to classify things. When I look out at the world, I'm able to
+break down what I see into various different <i>things</i>. That's an
+apple, that's my laptop, that's a blanket. How am I able to do this?
+My brain is able to understand the relationship between patterns of
+light and a huge dictionary of objects and things. This relationship
+can be understood almost like a mathematical function, which takes
+light as input and produces a name as output.
+</p>
+
+<p>
+If I want to do the same thing with my phone's camera, like what
+<a href="https://lens.google/">Google Lens</a> does, I'll need to somehow teach my phone the relationship
+between patterns of pixels in its images and a huge dictionary of
+objects and things.  Getting those relationships is basically an
+intractable problem for traditional algorithms (imagine trying to
+write a program that could identify a corgi in an image, knowing that,
+at the pixel level, different corgi images would be, effectively,
+<i>completely</i> different). Deep learning provides state of the art
+techniques for internalizing relationships, like that between an image
+and a label. One such deep learning technique, or more precisely
+<i>architecture</i>, is the Convolutional Neural Network (or CNN for
+short). CNNs were originally designed to help us to model
+relationships where images are the input. This leads to products like
+Google Lens where it seems the program, almost magically, <i>knows</i> what
+it is looking at.
+</p>
+
+<p>
+Deep learning models are computer programs, and like any computer
+program they take data as input and produce data as output. All deep
+learning programs start as an implementation of a certain
+architecture, like the CNN, which defines a blueprint for their
+structure. Much like a fisherman would design their net in such a way
+to pick up only the fish they wanted from the sea, a deep learning
+program's architecture is specifically designed to capture only the
+type of relationships the data scientist is interested in.
+</p>
+
+<p>
+Once the architecture is configured (in the real world this is
+typically a data structure in PyTorch or TensorFlow) data is fed into
+the program. The output of the program is measured against some
+criteria, which allows us to adjust the internals of the program to
+(hopefully) produce an output closer to what we expect. We keep
+feeding inputs into the program, measuring its outputs, and tweaking
+its internals until we are satisfied with its behavior. Of course,
+this feedback loop is not a manual process, but one that is managed by
+a host of clever machine learning algorithms.
+</p>
+
+<p>
+Once a deep learning program is behaving how we like it, we can say
+our program implements a deep learning <i>model</i>. We have <i>modeled</i> the
+relationship that we were interested in. These <i>models</i> can usually be
+exported from the program into a file and shared. Websites like
+<a href="https://huggingface.co/">Hugging Face</a> allow netizens to share and develop such models with each
+other.
+</p>
+</div>
+
+<div id="outline-container-org7aefa79" class="outline-4">
+<h4 id="org7aefa79">In Short</h4>
+<div class="outline-text-4" id="text-org7aefa79">
+<p>
+Deep learning architectures allow us to internalize relationships in
+data. Deep learning programs allow us to generate and make use of deep
+learning <i>models</i>, which encode these relationships. The
+<i>Convolutional Neural Network</i> (CNN) is a type of deep learning
+architecture which allows us to capture relationships involving
+images, specifically where the image needs to be the input in a deep
+learning program.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org04a101d" class="outline-3">
+<h3 id="org04a101d">A CNN for Classifying Cats and Dogs</h3>
+<div class="outline-text-3" id="text-org04a101d">
+<p>
+<a href="https://colab.research.google.com/drive/1AWW7TiMhmPKFYR4mx1y3ODK2gnBcWIVG?usp=sharing">Colab Notebook</a>
+</p>
+</div>
+
+<div id="outline-container-org4a8cef8" class="outline-4">
+<h4 id="org4a8cef8">Getting the data</h4>
+<div class="outline-text-4" id="text-org4a8cef8">
+<pre><code class="language-python">from fastai.vision.all import * path = untar_data(URLs.PETS)/'images'
+</code></pre>
+
+<p>
+This imports all the functions from the fast.ai vision library and
+downloads all the images from the Oxford IIIT Pet dataset from the
+fast.ai datasets collection.  <code>untar_data</code> downloads and extracts all
+the images from the provided URL into a directory on your computer (it
+was <code>/root/.fastai/data</code> on my colab container).
+</p>
+
+<p>
+The <code>untar_data</code> function returns a python <code>Path</code> object, which
+enables the nifty <code>/'images'</code> syntax.
+</p>
+
+<p>
+In the downloaded dataset, in the <code>images</code> folder, is a list of over
+7,000 images of dogs and cats.  Each image is labeled with the breed
+of the animal, alongside a number.  E.g. <code>shih-tzu-12.jpg</code> indicates
+that this image is the 12th Shih-Tzu that's appeared in the dataset.
+By convention, the dataset capitalizes the first letter of the file if
+it contains a cat, and doesn't if it contains a dog.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge512825" class="outline-4">
+<h4 id="orge512825">Preparing the Data</h4>
+<div class="outline-text-4" id="text-orge512825">
+<pre><code class="language-python">dls = ImageDataLoaders.from_name_func(
+    path, get_image_files(path),
+    lambda x: x[0].isupper(), valid_pct=0.2,
+    seed=42, item_tfms=Resize(224))
+</code></pre>
+
+<p>
+Next, we need to prepare our data for being fed into a deep learning
+program. To do this, fast.ai provides a whole host of wrappers around
+the <code>DataLoader</code> object provided by PyTorch.  fast.ai's <code>DataLoader</code>
+objects offer convenient ways of quickly formatting and preprocessing
+our training data. In the code above, we pass in the path of where to
+save an export of our model (in our case we just choose the same
+folder as our dataset, it's arbitrary), next we pass in a list of
+image file paths, as a shorthand we use fast.ai's <code>get_image_files</code>
+function to retrieve all the image files in our <code>path</code> variable. Next,
+we define our labelling function, which in our case should be a
+function that returns <code>true</code> if the image is of a cat and <code>false</code> if
+it's a dog. Remember, we can distinguish between the two based on
+whether the first letter of the filename is capitalized.
+</p>
+
+<p>
+<code>valid_pct</code> defines how much of our training set should be set aside
+for use as a validation set. We set aside a portion of our data for
+validating our model against. If we trained on all the data, the model
+might simply memorize the relationships between the inputs and
+outputs. This is called <i>overfitting</i> and is a major concern in deep
+learning, as well as many other fields in machine learning. So, we set
+aside a <i>validation</i> set that we only use to validate how well our
+model is performing. In the above, we ask fast.ai to set aside 20% of
+our training data.
+</p>
+
+<p>
+Since deep learning employs the use of random numbers we set <code>seed</code> to
+be an arbitrary number, this way we can get reproducible results on
+repeated training attempts. This makes it easier for us to qualify
+performance improvements we're making to our models.
+</p>
+
+<p>
+Finally, we define an item transform. Item transforms are functions
+that are applied to all of items (in our case, files) in our
+dataset. We set our images to be resized to 224px squares, that are
+maximized either in height or in width. 224px is a historical
+standard, anything can be used here. It's important though that they
+are all the same size, with larger sizes creating a tradeoff in
+increased model performance vs increased training time. This has to do
+with how the model ingests the data and learns (partially since deep
+learning models accept a fixed amount of input parameters).
+</p>
+
+<p>
+<i>Full function signature for reference</i>
+</p>
+
+<pre><code class="language-text">ImageDataLoaders.from_name_func(path:str|Path, fnames:list, label_func:callable, valid_pct=0.2, seed=None, item_tfms=None, batch_tfms=None, img_cls=, bs:int=64, val_bs:int=None, shuffle:bool=True, device=None)
+</code></pre>
+</div>
+</div>
+
+<div id="outline-container-org1af4829" class="outline-4">
+<h4 id="org1af4829">Learning from the Data</h4>
+<div class="outline-text-4" id="text-org1af4829">
+<pre><code class="language-python">learn = cnn_learner(dls, resnet34, metrics=error_rate)
+learn.fine_tune(1)
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6a57b2e">Deep Learning for Coders with fast.ai and PyTorch</a>
+<ul>
+<li><a href="#org0928bce">What is Deep Learning?</a>
+<ul>
+<li><a href="#org7aefa79">In Short</a></li>
+</ul>
+</li>
+<li><a href="#org04a101d">A CNN for Classifying Cats and Dogs</a>
+<ul>
+<li><a href="#org4a8cef8">Getting the data</a></li>
+<li><a href="#orge512825">Preparing the Data</a></li>
+<li><a href="#org1af4829">Learning from the Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fixed bottom-10 flex space-x-3"><div id="menu-btn" class="h-12 w-12 p-2 rounded-full bg-aqua text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white 2xl:hidden"><i class="fa-regular fa-bars-sort fa-xl" style="color:white"></i></div><div id="toc-btn" class="h-12 w-12 p-2 rounded-full bg-blue text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white xl:hidden"><i class="fa-regular fa-list-tree fa-xl" style="color:white"></i></div></div></body>
+<script>hljs.highlightAll();</script>
+</html>

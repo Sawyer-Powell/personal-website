@@ -2,11 +2,10 @@
 (setq sidebar-links '(:about
 					  (("About" "about.html")
 					   ("Professional Work" "professional-work.html")
-					   ("Personal Portfolio" "secrets.html"))
 					  :projects
 					  (("Perseus Cluster Project" "perseus.html"))
 					  :blog
-					  (("blog / notes / essays" "secrets.html"))))
+					  (("Deep Learning" "deep-learning.html"))))
 
 (defun prepare-sidebar-links (sidebar-links prop)
   (apply #'concat
