@@ -1,7 +1,6 @@
 :PROPERTIES:
 #+TITLE: We Need Better Tools
-#+SUBTITLE: Or, how to make software that doesn't suck 
-#+HERO: https://i.imgur.com/hVjmLUL.jpeg
+#+HERO: https://d1y822qhq55g6.cloudfront.net/default/_superImage/The-Builders.jpg
 #+OPTIONS: html-style:nil
 #+MACRO: imglnk @@html:<img src="$1">@@
 #+OPTIONS: num:nil
@@ -12,7 +11,7 @@
 :UNNUMBERED: notoc
 :END:
 
-The state of modern software is awful. Our computers are faster than
+Modern software is is stagnating. Our computers are faster than
 ever, we have access to incredibly powerful AI models, but the
 experience of using software, especially modern business software, is
 painful. Modern software, especially on the web, is incredibly
@@ -70,10 +69,11 @@ do you do? What options are there? Here's the ones that I thought of:
     belly up or remove critical features.
 - We can write a Google Sheets integration which aggregates all of our
   data
-  - *Pros* Eliminates the problem of having data scattered all over Google
-    Drive.
-  - *Cons* Doesn't solve the problem of needing custom data-entry workflows,
-    we're also still tied to displaying information in spreadsheet form.
+  - *Pros* Eliminates the problem of having data scattered all over
+    Google Drive.
+  - *Cons* Doesn't solve the problem of needing custom data-entry
+    workflows, we're also still tied to displaying information in
+    spreadsheet form.
   - /(This is the option I ended up choosing)/
 
 Every option has its tradeoffs, as everything does, but the real issue
@@ -117,10 +117,43 @@ POSIX compliant programs are extremely /composable/. Composability
 should be the primary focus, not how many things your program does.
 
 This is part of why there are such big communities of programmers who
-are enthusiastic about living on the command line. The linux shell
-provides a fully composable, extensible, and most importantly, /turing
-complete/ environment for interacting with your computer. Turing
-completeness in your environment means the full power of computing has
-been preserved going up the chain of abstraction. Great computing
-environments /always/ preserve this, they are an isomorphism of the
-computer itself.
+are still so enthusiastic about "living on the command line". The
+linux shell provides a fully composable, extensible, and most
+importantly, /turing complete/ environment for interacting with your
+computer. Turing completeness in your environment means the full power
+of computing has been preserved going up the chain of
+abstraction. Great computing environments /always/ preserve this, they
+are an isomorphism of the computer itself.
+
+Emacs, perhaps, embodies the farthest extreme of the philosophy of
+hyper-extensibility. In Emacs, everything is programmable and
+modifiable, with much of that modification made available through an
+=elisp= api. When Emacs works well, its a revelation of what computing
+can be. Computers are, at their core, a pile of memory in constant
+flux. Text is the simplest way of taking the electrical patterns in
+memory and giving them a semantic meaning, with the simplest semantic
+being ASCII. For a programmer, living within a realm of pure text
+allows them to stay close to the actual computing. Raw text is also
+easy to program on top of, because with ASCII and unicode data is
+text, text is data. With VI keybindings (provided by Emacs' /evil/
+mode) text not only becomes fast to navigate, but the act of editing
+becomes extensible through VI macros. Combining VI bindings with the
+ability to write arbitrary (and, importantly, /expressive/) =elisp=
+macros to do any computing task, Emacs cements itself as one of the
+most, if not /the/ most, powerful computing environments in history.
+It maintains all the power of a shell interpreter while offering you
+more ways to interpret, including powerful facilities for composing
+computations in a highly interactive ways.
+
+Unfortunately, the platonic ideal of Emacs is often eclipsed by its
+reality. Emacs suffers from significant performance problems, and can
+have difficulty competing with modern IDEs and editors like Neovim in
+providing great code completion and fast syntax highlighting. Emacs'
+=elisp= has many beautiful qualities, as all lisp variants do, but
+suffers from a lack of modern programming niceties, like a strong type
+system and more modern list/array manipulation syntax like what's
+found in Clojure. But, when Emacs is configured carefully, it's fast,
+expressive, and extremely powerful. This whole website was written,
+compiled to HTML, and deployed entirely using =elisp= and [[https://orgmode.org/][Emacs Org
+Mode]]. No modern web framework needed.
+

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- 2023-12-21 Thu 13:48 -->
+<!-- 2023-12-22 Fri 11:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>We Need Better Tools</title>
@@ -33,15 +33,14 @@
 </div>
 <div class="org-content">
 <h1 class="title">We Need Better Tools</h1>
-<div class="subtitle">Or, how to make software that doesn't suck</div>
-<img src="https://i.imgur.com/hVjmLUL.jpeg" class="hero">
-<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2023-12-21 Thu 13:48</p></div>
+<img src="https://d1y822qhq55g6.cloudfront.net/default/_superImage/The-Builders.jpg" class="hero">
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2023-12-22 Fri 11:33</p></div>
 <img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
 
 <div id="outline-container-orga19dd59" class="intro">
 <div class="outline-text-2" id="text-orga19dd59">
 <p>
-The state of modern software is awful. Our computers are faster than
+Modern software is is stagnating. Our computers are faster than
 ever, we have access to incredibly powerful AI models, but the
 experience of using software, especially modern business software, is
 painful. Modern software, especially on the web, is incredibly
@@ -117,10 +116,11 @@ belly up or remove critical features.</li>
 <li>We can write a Google Sheets integration which aggregates all of our
 data
 <ul class="org-ul">
-<li><b>Pros</b> Eliminates the problem of having data scattered all over Google
-Drive.</li>
-<li><b>Cons</b> Doesn't solve the problem of needing custom data-entry workflows,
-we're also still tied to displaying information in spreadsheet form.</li>
+<li><b>Pros</b> Eliminates the problem of having data scattered all over
+Google Drive.</li>
+<li><b>Cons</b> Doesn't solve the problem of needing custom data-entry
+workflows, we're also still tied to displaying information in
+spreadsheet form.</li>
 <li><i>(This is the option I ended up choosing)</i></li>
 </ul></li>
 </ul>
@@ -178,13 +178,49 @@ should be the primary focus, not how many things your program does.
 
 <p>
 This is part of why there are such big communities of programmers who
-are enthusiastic about living on the command line. The linux shell
-provides a fully composable, extensible, and most importantly, <i>turing
-complete</i> environment for interacting with your computer. Turing
-completeness in your environment means the full power of computing has
-been preserved going up the chain of abstraction. Great computing
-environments <i>always</i> preserve this, they are an isomorphism of the
-computer itself.
+are still so enthusiastic about "living on the command line". The
+linux shell provides a fully composable, extensible, and most
+importantly, <i>turing complete</i> environment for interacting with your
+computer. Turing completeness in your environment means the full power
+of computing has been preserved going up the chain of
+abstraction. Great computing environments <i>always</i> preserve this, they
+are an isomorphism of the computer itself.
+</p>
+
+<p>
+Emacs, perhaps, embodies the farthest extreme of the philosophy of
+hyper-extensibility. In Emacs, everything is programmable and
+modifiable, with much of that modification made available through an
+<code>elisp</code> api. When Emacs works well, its a revelation of what computing
+can be. Computers are, at their core, a pile of memory in constant
+flux. Text is the simplest way of taking the electrical patterns in
+memory and giving them a semantic meaning, with the simplest semantic
+being ASCII. For a programmer, living within a realm of pure text
+allows them to stay close to the actual computing. Raw text is also
+easy to program on top of, because with ASCII and unicode data is
+text, text is data. With VI keybindings (provided by Emacs' <i>evil</i>
+mode) text not only becomes fast to navigate, but the act of editing
+becomes extensible through VI macros. Combining VI bindings with the
+ability to write arbitrary (and, importantly, <i>expressive</i>) <code>elisp</code>
+macros to do any computing task, Emacs cements itself as one of the
+most, if not <i>the</i> most, powerful computing environments in history.
+It maintains all the power of a shell interpreter while offering you
+more ways to interpret, including powerful facilities for composing
+computations in a highly interactive ways.
+</p>
+
+<p>
+Unfortunately, the platonic ideal of Emacs is often eclipsed by its
+reality. Emacs suffers from significant performance problems, and can
+have difficulty competing with modern IDEs and editors like Neovim in
+providing great code completion and fast syntax highlighting. Emacs'
+<code>elisp</code> has many beautiful qualities, as all lisp variants do, but
+suffers from a lack of modern programming niceties, like a strong type
+system and more modern list/array manipulation syntax like what's
+found in Clojure. But, when Emacs is configured carefully, it's fast,
+expressive, and extremely powerful. This whole website was written,
+compiled to HTML, and deployed entirely using <code>elisp</code> and <a href="https://orgmode.org/">Emacs Org
+Mode</a>. No modern web framework needed.
 </p>
 </div>
 </div>
