@@ -30,7 +30,7 @@ module.exports = {
 			"fg0": "#282828"
 		},
 		fontFamily: {
-			'sans': ['Noto Sans', 'sans-serif'],
+			'sans': ['Fira Sans', 'sans-serif'],
 			'serif': ['Merriweather', 'serif'],
 			'mono': ['JetBrains Mono', 'monospace']
 		},
