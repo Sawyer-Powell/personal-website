@@ -44,7 +44,7 @@ html {
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: Fira Sans, sans-serif;
+  font-family: Open Sans, sans-serif;
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -764,7 +764,7 @@ body {
   background-color: rgb(249 245 215 / 0.7);
   padding-left: 2rem;
   padding-right: 2rem;
-  font-family: Fira Sans, sans-serif;
+  font-family: Open Sans, sans-serif;
   --tw-text-opacity: 1;
   color: rgb(60 56 54 / var(--tw-text-opacity));
 }
@@ -2655,7 +2655,7 @@ h3 {
 }
 
 .outline-text-2 :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))), .outline-text-3 :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))), .outline-text-4 :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))), .outline-text-5 :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))), .outline-text-6 :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
-  font-family: Fira Sans, sans-serif;
+  font-family: Open Sans, sans-serif;
 }
 
 .outline-text-2 :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))), .outline-text-3 :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))), .outline-text-4 :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))), .outline-text-5 :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))), .outline-text-6 :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
