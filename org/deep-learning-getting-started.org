@@ -55,18 +55,18 @@ light as input and produces a name as output.
 If I want to do the same thing with my phone's camera, like what
 [[https://lens.google/][Google Lens]] does, I'll need to somehow teach my phone the relationship
 between patterns of pixels in its images and a huge dictionary of
-objects and things.  Getting those relationships is basically an
-intractable problem for traditional algorithms (imagine trying to
-write a program that could identify a corgi in an image, knowing that,
-at the pixel level, different corgi images would be, effectively,
-/completely/ different). Deep learning provides state of the art
-techniques for internalizing relationships, like that between an image
-and a label. One such deep learning technique, or more precisely
+objects and things.  Getting those relationships is effectively
+intractable through traditional algorithms (imagine trying to write a
+program that could identify a corgi in an image, knowing that, at the
+pixel level, different corgi images would be /completely/
+different). Deep learning provides state of the art techniques for
+internalizing relationships, like that between an image and a
+label. One such deep learning technique, or more precisely
 /architecture/, is the Convolutional Neural Network (or CNN for
-short). CNNs were originally designed to help us to model
-relationships where images are the input. This leads to products like
-Google Lens where it seems the program, almost magically, /knows/ what
-it is looking at.
+short). CNNs were originally designed to help us model relationships
+where images are the input. This leads to products like Google Lens
+where it seems the program, almost magically, /knows/ what it is
+looking at.
 
 Deep learning models are computer programs, and like any computer
 program they take data as input and produce data as output. All deep
@@ -77,15 +77,14 @@ to pick up only the fish they wanted from the sea, a deep learning
 program's architecture is specifically designed to capture only the
 type of relationships the data scientist is interested in.
 
-Once the architecture is configured (in the real world this is
-typically a data structure in PyTorch or TensorFlow) data is fed into
-the program. The output of the program is measured against some
-criteria, which allows us to adjust the internals of the program to
-(hopefully) produce an output closer to what we expect. We keep
-feeding inputs into the program, measuring its outputs, and tweaking
-its internals until we are satisfied with its behavior. Of course,
-this feedback loop is not a manual process, but one that is managed by
-a host of clever machine learning algorithms.
+Once the architecture is configured, data is fed into the program,
+which the program uses to produce an output. The output of the program
+is measured against some criteria, allowing us to adjust the internals
+of the program to (hopefully) produce an output closer to what we
+expect. We keep feeding inputs into the program, measuring its
+outputs, and tweaking its internals until we are satisfied with its
+behavior. This feedback loop is not a manual process, but is managed
+by a host of clever machine learning algorithms.
 
 Once a deep learning program is behaving how we like it, we can say
 our program implements a deep learning /model/. We have /modeled/ the
@@ -188,6 +187,60 @@ ImageDataLoaders.from_name_func(path:str|Path, fnames:list, label_func:callable,
 
 #+begin_src python
 learn = cnn_learner(dls, resnet34, metrics=error_rate)
+#+end_src
+
+We then create a =cnn_learner=, which creates an object that we can
+use to train a CNN (Convolutional Neural Network). CNN, as mentioned
+before, are widely used for classifying the contents of images. We
+pass in our =DataLoader=, and the specific architecture/type of CNN
+that we want to train (=resnet34= in our case, which corresponds to
+the resnet architecture at 34 layers). We also specify that we want to
+display the =error_rate= in the console at the end of every /epoch/,
+meaning at the end of each full pass through our dataset.
+
+One thing that isn't shown here is the fact that the =cnn_learner=
+function will, by default, initially download a pre-existing model
+when it initializes the CNN. After the model is downloaded,
+=cnn_leaner= will chop off the last layer (which are used for
+generating the model output), and replace it with a last layer suited
+to the format of the data specified in the =DataLoader=, with random
+initial configuration. This allows us to create a super powerful model
+much more cheaply than if we started from scratch, and with a /lot/
+less data. We can take advantage of the work already done by
+pre-existing models, since a general model trained for recognition on
+millions of images will have transferable skills in detecting cats
+and dogs in the dataset we're interested in.
+
+#+begin_src python
 learn.fine_tune(1)
 #+end_src
 
+Finally, we train our model. Here we use the method =fine_tune= with a
+a parameter of =1=, which means 1 /epoch/, specifying that training
+should only consist of one full pass through the data. More epochs can be
+used at the expense of longer training times, good to start at a low
+number generally, more epochs can always be run later.
+
+Since we are using a pre-existing dataset we use the =fine_tune= function
+to train our data. Fine tuning is different than training from scratch, and
+there are some tricks baked into the =fine_tune= function that are designed
+to preserve the capabilities of the base model. One such trick is prioritizing
+updating later /layers/ of the model rather than earlier ones, since early
+layers usually contain many of the fundamental features that describe the
+domain we're interested in, something we want the base model to provide us.
+
+Training on my free tier Google Colab workspace took around 2 minutes.
+
+*** Using the model
+
+#+begin_src python
+img = PILImage.create("path-to-image")
+is_cat,_,probs = learn.predict(img)
+#+end_src
+
+=PILImage= is a general class in the fast.ai library for handling images.
+Here we point it to the file path of the image we're interested in classifying
+and pass it into =learn.predict()=. This uses the model we trained above to
+to judge whether the image contains a cat or a dog. Note that when the model
+is trained, using it to predict things is much quicker than training it. This
+is generally true.

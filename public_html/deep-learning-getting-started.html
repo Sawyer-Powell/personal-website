@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- 2023-12-21 Thu 19:11 -->
+<!-- 2023-12-22 Fri 13:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Deep Learning: The Journey Begins</title>
@@ -35,7 +35,7 @@
 <h1 class="title">Deep Learning: The Journey Begins</h1>
 <div class="subtitle">Dipping my toes into fast.ai</div>
 <img src="https://i.imgur.com/fHVhNrK.png" class="hero">
-<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2023-12-21 Thu 19:11</p></div>
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2023-12-22 Fri 13:41</p></div>
 <img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
 
 <div id="outline-container-org63c7250" class="intro">
@@ -97,18 +97,18 @@ light as input and produces a name as output.
 If I want to do the same thing with my phone's camera, like what
 <a href="https://lens.google/">Google Lens</a> does, I'll need to somehow teach my phone the relationship
 between patterns of pixels in its images and a huge dictionary of
-objects and things.  Getting those relationships is basically an
-intractable problem for traditional algorithms (imagine trying to
-write a program that could identify a corgi in an image, knowing that,
-at the pixel level, different corgi images would be, effectively,
-<i>completely</i> different). Deep learning provides state of the art
-techniques for internalizing relationships, like that between an image
-and a label. One such deep learning technique, or more precisely
+objects and things.  Getting those relationships is effectively
+intractable through traditional algorithms (imagine trying to write a
+program that could identify a corgi in an image, knowing that, at the
+pixel level, different corgi images would be <i>completely</i>
+different). Deep learning provides state of the art techniques for
+internalizing relationships, like that between an image and a
+label. One such deep learning technique, or more precisely
 <i>architecture</i>, is the Convolutional Neural Network (or CNN for
-short). CNNs were originally designed to help us to model
-relationships where images are the input. This leads to products like
-Google Lens where it seems the program, almost magically, <i>knows</i> what
-it is looking at.
+short). CNNs were originally designed to help us model relationships
+where images are the input. This leads to products like Google Lens
+where it seems the program, almost magically, <i>knows</i> what it is
+looking at.
 </p>
 
 <p>
@@ -123,15 +123,14 @@ type of relationships the data scientist is interested in.
 </p>
 
 <p>
-Once the architecture is configured (in the real world this is
-typically a data structure in PyTorch or TensorFlow) data is fed into
-the program. The output of the program is measured against some
-criteria, which allows us to adjust the internals of the program to
-(hopefully) produce an output closer to what we expect. We keep
-feeding inputs into the program, measuring its outputs, and tweaking
-its internals until we are satisfied with its behavior. Of course,
-this feedback loop is not a manual process, but one that is managed by
-a host of clever machine learning algorithms.
+Once the architecture is configured, data is fed into the program,
+which the program uses to produce an output. The output of the program
+is measured against some criteria, allowing us to adjust the internals
+of the program to (hopefully) produce an output closer to what we
+expect. We keep feeding inputs into the program, measuring its
+outputs, and tweaking its internals until we are satisfied with its
+behavior. This feedback loop is not a manual process, but is managed
+by a host of clever machine learning algorithms.
 </p>
 
 <p>
@@ -267,8 +266,76 @@ learning models accept a fixed amount of input parameters).
 <h4 id="org1af4829">Learning from the Data</h4>
 <div class="outline-text-4" id="text-org1af4829">
 <pre><code class="language-python">learn = cnn_learner(dls, resnet34, metrics=error_rate)
-learn.fine_tune(1)
 </code></pre>
+
+<p>
+We then create a <code>cnn_learner</code>, which creates an object that we can
+use to train a CNN (Convolutional Neural Network). CNN, as mentioned
+before, are widely used for classifying the contents of images. We
+pass in our <code>DataLoader</code>, and the specific architecture/type of CNN
+that we want to train (<code>resnet34</code> in our case, which corresponds to
+the resnet architecture at 34 layers). We also specify that we want to
+display the <code>error_rate</code> in the console at the end of every <i>epoch</i>,
+meaning at the end of each full pass through our dataset.
+</p>
+
+<p>
+One thing that isn't shown here is the fact that the <code>cnn_learner</code>
+function will, by default, initially download a pre-existing model
+when it initializes the CNN. After the model is downloaded,
+<code>cnn_leaner</code> will chop off the last layer (which are used for
+generating the model output), and replace it with a last layer suited
+to the format of the data specified in the <code>DataLoader</code>, with random
+initial configuration. This allows us to create a super powerful model
+much more cheaply than if we started from scratch, and with a <i>lot</i>
+less data. We can take advantage of the work already done by
+pre-existing models, since a general model trained for recognition on
+millions of images will have transferable skills in detecting cats
+and dogs in the dataset we're interested in.
+</p>
+
+<pre><code class="language-python">learn.fine_tune(1)
+</code></pre>
+
+<p>
+Finally, we train our model. Here we use the method <code>fine_tune</code> with a
+a parameter of <code>1</code>, which means 1 <i>epoch</i>, specifying that training
+should only consist of one full pass through the data. More epochs can be
+used at the expense of longer training times, good to start at a low
+number generally, more epochs can always be run later.
+</p>
+
+<p>
+Since we are using a pre-existing dataset we use the <code>fine_tune</code> function
+to train our data. Fine tuning is different than training from scratch, and
+there are some tricks baked into the <code>fine_tune</code> function that are designed
+to preserve the capabilities of the base model. One such trick is prioritizing
+updating later <i>layers</i> of the model rather than earlier ones, since early
+layers usually contain many of the fundamental features that describe the
+domain we're interested in, something we want the base model to provide us.
+</p>
+
+<p>
+Training on my free tier Google Colab workspace took around 2 minutes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7a6a5ab" class="outline-4">
+<h4 id="org7a6a5ab">Using the model</h4>
+<div class="outline-text-4" id="text-org7a6a5ab">
+<pre><code class="language-python">img = PILImage.create("path-to-image")
+is_cat,_,probs = learn.predict(img)
+</code></pre>
+
+<p>
+<code>PILImage</code> is a general class in the fast.ai library for handling images.
+Here we point it to the file path of the image we're interested in classifying
+and pass it into <code>learn.predict()</code>. This uses the model we trained above to
+to judge whether the image contains a cat or a dog. Note that when the model
+is trained, using it to predict things is much quicker than training it. This
+is generally true.
+</p>
 </div>
 </div>
 </div>
@@ -290,6 +357,7 @@ learn.fine_tune(1)
 <li><a href="#org4a8cef8">Getting the data</a></li>
 <li><a href="#orge512825">Preparing the Data</a></li>
 <li><a href="#org1af4829">Learning from the Data</a></li>
+<li><a href="#org7a6a5ab">Using the model</a></li>
 </ul>
 </li>
 </ul>
