@@ -244,3 +244,12 @@ and pass it into =learn.predict()=. This uses the model we trained above to
 to judge whether the image contains a cat or a dog. Note that when the model
 is trained, using it to predict things is much quicker than training it. This
 is generally true.
+
+** A CNN for identifying Musicians
+
+To learn some more about how to find my own data and prepare it, I decided
+to train a model using the same technique as was done for cats and dogs, but
+for differentiating humans. I picked out 4 of some of my favorite musicians,
+and the results were very interesting.
+
+Check it out on [[https://colab.research.google.com/drive/1iNnVSQ9ku1pSD7TZ4cp5dAH8zOCdM-AB?usp=sharing][Colab]]
