@@ -8,7 +8,7 @@
 }
 
 body {
-	@apply bg-bg0_h/70 text-fg font-sans px-8 flex items-center flex-col
+	@apply bg-bg0_h/30 text-fg font-sans px-8 flex items-center flex-col
 }
 
 svg {
@@ -190,7 +190,7 @@ a:hover {
 }
 
 h2 {
-	@apply text-3xl font-bold text-fg3 font-mono
+	@apply text-3xl font-bold text-fg3
 }
 
 h2, h3, h4, h5, h6, h7 {
