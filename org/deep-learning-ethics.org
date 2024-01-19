@@ -1,0 +1,110 @@
+:PROPERTIES:
+#+TITLE: Data Ethics
+#+HERO: https://i.imgur.com/fHVhNrK.png
+#+OPTIONS: html-style:nil
+#+MACRO: imglnk @@html:<img src="$1">@@
+#+OPTIONS: num:nil
+:END:
+
+- Spotting ethical issues is best done as part of a collaborative
+  team to involve a myriad of different perspectives.
+
+* Recourse processes
+Software that employs deep learning can behave in unexpected and
+undpredicable ways, different than the level of unpredictability
+traditional development comes with.
+
+If there is a bug in how the algorithm is working, like what happened
+with a healthcare algorithm in Arkansas, this can affect the real
+lives of thousands of people. In the example of Arkansas, thousands of
+people lost access or experienced cuts in their healthcare without
+explanation. Only later was it discovered that a buggy algorithm was
+reducing benefits for patients with diabetes or cerebral palsy.
+
+* Feedback loops
+In the case of YouTube, the recommendation algorithm that was designed
+to maximize user watch time had a side-effect of funneling users into
+extremist rabbit holes.
+
+Viewers who watch extremist content on average watch more YouTube videos
+than those who do not consume such content. As a result, the algorithm
+would attempt to suggest users to watch alarming/fear mongering/extremist
+content in order to drive engagement out of them.
+
+Feedback loops are created when the model has an effect on the next
+round of data that will be fed into it. This can lead the model to
+fall into an equilibrium state that it can't break itself out of
+without external input.
+
+When companies design an algorithm to optimize for one metric, this can
+often lead to a myriad of side effects which humans discover and exploit.
+
+Blind optimization of metrics, driven by a hunger for profits, can often
+lead in dangerous effects like this. Careful consideration of optimization
+metrics must be taken into account, with the input of a wide diversity of
+people.
+
+* Bias
+Feedback loops involve the model affecting data that is subsequently
+being passed into it. Bias involves the data that is used to train
+a model.
+
+An algorithm for predicting crimes to help resource utilization at
+police stations could lead to continued over-policing of predominantly
+black neighborhoods. The data that drives the model would have been
+fed by historical arrests, and if the police historically targeted black
+people, then the model will do the same.
+
+** Historical Bias
+The data that we feed into the model has been shaped by pre-existent
+cultural biases. Disproportionate numbers of black people in arrest
+records leads to a model disproportiantely predicting black
+individuals as criminals. When the model is run against a less biased
+dataset, it shows higher loss for black individuals.
+
+The shape and structure of the dataset has been affected by cultural
+contexts. For example, ImageNet performing poorly at detecting images
+of Indonesian soap versus western soap. This is caused by the dataset
+consisting primarily of images of western items (mainly because the
+researchers are predominantly European).
+
+** Measurement Bias
+We are measuring the wrong thing, or measuring what we want in a way
+that draws the wrong conclusion. This is often mistaking correlation
+as causation.
+
+An example is a model that predicts strokes based on other health
+conditions. The problem is that we're measuring the likelihood
+of stroke based off the health conditions of people who go to
+the doctor. Since they are the ones who will have the most documented
+conditions or health episodes.
+
+** Aggregation Bias
+This is caused by a model not taking into account all the dynamics and
+particularities of a system. This is usally caused by a key variable
+being missed, which leads to poor generalizability.
+
+In diabetes trials a key metric that is monitored are HbA1c
+levels. Many clinical trials fail to properly account for diversity of
+ethnicity and gender, which turn out to have complex effects on the
+dynamics of HbA1c levels.
+
+** Representation Bias
+Models can often over fit simple generalizations. Like in the case
+of modeling gender distribution in occupations. Models can over-estimate
+the number of men in male dominated occupations. This type of bias
+happens when under-represented groups in the data become even more
+under-represented in the model.
+
+* Addressing Ethical Issues
+#+begin_quote Rachel Thomas
+- Should we even be doing this?
+- What bias is in the data?
+- Can the code and data be audited?
+- What are the error rates for different subgroups?
+- What is the accuracy of a simple rule-based alternative?
+- What processes are in place to handle appeals or mistakes?
+- How diverse is the team that built it?
+#+end_quote
+
+[[https://www.scu.edu/ethics-in-technology-practice/ethical-toolkit/][An Ethical Toolkit for Engineering/Design Practice]]

@@ -154,6 +154,7 @@ hr {
     background-color: rgb(80 73 69);
     color: rgb(249 245 215);
 	width: 6px;
+	height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
