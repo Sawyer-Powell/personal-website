@@ -1,0 +1,4 @@
+cd $(dirname $0)
+
+cd ../public_html
+npx http-server

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<!-- 2024-05-17 Fri 20:18 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Data Ethics</title>
+<meta name="author" content="Sawyer Powell" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<script defer src="./js/fontawesome/all.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/gruvbox-light-medium.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="./js/index.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet"></head>
+<body>
+<div class="content">
+<div id="sidebar" class="sidebar">
+<div class="flex items-center mb-5" onclick="location.href='/'">
+<img src="./images/horse.svg" class="shadow-none h-12 rounded-none m-0"/>
+<span class="block text-2xl text-fg0 font-bold font-mono ms-2">sawyer-p</span>
+</div>
+<ul>
+<li><a href="about.html">About</a></li>
+<li><a href="professional-work.html">Professional Work</a></li>
+<hr/>
+<li><a href="art.html">Generative Art</a></li>
+<li><a href="deep-learning.html">Deep Learning</a></li>
+<hr/>
+<li><a href="posts.html">Posts</a></li>
+</ul>
+</div>
+<div class="org-content">
+<h1 class="title">Data Ethics</h1>
+<img src="https://i.imgur.com/fHVhNrK.png" class="hero">
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-05-17 Fri 20:18</p></div>
+<img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
+
+<ul class="org-ul">
+<li>Spotting ethical issues is best done as part of a collaborative
+team to involve a myriad of different perspectives.</li>
+</ul>
+
+<div id="outline-container-org5ef9c6a" class="outline-2">
+<h2 id="org5ef9c6a">Recourse processes</h2>
+<div class="outline-text-2" id="text-org5ef9c6a">
+<p>
+Software that employs deep learning can behave in unexpected and
+undpredicable ways, different than the level of unpredictability
+traditional development comes with.
+</p>
+
+<p>
+If there is a bug in how the algorithm is working, like what happened
+with a healthcare algorithm in Arkansas, this can affect the real
+lives of thousands of people. In the example of Arkansas, thousands of
+people lost access or experienced cuts in their healthcare without
+explanation. Only later was it discovered that a buggy algorithm was
+reducing benefits for patients with diabetes or cerebral palsy.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb9e1672" class="outline-2">
+<h2 id="orgb9e1672">Feedback loops</h2>
+<div class="outline-text-2" id="text-orgb9e1672">
+<p>
+In the case of YouTube, the recommendation algorithm that was designed
+to maximize user watch time had a side-effect of funneling users into
+extremist rabbit holes.
+</p>
+
+<p>
+Viewers who watch extremist content on average watch more YouTube videos
+than those who do not consume such content. As a result, the algorithm
+would attempt to suggest users to watch alarming/fear mongering/extremist
+content in order to drive engagement out of them.
+</p>
+
+<p>
+Feedback loops are created when the model has an effect on the next
+round of data that will be fed into it. This can lead the model to
+fall into an equilibrium state that it can't break itself out of
+without external input.
+</p>
+
+<p>
+When companies design an algorithm to optimize for one metric, this can
+often lead to a myriad of side effects which humans discover and exploit.
+</p>
+
+<p>
+Blind optimization of metrics, driven by a hunger for profits, can often
+lead in dangerous effects like this. Careful consideration of optimization
+metrics must be taken into account, with the input of a wide diversity of
+people.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3ff681b" class="outline-2">
+<h2 id="org3ff681b">Bias</h2>
+<div class="outline-text-2" id="text-org3ff681b">
+<p>
+Feedback loops involve the model affecting data that is subsequently
+being passed into it. Bias involves the data that is used to train
+a model.
+</p>
+
+<p>
+An algorithm for predicting crimes to help resource utilization at
+police stations could lead to continued over-policing of predominantly
+black neighborhoods. The data that drives the model would have been
+fed by historical arrests, and if the police historically targeted black
+people, then the model will do the same.
+</p>
+</div>
+
+<div id="outline-container-orgf9214ef" class="outline-3">
+<h3 id="orgf9214ef">Historical Bias</h3>
+<div class="outline-text-3" id="text-orgf9214ef">
+<p>
+The data that we feed into the model has been shaped by pre-existent
+cultural biases. Disproportionate numbers of black people in arrest
+records leads to a model disproportiantely predicting black
+individuals as criminals. When the model is run against a less biased
+dataset, it shows higher loss for black individuals.
+</p>
+
+<p>
+The shape and structure of the dataset has been affected by cultural
+contexts. For example, ImageNet performing poorly at detecting images
+of Indonesian soap versus western soap. This is caused by the dataset
+consisting primarily of images of western items (mainly because the
+researchers are predominantly European).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaedeb9c" class="outline-3">
+<h3 id="orgaedeb9c">Measurement Bias</h3>
+<div class="outline-text-3" id="text-orgaedeb9c">
+<p>
+We are measuring the wrong thing, or measuring what we want in a way
+that draws the wrong conclusion. This is often mistaking correlation
+as causation.
+</p>
+
+<p>
+An example is a model that predicts strokes based on other health
+conditions. The problem is that we're measuring the likelihood
+of stroke based off the health conditions of people who go to
+the doctor. Since they are the ones who will have the most documented
+conditions or health episodes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4eb2b4f" class="outline-3">
+<h3 id="org4eb2b4f">Aggregation Bias</h3>
+<div class="outline-text-3" id="text-org4eb2b4f">
+<p>
+This is caused by a model not taking into account all the dynamics and
+particularities of a system. This is usally caused by a key variable
+being missed, which leads to poor generalizability.
+</p>
+
+<p>
+In diabetes trials a key metric that is monitored are HbA1c
+levels. Many clinical trials fail to properly account for diversity of
+ethnicity and gender, which turn out to have complex effects on the
+dynamics of HbA1c levels.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6a3f9c4" class="outline-3">
+<h3 id="org6a3f9c4">Representation Bias</h3>
+<div class="outline-text-3" id="text-org6a3f9c4">
+<p>
+Models can often over fit simple generalizations. Like in the case
+of modeling gender distribution in occupations. Models can over-estimate
+the number of men in male dominated occupations. This type of bias
+happens when under-represented groups in the data become even more
+under-represented in the model.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org15cdd3c" class="outline-2">
+<h2 id="org15cdd3c">Addressing Ethical Issues</h2>
+<div class="outline-text-2" id="text-org15cdd3c">
+<blockquote>
+<ul class="org-ul">
+<li>Should we even be doing this?</li>
+<li>What bias is in the data?</li>
+<li>Can the code and data be audited?</li>
+<li>What are the error rates for different subgroups?</li>
+<li>What is the accuracy of a simple rule-based alternative?</li>
+<li>What processes are in place to handle appeals or mistakes?</li>
+<li>How diverse is the team that built it?</li>
+</ul>
+</blockquote>
+
+<p>
+<a href="https://www.scu.edu/ethics-in-technology-practice/ethical-toolkit/">An Ethical Toolkit for Engineering/Design Practice</a>
+</p>
+</div>
+</div>
+</div>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5ef9c6a">Recourse processes</a></li>
+<li><a href="#orgb9e1672">Feedback loops</a></li>
+<li><a href="#org3ff681b">Bias</a>
+<ul>
+<li><a href="#orgf9214ef">Historical Bias</a></li>
+<li><a href="#orgaedeb9c">Measurement Bias</a></li>
+<li><a href="#org4eb2b4f">Aggregation Bias</a></li>
+<li><a href="#org6a3f9c4">Representation Bias</a></li>
+</ul>
+</li>
+<li><a href="#org15cdd3c">Addressing Ethical Issues</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fixed bottom-10 flex space-x-3"><div id="menu-btn" class="h-12 w-12 p-2 rounded-full bg-aqua text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white 2xl:hidden"><i class="fa-regular fa-bars-sort fa-xl" style="color:white"></i></div><div id="toc-btn" class="h-12 w-12 p-2 rounded-full bg-blue text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white xl:hidden"><i class="fa-regular fa-list-tree fa-xl" style="color:white"></i></div></div></body>
+<script>hljs.highlightAll();</script>
+</html>

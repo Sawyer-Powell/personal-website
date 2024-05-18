@@ -1,0 +1,37 @@
+:PROPERTIES:
+#+TITLE: Generative Art
+#+SUBTITLE: Selected pieces
+#+HERO: https://i.imgur.com/0cKujzR.png
+#+OPTIONS: html-style:nil
+#+MACRO: imglnk @@html:<img src="$1">@@
+#+OPTIONS: num:nil
+:END:
+
+* OceanBlue
+
+#+begin_export html
+<div style="width: 100%; display: flex; justify-content: center; padding-top: 50px; padding-bottom: 50px">
+    <iframe src="https://editor.p5js.org/Sawyer-Powell/full/6m5kUlxE2"
+            style="width: 320px; height: 350px; box-shadow: 5px 10px 40px -5px lightgray;">
+    </iframe>
+</div>
+#+end_export
+
+* Circular Patterns 
+#+begin_export html
+<div style="width: 100%; display: flex; justify-content: center; padding-top: 50px; padding-bottom: 50px">
+    <iframe src="https://editor.p5js.org/Sawyer-Powell/full/fRG37fc0O"
+            style="width: 300px; height: 342px; box-shadow: 5px 10px 40px -5px lightgray;">
+    </iframe>
+</div>
+#+end_export
+
+* Golden Spiral
+
+#+begin_export html
+<div style="width: 100%; display: flex; justify-content: center; padding-top: 50px; padding-bottom: 50px">
+    <iframe src="https://editor.p5js.org/Sawyer-Powell/full/howcplOEU"
+            style="width: 300px; height: 342px; box-shadow: 5px 10px 40px -5px lightgray;">
+    </iframe>
+</div>
+#+end_export

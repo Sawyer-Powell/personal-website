@@ -23,6 +23,7 @@ Use this blog to explore my essays and projects. A good amount of my technical
 notes are also available.
 
 * Projects
+- [[file:art.org][Generative Art]]
 - [[file:perseus.org][Perseus Cluster Project]]
 - [[file:deep-learning.org][Deep Learning]]
 
