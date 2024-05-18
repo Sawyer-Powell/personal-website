@@ -1,7 +1,7 @@
 :PROPERTIES:
 #+TITLE: Generative Art
 #+SUBTITLE: Selected pieces
-#+HERO: https://i.imgur.com/0cKujzR.png
+#+HERO: https://sawyer-p.me/images/cloudy_summer.webp
 #+OPTIONS: html-style:nil
 #+MACRO: imglnk @@html:<img src="$1">@@
 #+OPTIONS: num:nil

@@ -208,4 +208,4 @@
 	 :publishing-directory "~/public_html/"
 	 :recursive t
 	 :publishing-function org-publish-attachment)
-	("org" :components ("org-notes" "org-static"))))
+	("org" :components ("personal-website" "org-static"))))

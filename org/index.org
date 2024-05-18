@@ -28,7 +28,6 @@ notes are also available.
 - [[file:deep-learning.org][Deep Learning]]
 
 * Essays
-- [[file:we-need-better-tools.org][We Need Better Tools]] 
 
 * Professional Inquiries
 
