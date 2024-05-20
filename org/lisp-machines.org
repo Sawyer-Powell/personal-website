@@ -339,7 +339,9 @@ developers can document what their functions do as they are defining
 them. And since many of these functions are /pure/, documentation can
 stay self-contained to that function. They aren't tied to some
 object's state, their behavior is entirely described by the operations 
-performed using thier inputs.
+performed on their inputs. Describing non pure functions requires not
+only describing how the inputs are used to produce outputs, but also
+what mutations are ocurring elsewhere in the program.
 
 When a new function is registered with Emacs, Emacs makes a record of
 which file that function is located in, as well as its associated
