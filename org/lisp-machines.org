@@ -260,9 +260,9 @@ environment.
 
 Lisp's syntax is a simple data structure, a list, which allows us to
 easily create parsers for custom syntax within Lisp itself. This
-process, where a programming language can extends, is called a
-/macro/. A common use of macros is in configuration files, where we
-need a high level way of defining how a program should run.
+process, where a programming language extends itself, is called a
+/macro/. An excellent use case for macros is in configuration files,
+where we need a high level way of controlling a program. 
 
 Emacs configuration files make heavy use of macros. Here's an example
 from my Emacs configuration where I tell Emacs to use the =gruvbox-theme=
