@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- 2024-05-20 Mon 15:57 -->
+<!-- 2024-05-20 Mon 16:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Magic of Lisp Machines</title>
@@ -32,7 +32,7 @@
 <div class="org-content">
 <h1 class="title">The Magic of Lisp Machines</h1>
 <img src="https://sawyer-p.me/images/lisp_machine.jpg" class="hero">
-<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-05-20 Mon 15:57</p></div>
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-05-20 Mon 16:15</p></div>
 <img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
 
 <div id="outline-container-orgba2fcd5" class="intro">
@@ -384,9 +384,10 @@ once it's finished parsing the package.
 Notice that this doesn't make sense in terms of traditional function
 syntax. <code>use-package</code> is a macro, and allows me to define the package
 name as the first argument, along with a host of functions I want to
-run when initializing the package (defined after the <code>:init</code> keyword,
-not shown), and configuring the package (defined after the <code>:config</code>
-keyword).
+run when initializing the package, and configuring the
+package. Following the inclusion of <code>:config</code> I can include any number
+of functions to run. <code>:config</code> can also be preceded by other section
+demarcations like <code>:init</code> or <code>:after</code>.
 </p>
 
 <p>
@@ -394,13 +395,16 @@ If you wanted a similar api in Python, you would have to manually
 register a series of callbacks with whatever function is loading in
 your package. This is why many Python projects will include a <code>json</code>
 or <code>yaml</code> file to manage their configuration. In Lisp, we are able to
-avoid separating configuration from code.
+avoid separating configuration from code, and declaratively define the
+behavior we want when loading in our package.
 </p>
 
 <p>
 Scaled up to an entire computing environment, we are able to avoid a
 good amount of complexity introduced by having to configure our
-application across a variety of domain specific languages.
+application across a variety of domain specific languages. We can also
+achieve a less verbose syntax than other programming languages, like
+Lua when its used for configuration in Neovim.
 </p>
 
 <p>

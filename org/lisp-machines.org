@@ -278,19 +278,23 @@ once it's finished parsing the package.
 Notice that this doesn't make sense in terms of traditional function
 syntax. =use-package= is a macro, and allows me to define the package
 name as the first argument, along with a host of functions I want to
-run when initializing the package (defined after the =:init= keyword,
-not shown), and configuring the package (defined after the =:config=
-keyword).
+run when initializing the package, and configuring the
+package. Following the inclusion of =:config= I can include any number
+of functions to run. =:config= can also be preceded by other section
+demarcations like =:init= or =:after=.
 
 If you wanted a similar api in Python, you would have to manually
 register a series of callbacks with whatever function is loading in
 your package. This is why many Python projects will include a =json=
 or =yaml= file to manage their configuration. In Lisp, we are able to
-avoid separating configuration from code.
+avoid separating configuration from code, and declaratively define the
+behavior we want when loading in our package.
 
 Scaled up to an entire computing environment, we are able to avoid a
 good amount of complexity introduced by having to configure our
-application across a variety of domain specific languages.
+application across a variety of domain specific languages. We can also
+achieve a less verbose syntax than other programming languages, like
+Lua when its used for configuration in Neovim.
 
 Macros are part of why Emacs is extremely /adaptable/, the language
 can conform to the specific semantics we need to control our
