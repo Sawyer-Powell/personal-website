@@ -393,8 +393,8 @@ codebase they're working on.
 
 This is possible with the normal way that developers do their
 computing, with some combination of an editor and a CLI. But that
-approach cannot compete with the efficiency of your editor /being/ a
-CLI.
+approach cannot compete with the efficiency of your editor /being/ an
+interpreter.
 
 * Thesis
 
