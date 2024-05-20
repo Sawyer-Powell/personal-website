@@ -404,24 +404,24 @@ users to exercise genuine creativity, and give them tools which they
 can easily shape and modify. Emacs, and any future Lisp based
 computing environments that come next, are uniquely advantaged in
 providing this type of computing environment. When you're goal is to
-operate your computer, you want something which easily molds to your
-will, allows quick access to information, and allows you to create
-tight feedback loops.
+efficiently operate your computer, you want something which easily
+molds to your will, allows quick access to information, and allows you
+to create tight feedback loops.
 
 Emacs is not the final form of this, in practice it has many
-issues. But I want to make the case for preserving and iterating on
-the idea of Lisp based computing environments like Emacs. I want to
-see the shell evolve into a more robust environment for running
-interpreted languages, as opposed to the highly limiting experience it
-is today.
+issues. But I hope this has made you interested preserving and
+iterating on the idea of Lisp based computing environments, like
+Emacs. I want to see the shell evolve into a more robust environment
+for running, and working with, interpreted languages, as opposed to
+the highly limiting experience it is today.
 
 Lisp and Emacs are well outside of the modern zeitgeist, and I hope
 that changes. There's so much work that can be done to improve the
 performance, and reliability, of Lisp. Adding more sophisticated type
-systems, and improving Lisp compilers, are just the low hanging
-fruit. And interpreted languages aren't going anywhere, even the most
-hardcore C developers are often using Bash as their main interface for
-their computing.
+systems, and improving Lisp compilers, are just a few low hanging
+fruit. Fundamentally, interpreted languages aren't going anywhere,
+even the most hardcore C developers are often using Bash as a core
+interface for their everyday computing.
 
 Lisp is simple, and magical, and powerful. And we haven't yet fully
 exploited its potential. So I hope you take some time to ponder these
