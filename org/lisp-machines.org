@@ -371,8 +371,9 @@ interpreted languages often work withing a =repl=, or a
 Read-Eval-Print-Loop, where they type a command, and immediately
 evaluate its result. Using the =repl= developers can write their
 software line by line, testing each line, or handful of lines, as they
-write them. This eliminates the need for a debugger that is often
-needed when programming complex software in a compiled language.
+write them. This eliminates the need for a debugger, or extensive
+logging, that is often reqiured when programming complex software in a
+compiled language.
 
 In Emacs, Elisp being interpreted means that I can develop new
 features for Emacs while it is running, within Emacs. Testing them
