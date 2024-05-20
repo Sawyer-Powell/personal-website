@@ -7,27 +7,13 @@
 #+OPTIONS: num:nil
 :END:
 
-* INTRO
-:PROPERTIES:
-:UNNUMBERED: notoc
-:END:
-
-There is an immense joy in creating systems which are truly useful.
-Computing offers us a platform to extend our own capabilities, but leveraging
-its power requires creativity, discipline, and an appreciation of good
-design. In my work I hope to express and explore this beauty, and to
-pay respect to the incredible intelligence of the people who got us here. In
-every line of code, in every flash of pixels on our screens, is the life's work
-of hundreds of thousands of people. It's vast, and stunning.
-Use this blog to explore my essays and projects. A good amount of my technical
-notes are also available.
-
 * Projects
 - [[file:art.org][Generative Art]]
 - [[file:perseus.org][Perseus Cluster Project]]
 - [[file:deep-learning.org][Deep Learning]]
 
 * Essays
+- [[file:lisp-machines.org][The Magic of Lisp Machines]]
 
 * Professional Inquiries
 

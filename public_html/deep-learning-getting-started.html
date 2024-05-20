@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- 2024-05-17 Fri 20:31 -->
+<!-- 2024-05-18 Sat 18:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Deep Learning: The Journey Begins</title>
@@ -33,11 +33,11 @@
 <h1 class="title">Deep Learning: The Journey Begins</h1>
 <div class="subtitle">Dipping my toes into fast.ai</div>
 <img src="https://i.imgur.com/fHVhNrK.png" class="hero">
-<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-05-17 Fri 20:31</p></div>
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-05-18 Sat 18:02</p></div>
 <img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
 
-<div id="outline-container-org154379b" class="intro">
-<div class="outline-text-2" id="text-org154379b">
+<div id="outline-container-orgb71204f" class="intro">
+<div class="outline-text-2" id="text-orgb71204f">
 <p>
 Deep Learning is a complex topic, one that has always interested me,
 but one that I've struggled to get a foothold in learning. I've been
@@ -51,9 +51,9 @@ empowering you to solve real problems. Best of all, it's totally free.
 </div>
 </div>
 
-<div id="outline-container-org908ddfc" class="outline-2">
-<h2 id="org908ddfc"><a href="https://course.fast.ai/Resources/book.html">Deep Learning for Coders with fast.ai and PyTorch</a></h2>
-<div class="outline-text-2" id="text-org908ddfc">
+<div id="outline-container-org580e8ce" class="outline-2">
+<h2 id="org580e8ce"><a href="https://course.fast.ai/Resources/book.html">Deep Learning for Coders with fast.ai and PyTorch</a></h2>
+<div class="outline-text-2" id="text-org580e8ce">
 <p>
 On a recent flight from San Francisco to visit family in Indianapolis,
 I got through the first 100 or so pages of this book. It's been a long
@@ -64,9 +64,9 @@ have trained.
 </p>
 </div>
 
-<div id="outline-container-orgd62170b" class="outline-3">
-<h3 id="orgd62170b">What is Deep Learning?</h3>
-<div class="outline-text-3" id="text-orgd62170b">
+<div id="outline-container-org07f3fa9" class="outline-3">
+<h3 id="org07f3fa9">What is Deep Learning?</h3>
+<div class="outline-text-3" id="text-org07f3fa9">
 <p>
 Deep learning is a collection of techniques for internalizing
 relationships.  The relationships that deep learning is typically used
@@ -141,9 +141,9 @@ other.
 </p>
 </div>
 
-<div id="outline-container-org9b1c3f9" class="outline-4">
-<h4 id="org9b1c3f9">In Short</h4>
-<div class="outline-text-4" id="text-org9b1c3f9">
+<div id="outline-container-org84c8409" class="outline-4">
+<h4 id="org84c8409">In Short</h4>
+<div class="outline-text-4" id="text-org84c8409">
 <p>
 Deep learning architectures allow us to internalize relationships in
 data. Deep learning programs allow us to generate and make use of deep
@@ -157,17 +157,17 @@ learning program.
 </div>
 </div>
 
-<div id="outline-container-orgc600522" class="outline-3">
-<h3 id="orgc600522">A CNN for Classifying Cats and Dogs</h3>
-<div class="outline-text-3" id="text-orgc600522">
+<div id="outline-container-orgd329008" class="outline-3">
+<h3 id="orgd329008">A CNN for Classifying Cats and Dogs</h3>
+<div class="outline-text-3" id="text-orgd329008">
 <p>
 <a href="https://colab.research.google.com/drive/1AWW7TiMhmPKFYR4mx1y3ODK2gnBcWIVG?usp=sharing">Colab Notebook</a>
 </p>
 </div>
 
-<div id="outline-container-org31a186e" class="outline-4">
-<h4 id="org31a186e">Getting the data</h4>
-<div class="outline-text-4" id="text-org31a186e">
+<div id="outline-container-org5258988" class="outline-4">
+<h4 id="org5258988">Getting the data</h4>
+<div class="outline-text-4" id="text-org5258988">
 <pre><code class="language-python">from fastai.vision.all import * path = untar_data(URLs.PETS)/'images'
 </code></pre>
 
@@ -195,9 +195,9 @@ it contains a cat, and doesn't if it contains a dog.
 </div>
 </div>
 
-<div id="outline-container-org52ed726" class="outline-4">
-<h4 id="org52ed726">Preparing the Data</h4>
-<div class="outline-text-4" id="text-org52ed726">
+<div id="outline-container-orgeb4aa74" class="outline-4">
+<h4 id="orgeb4aa74">Preparing the Data</h4>
+<div class="outline-text-4" id="text-orgeb4aa74">
 <pre><code class="language-python">dls = ImageDataLoaders.from_name_func(
     path, get_image_files(path),
     lambda x: x[0].isupper(), valid_pct=0.2,
@@ -260,9 +260,9 @@ learning models accept a fixed amount of input parameters).
 </div>
 </div>
 
-<div id="outline-container-org84b394b" class="outline-4">
-<h4 id="org84b394b">Learning from the Data</h4>
-<div class="outline-text-4" id="text-org84b394b">
+<div id="outline-container-org8cf5f4c" class="outline-4">
+<h4 id="org8cf5f4c">Learning from the Data</h4>
+<div class="outline-text-4" id="text-org8cf5f4c">
 <pre><code class="language-python">learn = cnn_learner(dls, resnet34, metrics=error_rate)
 </code></pre>
 
@@ -319,9 +319,9 @@ Training on my free tier Google Colab workspace took around 2 minutes.
 </div>
 </div>
 
-<div id="outline-container-orgc0a9145" class="outline-4">
-<h4 id="orgc0a9145">Using the model</h4>
-<div class="outline-text-4" id="text-orgc0a9145">
+<div id="outline-container-orgb3a1014" class="outline-4">
+<h4 id="orgb3a1014">Using the model</h4>
+<div class="outline-text-4" id="text-orgb3a1014">
 <pre><code class="language-python">img = PILImage.create("path-to-image")
 is_cat,_,probs = learn.predict(img)
 </code></pre>
@@ -338,9 +338,9 @@ is generally true.
 </div>
 </div>
 
-<div id="outline-container-orgdd291dc" class="outline-3">
-<h3 id="orgdd291dc">A CNN for identifying Musicians</h3>
-<div class="outline-text-3" id="text-orgdd291dc">
+<div id="outline-container-org14ca999" class="outline-3">
+<h3 id="org14ca999">A CNN for identifying Musicians</h3>
+<div class="outline-text-3" id="text-org14ca999">
 <p>
 To learn some more about how to find my own data and prepare it, I decided
 to train a model using the same technique as was done for cats and dogs, but
@@ -359,22 +359,22 @@ Check it out on <a href="https://colab.research.google.com/drive/1iNnVSQ9ku1pSD7
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org908ddfc">Deep Learning for Coders with fast.ai and PyTorch</a>
+<li><a href="#org580e8ce">Deep Learning for Coders with fast.ai and PyTorch</a>
 <ul>
-<li><a href="#orgd62170b">What is Deep Learning?</a>
+<li><a href="#org07f3fa9">What is Deep Learning?</a>
 <ul>
-<li><a href="#org9b1c3f9">In Short</a></li>
+<li><a href="#org84c8409">In Short</a></li>
 </ul>
 </li>
-<li><a href="#orgc600522">A CNN for Classifying Cats and Dogs</a>
+<li><a href="#orgd329008">A CNN for Classifying Cats and Dogs</a>
 <ul>
-<li><a href="#org31a186e">Getting the data</a></li>
-<li><a href="#org52ed726">Preparing the Data</a></li>
-<li><a href="#org84b394b">Learning from the Data</a></li>
-<li><a href="#orgc0a9145">Using the model</a></li>
+<li><a href="#org5258988">Getting the data</a></li>
+<li><a href="#orgeb4aa74">Preparing the Data</a></li>
+<li><a href="#org8cf5f4c">Learning from the Data</a></li>
+<li><a href="#orgb3a1014">Using the model</a></li>
 </ul>
 </li>
-<li><a href="#orgdd291dc">A CNN for identifying Musicians</a></li>
+<li><a href="#org14ca999">A CNN for identifying Musicians</a></li>
 </ul>
 </li>
 </ul>
@@ -383,4 +383,4 @@ Check it out on <a href="https://colab.research.google.com/drive/1iNnVSQ9ku1pSD7
 </div>
 <div class="fixed bottom-10 flex space-x-3"><div id="menu-btn" class="h-12 w-12 p-2 rounded-full bg-aqua text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white 2xl:hidden"><i class="fa-regular fa-bars-sort fa-xl" style="color:white"></i></div><div id="toc-btn" class="h-12 w-12 p-2 rounded-full bg-blue text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white xl:hidden"><i class="fa-regular fa-list-tree fa-xl" style="color:white"></i></div></div></body>
 <script>hljs.highlightAll();</script>
-</html>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></html>

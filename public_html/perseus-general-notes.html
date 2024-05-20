@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- 2024-05-17 Fri 20:31 -->
+<!-- 2024-05-18 Sat 18:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Perseus Cluster Project (Random Notes)</title>
@@ -33,12 +33,12 @@
 <h1 class="title">Perseus Cluster Project (Random Notes)</h1>
 <div class="subtitle"><a href="perseus.html">project page</a></div>
 <img src="https://i.imgur.com/0cKujzR.png" class="hero">
-<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-05-17 Fri 20:31</p></div>
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-05-18 Sat 18:02</p></div>
 <img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
 
-<div id="outline-container-orgf6c8e8c" class="outline-2">
-<h2 id="orgf6c8e8c">Initial Brainstorm</h2>
-<div class="outline-text-2" id="text-orgf6c8e8c">
+<div id="outline-container-orgf6bd75f" class="outline-2">
+<h2 id="orgf6bd75f">Initial Brainstorm</h2>
+<div class="outline-text-2" id="text-orgf6bd75f">
 <p>
 I want to be able to easily interface with the system through a shell,
 and by virtue of that, through my programming language of choice.
@@ -87,9 +87,9 @@ there seems to be a few concepts that need further elaboration:
 </ol>
 </div>
 
-<div id="outline-container-org5201eb4" class="outline-3">
-<h3 id="org5201eb4">Task Structure</h3>
-<div class="outline-text-3" id="text-org5201eb4">
+<div id="outline-container-orgb3f48a2" class="outline-3">
+<h3 id="orgb3f48a2">Task Structure</h3>
+<div class="outline-text-3" id="text-orgb3f48a2">
 <p>
 A task needs to be a specification of a computation that a computer needs to perform. Computation is
 fundamentally just transforming data. So, a task should consist of two parts
@@ -100,17 +100,17 @@ fundamentally just transforming data. So, a task should consist of two parts
 </ol>
 </div>
 
-<div id="outline-container-orgd49cd3f" class="outline-4">
-<h4 id="orgd49cd3f">This lends itself towards being a sort of <i>distributed shell</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
-<div class="outline-text-4" id="text-orgd49cd3f">
+<div id="outline-container-orgc0cd923" class="outline-4">
+<h4 id="orgc0cd923">This lends itself towards being a sort of <i>distributed shell</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
+<div class="outline-text-4" id="text-orgc0cd923">
 <p>
 In this model, the task delegation is the easy part, what's hard is making a distributed stdout
 </p>
 </div>
 
-<div id="outline-container-org68d6dd6" class="outline-5">
-<h5 id="org68d6dd6">There will need to be a notion of a <i>distributed stdout</i> which means understanding distributed filestores is fundamental&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h5>
-<div class="outline-text-5" id="text-org68d6dd6">
+<div id="outline-container-org0985b74" class="outline-5">
+<h5 id="org0985b74">There will need to be a notion of a <i>distributed stdout</i> which means understanding distributed filestores is fundamental&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h5>
+<div class="outline-text-5" id="text-org0985b74">
 <p>
 Programs will need an (optionally) distributed way to access stdin and a default way
 of writing to a distributed stdout.
@@ -127,9 +127,9 @@ this could be the first thing that I need to enable the cluster to be capable of
 </div>
 </div>
 
-<div id="outline-container-orgcbf7e06" class="outline-4">
-<h4 id="orgcbf7e06">There needs to be a standard protocol for initializing and communicating completion of a task&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
-<div class="outline-text-4" id="text-orgcbf7e06">
+<div id="outline-container-org923efbb" class="outline-4">
+<h4 id="org923efbb">There needs to be a standard protocol for initializing and communicating completion of a task&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
+<div class="outline-text-4" id="text-org923efbb">
 <p>
 Probably would be a good idea to build this around grpc
 </p>
@@ -137,9 +137,9 @@ Probably would be a good idea to build this around grpc
 </div>
 </div>
 
-<div id="outline-container-org0eb765b" class="outline-3">
-<h3 id="org0eb765b">Delegation</h3>
-<div class="outline-text-3" id="text-org0eb765b">
+<div id="outline-container-org3176e2d" class="outline-3">
+<h3 id="org3176e2d">Delegation</h3>
+<div class="outline-text-3" id="text-org3176e2d">
 <p>
 Using classic web protocols to actually distribute the tasks will be important.
 </p>
@@ -154,33 +154,33 @@ some scaling involved given how many resources they actually have.
 </p>
 </div>
 
-<div id="outline-container-org93901fb" class="outline-4">
-<h4 id="org93901fb">There will likely need to be a scheduler running on the master server&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
+<div id="outline-container-org339ad96" class="outline-4">
+<h4 id="org339ad96">There will likely need to be a scheduler running on the master server&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
 </div>
 </div>
 
-<div id="outline-container-org68b750d" class="outline-3">
-<h3 id="org68b750d">Standardization</h3>
-<div class="outline-text-3" id="text-org68b750d">
+<div id="outline-container-orgdbde54d" class="outline-3">
+<h3 id="orgdbde54d">Standardization</h3>
+<div class="outline-text-3" id="text-orgdbde54d">
 <p>
 All of the computers should be runnning the same operating system and should have some
 unified standard procedure of setting them up and connecting them to the network.
 </p>
 </div>
 
-<div id="outline-container-org152a975" class="outline-4">
-<h4 id="org152a975">The computers could be running NixOs, this way there can be an easily scriptable way to set up and tear down dev environments&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
+<div id="outline-container-org7699683" class="outline-4">
+<h4 id="org7699683">The computers could be running NixOs, this way there can be an easily scriptable way to set up and tear down dev environments&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
 </div>
-<div id="outline-container-orgb196918" class="outline-4">
-<h4 id="orgb196918">The same computer that operates as the master/scheduler can also be responsible for routing all traffic within the network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
+<div id="outline-container-org2e5dd0a" class="outline-4">
+<h4 id="org2e5dd0a">The same computer that operates as the master/scheduler can also be responsible for routing all traffic within the network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></h4>
 </div>
 </div>
 </div>
-<div id="outline-container-org97675c1" class="outline-2">
-<h2 id="org97675c1">Networking the test setup</h2>
-<div id="outline-container-orge0ed8a1" class="outline-3">
-<h3 id="orge0ed8a1">Cluster network overview</h3>
-<div class="outline-text-3" id="text-orge0ed8a1">
+<div id="outline-container-org6f2842d" class="outline-2">
+<h2 id="org6f2842d">Networking the test setup</h2>
+<div id="outline-container-org232aa1e" class="outline-3">
+<h3 id="org232aa1e">Cluster network overview</h3>
+<div class="outline-text-3" id="text-org232aa1e">
 <p>
 One raspberry pi will act as the router for the network.
 Other pis will connect to it through a powered network switch.
@@ -200,11 +200,11 @@ and be able to program and develop on it.</li>
 </div>
 </div>
 
-<div id="outline-container-orge68fcc3" class="outline-3">
-<h3 id="orge68fcc3">Setting up a raspberry pi as a simple router</h3>
-<div id="outline-container-orgc4335e0" class="outline-4">
-<h4 id="orgc4335e0">Overview</h4>
-<div class="outline-text-4" id="text-orgc4335e0">
+<div id="outline-container-org23f56ff" class="outline-3">
+<h3 id="org23f56ff">Setting up a raspberry pi as a simple router</h3>
+<div id="outline-container-orgb971a6f" class="outline-4">
+<h4 id="orgb971a6f">Overview</h4>
+<div class="outline-text-4" id="text-orgb971a6f">
 <p>
 When devices first connect to the network, if they are configured to do so,
 the first thing that they will do is send a <b>DHCPDISCOVER</b> message to
@@ -231,9 +231,9 @@ addresses into "parent-network" addresses.
 </div>
 </div>
 
-<div id="outline-container-orgb755595" class="outline-4">
-<h4 id="orgb755595">Pro tips</h4>
-<div class="outline-text-4" id="text-orgb755595">
+<div id="outline-container-orgcaa117b" class="outline-4">
+<h4 id="orgcaa117b">Pro tips</h4>
+<div class="outline-text-4" id="text-orgcaa117b">
 <ul class="org-ul">
 <li>Make sure port 53 is open on the firewall for DNS!</li>
 <li>Make sure ports 67 and 68 are open for DHCP!</li>
@@ -242,18 +242,18 @@ addresses into "parent-network" addresses.
 </div>
 </div>
 
-<div id="outline-container-orgfb339a7" class="outline-4">
-<h4 id="orgfb339a7">Assign a static IP</h4>
-<div class="outline-text-4" id="text-orgfb339a7">
+<div id="outline-container-org6e51f72" class="outline-4">
+<h4 id="org6e51f72">Assign a static IP</h4>
+<div class="outline-text-4" id="text-org6e51f72">
 <pre><code class="language-plaintext">sudo ifconfig eth0 192.168.1.1 netmask 255.255.255.0
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org6edc98b" class="outline-4">
-<h4 id="org6edc98b">Apply IP Forwarding and set up NAT using <code>ufw</code></h4>
-<div id="outline-container-org825c6af" class="outline-5">
-<h5 id="org825c6af">Configuring the kernel for forwarding</h5>
-<div class="outline-text-5" id="text-org825c6af">
+<div id="outline-container-org66646d8" class="outline-4">
+<h4 id="org66646d8">Apply IP Forwarding and set up NAT using <code>ufw</code></h4>
+<div id="outline-container-orgda0155f" class="outline-5">
+<h5 id="orgda0155f">Configuring the kernel for forwarding</h5>
+<div class="outline-text-5" id="text-orgda0155f">
 <p>
 <code>/etc/sysctl.conf</code>
 </p>
@@ -271,9 +271,9 @@ To apply the changes made to sysctl.conf
 </div>
 </div>
 
-<div id="outline-container-org91abf29" class="outline-5">
-<h5 id="org91abf29">Configuring the ufw for forwarding &amp; NAT</h5>
-<div class="outline-text-5" id="text-org91abf29">
+<div id="outline-container-orga8f8b9e" class="outline-5">
+<h5 id="orga8f8b9e">Configuring the ufw for forwarding &amp; NAT</h5>
+<div class="outline-text-5" id="text-orga8f8b9e">
 <pre><code class="language-bash">sudo ufw default allow forward
 </code></pre>
 
@@ -317,9 +317,9 @@ To be super certain that the changes were applied
 </div>
 </div>
 
-<div id="outline-container-org5e907fc" class="outline-4">
-<h4 id="org5e907fc">Configure <code>dnsmasq</code></h4>
-<div class="outline-text-4" id="text-org5e907fc">
+<div id="outline-container-org88e3c4a" class="outline-4">
+<h4 id="org88e3c4a">Configure <code>dnsmasq</code></h4>
+<div class="outline-text-4" id="text-org88e3c4a">
 <pre><code class="language-bash">sudo apt-get install dnsmasq
 </code></pre>
 
@@ -369,9 +369,9 @@ for a DHCP server to respond to their lease before asking for a new one.
 </p>
 </div>
 
-<div id="outline-container-org2c995a0" class="outline-5">
-<h5 id="org2c995a0">Restart/manage the <code>dnsmasq</code> daemon through systemd</h5>
-<div class="outline-text-5" id="text-org2c995a0">
+<div id="outline-container-org2cb227a" class="outline-5">
+<h5 id="org2cb227a">Restart/manage the <code>dnsmasq</code> daemon through systemd</h5>
+<div class="outline-text-5" id="text-org2cb227a">
 <pre><code class="language-bash">sudo systemctl restart dnsmasq 
 </code></pre>
 </div>
@@ -384,48 +384,48 @@ for a DHCP server to respond to their lease before asking for a new one.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf6c8e8c">Initial Brainstorm</a>
+<li><a href="#orgf6bd75f">Initial Brainstorm</a>
 <ul>
-<li><a href="#org5201eb4">Task Structure</a>
+<li><a href="#orgb3f48a2">Task Structure</a>
 <ul>
-<li><a href="#orgd49cd3f">This lends itself towards being a sort of <i>distributed shell</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a>
+<li><a href="#orgc0cd923">This lends itself towards being a sort of <i>distributed shell</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a>
 <ul>
-<li><a href="#org68d6dd6">There will need to be a notion of a <i>distributed stdout</i> which means understanding distributed filestores is fundamental&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
+<li><a href="#org0985b74">There will need to be a notion of a <i>distributed stdout</i> which means understanding distributed filestores is fundamental&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
 </ul>
 </li>
-<li><a href="#orgcbf7e06">There needs to be a standard protocol for initializing and communicating completion of a task&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
+<li><a href="#org923efbb">There needs to be a standard protocol for initializing and communicating completion of a task&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org0eb765b">Delegation</a>
+<li><a href="#org3176e2d">Delegation</a>
 <ul>
-<li><a href="#org93901fb">There will likely need to be a scheduler running on the master server&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
+<li><a href="#org339ad96">There will likely need to be a scheduler running on the master server&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org68b750d">Standardization</a>
+<li><a href="#orgdbde54d">Standardization</a>
 <ul>
-<li><a href="#org152a975">The computers could be running NixOs, this way there can be an easily scriptable way to set up and tear down dev environments&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
-<li><a href="#orgb196918">The same computer that operates as the master/scheduler can also be responsible for routing all traffic within the network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
+<li><a href="#org7699683">The computers could be running NixOs, this way there can be an easily scriptable way to set up and tear down dev environments&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
+<li><a href="#org2e5dd0a">The same computer that operates as the master/scheduler can also be responsible for routing all traffic within the network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="keyidea">keyidea</span></span></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org97675c1">Networking the test setup</a>
+<li><a href="#org6f2842d">Networking the test setup</a>
 <ul>
-<li><a href="#orge0ed8a1">Cluster network overview</a></li>
-<li><a href="#orge68fcc3">Setting up a raspberry pi as a simple router</a>
+<li><a href="#org232aa1e">Cluster network overview</a></li>
+<li><a href="#org23f56ff">Setting up a raspberry pi as a simple router</a>
 <ul>
-<li><a href="#orgc4335e0">Overview</a></li>
-<li><a href="#orgb755595">Pro tips</a></li>
-<li><a href="#orgfb339a7">Assign a static IP</a></li>
-<li><a href="#org6edc98b">Apply IP Forwarding and set up NAT using <code>ufw</code></a>
+<li><a href="#orgb971a6f">Overview</a></li>
+<li><a href="#orgcaa117b">Pro tips</a></li>
+<li><a href="#org6e51f72">Assign a static IP</a></li>
+<li><a href="#org66646d8">Apply IP Forwarding and set up NAT using <code>ufw</code></a>
 <ul>
-<li><a href="#org825c6af">Configuring the kernel for forwarding</a></li>
-<li><a href="#org91abf29">Configuring the ufw for forwarding &amp; NAT</a></li>
+<li><a href="#orgda0155f">Configuring the kernel for forwarding</a></li>
+<li><a href="#orga8f8b9e">Configuring the ufw for forwarding &amp; NAT</a></li>
 </ul>
 </li>
-<li><a href="#org5e907fc">Configure <code>dnsmasq</code></a>
+<li><a href="#org88e3c4a">Configure <code>dnsmasq</code></a>
 <ul>
-<li><a href="#org2c995a0">Restart/manage the <code>dnsmasq</code> daemon through systemd</a></li>
+<li><a href="#org2cb227a">Restart/manage the <code>dnsmasq</code> daemon through systemd</a></li>
 </ul>
 </li>
 </ul>
@@ -438,4 +438,4 @@ for a DHCP server to respond to their lease before asking for a new one.
 </div>
 <div class="fixed bottom-10 flex space-x-3"><div id="menu-btn" class="h-12 w-12 p-2 rounded-full bg-aqua text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white 2xl:hidden"><i class="fa-regular fa-bars-sort fa-xl" style="color:white"></i></div><div id="toc-btn" class="h-12 w-12 p-2 rounded-full bg-blue text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white xl:hidden"><i class="fa-regular fa-list-tree fa-xl" style="color:white"></i></div></div></body>
 <script>hljs.highlightAll();</script>
-</html>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></html>
