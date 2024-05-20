@@ -353,9 +353,10 @@ placing their cursor over a function call and invoking the
 
 Programs made using interpreted languages can be modified /while they
 are running/. This is what allows web developers to modify websites
-using javascript in browser extensions, what allows data scientists to
-iterate on their machine learning models in Python without having to
-restart, or recompile, their programs over and over again.
+using javascript in browser extensions, and what allows data
+scientists to iterate on their machine learning models in Python
+without having to restart, or recompile, their programs over and over
+again.
 
 Interpreted languages excel at giving people high level control over
 their computer, while also giving them room to experiment and
