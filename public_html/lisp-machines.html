@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- 2024-05-20 Mon 16:15 -->
+<!-- 2024-05-20 Mon 17:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Magic of Lisp Machines</title>
@@ -32,7 +32,7 @@
 <div class="org-content">
 <h1 class="title">The Magic of Lisp Machines</h1>
 <img src="https://sawyer-p.me/images/lisp_machine.jpg" class="hero">
-<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-05-20 Mon 16:15</p></div>
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-05-20 Mon 17:38</p></div>
 <img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
 
 <div id="outline-container-orgba2fcd5" class="intro">
@@ -468,7 +468,9 @@ developers can document what their functions do as they are defining
 them. And since many of these functions are <i>pure</i>, documentation can
 stay self-contained to that function. They aren't tied to some
 object's state, their behavior is entirely described by the operations 
-performed using thier inputs.
+performed on their inputs. Describing non pure functions requires not
+only describing how the inputs are used to produce outputs, but also
+what mutations are ocurring elsewhere in the program.
 </p>
 
 <p>
@@ -487,9 +489,10 @@ placing their cursor over a function call and invoking the
 <p>
 Programs made using interpreted languages can be modified <i>while they
 are running</i>. This is what allows web developers to modify websites
-using javascript in browser extensions, what allows data scientists to
-iterate on their machine learning models in Python without having to
-restart, or recompile, their programs over and over again.
+using javascript in browser extensions, and what allows data
+scientists to iterate on their machine learning models in Python
+without having to restart, or recompile, their programs over and over
+again.
 </p>
 
 <p>
@@ -508,8 +511,9 @@ interpreted languages often work withing a <code>repl</code>, or a
 Read-Eval-Print-Loop, where they type a command, and immediately
 evaluate its result. Using the <code>repl</code> developers can write their
 software line by line, testing each line, or handful of lines, as they
-write them. This eliminates the need for a debugger that is often
-needed when programming complex software in a compiled language.
+write them. This eliminates the need for a debugger, or extensive
+logging, that is often reqiured when programming complex software in a
+compiled language.
 </p>
 
 <p>
@@ -535,8 +539,8 @@ codebase they're working on.
 <p>
 This is possible with the normal way that developers do their
 computing, with some combination of an editor and a CLI. But that
-approach cannot compete with the efficiency of your editor <i>being</i> a
-CLI.
+approach cannot compete with the efficiency of your editor <i>being</i> an
+interpreter.
 </p>
 </div>
 </div>
@@ -552,28 +556,28 @@ users to exercise genuine creativity, and give them tools which they
 can easily shape and modify. Emacs, and any future Lisp based
 computing environments that come next, are uniquely advantaged in
 providing this type of computing environment. When you're goal is to
-operate your computer, you want something which easily molds to your
-will, allows quick access to information, and allows you to create
-tight feedback loops.
+efficiently operate your computer, you want something which easily
+molds to your will, allows quick access to information, and allows you
+to create tight feedback loops.
 </p>
 
 <p>
 Emacs is not the final form of this, in practice it has many
-issues. But I want to make the case for preserving and iterating on
-the idea of Lisp based computing environments like Emacs. I want to
-see the shell evolve into a more robust environment for running
-interpreted languages, as opposed to the highly limiting experience it
-is today.
+issues. But I hope this has made you interested preserving and
+iterating on the idea of Lisp based computing environments, like
+Emacs. I want to see the shell evolve into a more robust environment
+for running, and working with, interpreted languages, as opposed to
+the highly limiting experience it is today.
 </p>
 
 <p>
 Lisp and Emacs are well outside of the modern zeitgeist, and I hope
 that changes. There's so much work that can be done to improve the
 performance, and reliability, of Lisp. Adding more sophisticated type
-systems, and improving Lisp compilers, are just the low hanging
-fruit. And interpreted languages aren't going anywhere, even the most
-hardcore C developers are often using Bash as their main interface for
-their computing.
+systems, and improving Lisp compilers, are just a few low hanging
+fruit. Fundamentally, interpreted languages aren't going anywhere,
+even the most hardcore C developers are often using Bash as a core
+interface for their everyday computing.
 </p>
 
 <p>
