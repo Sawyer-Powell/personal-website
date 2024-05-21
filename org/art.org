@@ -1,5 +1,5 @@
 :PROPERTIES:
-#+TITLE: Generative Art
+#+TITLE: Programmatic Art
 #+SUBTITLE: Selected pieces
 #+HERO: https://sawyer-p.me/images/cloudy_summer.webp
 #+OPTIONS: html-style:nil
