@@ -55,11 +55,13 @@ Key Pieces of Information:
 ...
 #+end_quote
 
-Take these bullet points and feed into our AI model that matches the
-tone and style of the NYT. This model will produce a series of well
-written news articles, with relevant information, that provides a
-simulated experience of reading an actual NYT article about that
-event.
+Take these bullet points and feed them into our AI model that matches
+the tone and style of the NYT. This model will produce a series of
+well written news articles, with relevant information, that provides a
+simulated experience of reading an actual NYT article. Every day, we
+scrape the web for new articles, create bullet points, and generate
+new NYT like articles. Voila, we have a fully fledged news site
+without having to pay a single journalist.
 
 In a few afternoons of work, it's possible, today, to generate an AI
 news website, that covers the same events as the New York Times, in
