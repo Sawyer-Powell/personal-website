@@ -80,11 +80,12 @@ copy of the work.
 
 You can argue that a person could come along, listen to all the songs
 from a musician, and create music that is highly inspired, but
-sufficiently distinct, from the original musician. So, in this sense,
-that person has extracted the value from that original musician's work,
-and is reselling it for their own benefit. But, in the context of the
-market for creative works, the fact that this can happen is a /very
-good/ thing. Here's why:
+sufficiently distinct, from the original musician. It could be argued,
+that by learning from that musician, and producing highly similar
+works, this person is capturing value from that original musician's
+work, and is reselling it for their own benefit. But, in the context
+of the market for creative works, the fact that people can do this is
+a /very good/ thing. Here's why:
 
 - The musicians can create songs that are highly similar stylistically
   to ther musicians, but if they create a song that is /sufficiently/ the
