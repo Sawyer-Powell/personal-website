@@ -31,14 +31,15 @@ process of our own creativity isn't?
 
 * AI Eliminates the Moat of Copyright
 
-The process is simple. Feed a large language model, like GPT-4o, all
+The process is simple. Feed a large language model (LLM), like GPT-4o, all
 the articles from the New York Times, and train it to produce articles
-that match the NYT's style and tone. Everyday, pull the top articles from
-the New York Times, Washington Post, Reuters, etc. and use another
-large language model to pull out the key information from each of
-these articles. Here's an example of what that key info could look
-like coming out of an LLM (I generated the example with the Claude LLM
-from Anthropic).
+that match the NYT's style and tone. Everyday, pull the top articles
+from the New York Times, Washington Post, Reuters, etc. and use
+another large language model to pull out the key information from each
+of these articles. In the end, we end up with a bunch of articles,
+with bullet points on the key pieces of information they talk
+about. Here's an example of what that key info could look like coming
+out of an LLM.
 
 #+begin_quote
 Article Title: "AI Revolution: How Artificial Intelligence is
@@ -54,8 +55,11 @@ Key Pieces of Information:
 ...
 #+end_quote
 
-Then feed this information into the NYT article trained AI and ask it to
-generate an article matching the New York Times tone and style.
+Take these bullet points and feed into our AI model that matches the
+tone and style of the NYT. This model will produce a series of well
+written news articles, with relevant information, that provides a
+simulated experience of reading an actual NYT article about that
+event.
 
 In a few afternoons of work, it's possible, today, to generate an AI
 news website, that covers the same events as the New York Times, in
