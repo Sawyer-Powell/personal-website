@@ -7,13 +7,12 @@
 #+OPTIONS: num:nil
 :END:
 
-* Projects
-- [[file:art.org][Generative Art]]
-- [[file:perseus.org][Perseus Cluster Project]]
-- [[file:deep-learning.org][Deep Learning]]
-
-* Essays
+* Posts
+- [[file:ai-copyright.org][The Economics of AI and Copyright]]
 - [[file:lisp-machines.org][The Magic of Lisp Machines]]
+- [[file:art.org][Programmatic Art]]
+- [[file:deep-learning-ethics.org][Deep Learning: Data Ethics]] 
+- [[file:deep-learning-getting-started.org][Deep Learning: Getting Started]]
 
 * Professional Inquiries
 

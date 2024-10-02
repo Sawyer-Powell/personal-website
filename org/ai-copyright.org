@@ -1,0 +1,179 @@
+:PROPERTIES:
+#+TITLE: The Economics of AI and Copyright
+#+SUBTITLE: image by [[https://www.artstation.com/alariko][alariko]]
+#+OPTIONS: html-style:nil
+#+HERO: https://cdna.artstation.com/p/assets/images/images/079/702/348/large/alariko-img-20240802-175045-178.jpg?1725576581
+#+MACRO: imglnk @@html:<img src="$1">@@
+#+OPTIONS: num:nil
+:END:
+
+* INTRO
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+
+Genearative AI models, like ChatGPT, DALL-E, and others, are known to
+have ingested copyrighted works into their training data. These models
+provide facilities to generate new works that are sufficiently
+different from those copyrighted works, to be recognized as the
+official legal definition of a /derivative work/. AI models, on a
+surface level, seem to be mimicking how human intelligence works. As
+people, we read, watch, listen to copyrighted works, which inspires us
+to create new art, movies, music, and literature. So, if we are to say
+that AI models violate copyright, how can we argue that we aren't?
+
+* AI Eliminates the Moat of Copyright
+
+The process is simple. Feed a large language model, like GPT-4o, all
+the articles from the New York Times, and train it to produce articles
+that match the NYT's style and tone. Everyday, pull the top articles from
+the New York Times, Washington Post, Reuters, etc. and use another
+large language model to pull out the key information from each of
+these articles. Here's an example of what that key info could look
+like coming out of an LLM (I generated the example with the Claude LLM
+from Anthropic).
+
+#+begin_quote
+Article Title: "AI Revolution: How Artificial Intelligence is
+Changing Workplaces in 2023"
+
+Key Pieces of Information:
+1. Introduction of AI Tools: Businesses are implementing AI to
+   improve efficiency and reduce operational costs.
+2. Impact on Jobs: Certain jobs are becoming obsolete, while new
+   tech-driven roles are emerging.
+3. Enhanced Decision-Making: AI algorithms help executives make
+   data-driven decisions with better accuracy.
+...
+#+end_quote
+
+Then feed this information into the NYT article trained AI and ask it to
+generate an article matching the New York Times tone and style.
+
+In a few afternoons of work, it's possible, today, to generate an AI
+news website, that covers the same events as the New York Times, in
+the same tone, and style, without violating copyright. If a human did
+the same thing, writing about current events reported by other sources
+in their own words, its clear that this is not a violation of
+copyright. However, it's critical to understand that AI is able to
+extract the /value/ of information at an /industrial scale/.
+
+* Copyright is About the /Value/ of Information
+
+The purpose of copyright, for all its strengths and weaknesses, is to
+make markets of creative work possible. These markets are vital,
+because without them, professional songwriters, journalists,
+programmers, artists, etc. have few alternatives for income. Copyright
+allows artists and companies are able to create novel pieces of work,
+and enforce an artificial scarcity on that work, since copyright
+grants them the sole rights of distribution. This artificial scarcity,
+coupled with demand, creates a market for non-material works, like
+music, movies, code, and so on.
+
+What are these people actually selling? They're selling information
+which contains a certain amount of /value/, which makes that
+information desirable for a customer. Before AI models, the only way
+to duplicate that value, was to duplicate the information, to make a
+copy of the work.
+
+You can argue that a person could come along, listen to all the songs
+from a musician, and create music that is highly inspired, but
+sufficiently distinct, from the original musician. So, in this sense,
+that person has extracted the value from that original musician's work,
+and is reselling it for their own benefit. But, in the context of the
+market for creative works, the fact that this can happen is a /very
+good/ thing. Here's why:
+
+- The musicians can create songs that are highly similar stylistically
+  to ther musicians, but if they create a song that is /sufficiently/ the
+  same as another, they are in violation of copyright. I.e. singing a
+  song that has the same lyrics, melody, and chord progression, and
+  selling that without the original musician's consent.
+- Musicians creating similar music to each other is called a
+  /genre/. Musicians operating within a genrea are encouraged, by the
+  design of copyright, to create distinct, compelling
+  works that diversify them from other musicians in that genre. The
+  best musicians advance their genre, making significant stylistic
+  contributions to the context in which they built their career.
+- Musicians operating within a genre have a bounded skillset, meaning
+  that the level of talent among these musicians is relatively
+  comparable. If there's a musician who dominates a genre, this is
+  always temporary, as a new musician, with new ideas, comes along
+  and steals the market.
+- This competitive landscape pushes professional musicians into
+  continually building a moat around the value of their art, to build
+  an edge, an identity. To do something distinct that is very hard for
+  another /person/ to copy.
+
+In order for copyright to do its job, it needs to be possible to have
+a protected competitive landscape for creative work. AI is fully
+capable of destroying this competitive landscape.
+
+* Industrial Scale Value Extraction
+
+Key to the competitive market working is that it is /possible/ for a
+musician, artist, journalist, etc, to create work that is /hard/ to
+replicate. As we saw with the New York Times example, AI makes it
+/easy/ for any creative work to be replicated. Not only is it easy to
+do, but it's easy to do at enormous scale. A skilled programmer can
+write something which not only replicates the New York Times, but also
+CNN, Fox News, Reuters, etc. in a week or less.
+
+If people are unaware that those articles are generated by AI, they
+will be receiving nearly the /same/ amount of value they would get
+from the original works. This is /catastrophic/ for a productive and
+healthy creative economy.
+
+* People Are Entitled to Their Work's /Value/, Not Just Its /Copies/
+
+If a person produces a work, copyrights it, and that copyrighted work
+is then used to train an AI, that person should be entitled to a share
+of the value produced by the AI. A simple starting point is, if the AI
+was trained on 100 megabytes of that person's copyrighted work, and
+the AI was trained on 1000 megabytes of data in total, that person
+should be entitled to 1/10th (divided by some number to account for the
+value added by training the AI) of the revenue generated by the
+AI. This, or the original author of the work agrees to some settlement
+with the company for them to use their data.
+
+To make this possible, if a company wants to sell an AI product, they
+need to provide detailed documentation on what data they used to train
+it. Just like if Coca-Cola wants to sell a drink, they must provide
+nutrition facts.
+
+If they then wants to use their AI model to create another AI model,
+let's say using generated data. I.e. they train a model to produce
+news articles, and train another model to mimic that news producing
+AI. If that company chooses to sell that derivative AI, again they're
+still obligated to report the source data that was used to train all
+the AIs in their whole system, including the original news producing
+AI. Most of the value of their models /comes from/ that original
+training data. That company should be forever obligated to compensate
+the creators of that data, as long as their commercial products use
+it.
+
+* A Better Data Economy
+
+As we work on AI policy, we should be laser focused on creating a data
+economy where creative people are compensated, and society can reap
+the benefits of large AI systems. If policies like the above get
+implemented, we can foresee the markets for quality training data
+exploding. Since data trading is not just being mediated by data
+brokers, and deals between large companies, but between AI companies,
+and the artists and creative professionals directly producing that
+work. The volume of trading would increase /significantly/.
+
+Independent creative professionals could end up making significant
+passive income from large AI systems. Even if the data they provided
+to OpenAI makes up one billionth of ChatGPTs training data, if OpenAI
+is serving hundreds of millions of requests per second, their
+compensation amount could add up quickly. We would also see the
+emergence of large internet platforms for people to sell their
+creative works as training data to AI companies.
+
+If we don't implement modifications to copyright law, I believe there
+will be huge negative economic, and social, ramifications. However, if
+we modify the law smartly, we could see a massive infusion of money
+into the hands of creative workers. Importantly, when we think about
+what modifications we make, we need to think about how creative
+workers can protect the /value/ of their works, not just its copies.
