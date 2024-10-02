@@ -16,11 +16,13 @@ Genearative AI models, like ChatGPT, DALL-E, and others, are known to
 have ingested copyrighted works into their training data. These models
 provide facilities to generate new works that are sufficiently
 different from those copyrighted works, to be recognized as the
-official legal definition of a /derivative work/. AI models, on a
-surface level, seem to be mimicking how human intelligence works. As
-people, we read, watch, listen to copyrighted works, which inspires us
-to create new art, movies, music, and literature. So, if we are to say
-that AI models violate copyright, how can we argue that we aren't?
+official legal definition of a /derivative work/. Thinking about how
+to regulate AI fairly, is difficult. AI models, on a surface level,
+seem to be mimicking how human intelligence works. As people, we read,
+watch, listen to copyrighted works, which inspires us to create new
+art, movies, music, and literature. So, if we are to say that AI
+models are violating copyright, how can we argue that the basic
+process of our own creativity isn't?
 
 * AI Eliminates the Moat of Copyright
 
@@ -64,10 +66,10 @@ The purpose of copyright, for all its strengths and weaknesses, is to
 make markets of creative work possible. These markets are vital,
 because without them, professional songwriters, journalists,
 programmers, artists, etc. have few alternatives for income. Copyright
-allows artists and companies are able to create novel pieces of work,
-and enforce an artificial scarcity on that work, since copyright
-grants them the sole rights of distribution. This artificial scarcity,
-coupled with demand, creates a market for non-material works, like
+allows artists and companies to create novel pieces of work, on which
+they can enforce an artificial scarcity, since copyright grants them
+the sole rights of distribution. This artificial scarcity, coupled
+with demand, creates a market for fundamentally non-scarce works, like
 music, movies, code, and so on.
 
 What are these people actually selling? They're selling information
@@ -90,7 +92,7 @@ good/ thing. Here's why:
   song that has the same lyrics, melody, and chord progression, and
   selling that without the original musician's consent.
 - Musicians creating similar music to each other is called a
-  /genre/. Musicians operating within a genrea are encouraged, by the
+  /genre/. Musicians operating within a genre are encouraged, by the
   design of copyright, to create distinct, compelling
   works that diversify them from other musicians in that genre. The
   best musicians advance their genre, making significant stylistic
@@ -155,13 +157,14 @@ it.
 * A Better Data Economy
 
 As we work on AI policy, we should be laser focused on creating a data
-economy where creative people are compensated, and society can reap
-the benefits of large AI systems. If policies like the above get
-implemented, we can foresee the markets for quality training data
-exploding. Since data trading is not just being mediated by data
-brokers, and deals between large companies, but between AI companies,
-and the artists and creative professionals directly producing that
-work. The volume of trading would increase /significantly/.
+economy where creative people are both fairly compensated, while
+allowing society to reap the enormous benefits of large AI systems. If
+policies like the above get implemented, we can foresee the markets
+for quality training data exploding. Since data trading is not just
+being mediated by data brokers, and deals between large companies, but
+between AI companies, and the artists and creative professionals
+directly producing that work. The volume of trading would increase
+/significantly/.
 
 Independent creative professionals could end up making significant
 passive income from large AI systems. Even if the data they provided
@@ -171,9 +174,12 @@ compensation amount could add up quickly. We would also see the
 emergence of large internet platforms for people to sell their
 creative works as training data to AI companies.
 
-If we don't implement modifications to copyright law, I believe there
-will be huge negative economic, and social, ramifications. However, if
-we modify the law smartly, we could see a massive infusion of money
-into the hands of creative workers. Importantly, when we think about
-what modifications we make, we need to think about how creative
-workers can protect the /value/ of their works, not just its copies.
+If we don't implement modifications to copyright law, there will
+likely be be huge negative economic, and social,
+ramifications. However, if we modify the law smartly, we could see a
+massive infusion of money into the hands of creative
+workers. Importantly, when we think about AI policy, we need to think
+about how to preserve the spirit, but not necessarily the details, of
+copyright law. Focusing on the fundamental mechanism of copyright, how
+creative workers protect the /value/ of their work, and create
+/scarcity/, is vital.
