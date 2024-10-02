@@ -19,9 +19,8 @@ different from those copyrighted works, such that they are not
 recognized as fitting the official legal definition of a /derivative
 work/, which would put them in violation of copyright. There's
 something unfair happening here, creative workers feel shafted by what
-they perceive as large tech companies as stealing their work to create
-their AI models. It /feels/ like this should be a violation of
-copyright.
+they perceive as large tech companies stealing their work to create AI
+models. It /feels/ like this should be a violation of copyright.
 
 But, it's hard to make that argument. AI models, on a surface level,
 seem to be mimicking how human intelligence works. As people, we read,
