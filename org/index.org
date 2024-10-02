@@ -8,7 +8,7 @@
 :END:
 
 * Posts
-- [[file:ai-copyright.org][The Economics of AI and Copyright]]
+- [[file:ai-copyright.org][Thoughts on the Economics of AI and Copyright]]
 - [[file:lisp-machines.org][The Magic of Lisp Machines]]
 - [[file:art.org][Programmatic Art]]
 - [[file:deep-learning-ethics.org][Deep Learning: Data Ethics]] 
