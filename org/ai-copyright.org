@@ -12,7 +12,7 @@
 :UNNUMBERED: notoc
 :END:
 
-Genearative AI models, like ChatGPT, DALL-E, and others, are known to
+Generative AI models, like ChatGPT, DALL-E, and others, are [[https://harvardlawreview.org/blog/2024/04/nyt-v-openai-the-timess-about-face/][known]] to
 have ingested copyrighted works into their training data. These models
 provide facilities to generate new works that are sufficiently
 different from those copyrighted works, such that they are not
