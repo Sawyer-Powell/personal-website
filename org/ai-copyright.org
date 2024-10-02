@@ -65,13 +65,16 @@ without having to pay a single journalist.
 
 In a few afternoons of work, it's possible, today, to generate an AI
 news website, that covers the same events as the New York Times, in
-the same tone, and style, without violating copyright. If a human did
-the same thing, reading news articles across the web, and writing
-their own articles based on other sources reporting, maybe even trying
-to mimic the way the New York Times writes, its clear that this is not
-a violation of copyright. However, it's critical to understand that AI
+the same tone, and style, without violating copyright. This feels
+wrong. But, if a human did the same thing, reading news articles
+across the web, and writing their own articles based on other source's
+reporting, maybe even trying to mimic the way the New York Times
+writes, its clear that this is not a violation of copyright. This is a
+person producing a new work, not copying an existing one. However,
+it's critical to understand that with this automatic news site, the AI
 is able to extract the /value/ of work done by New York Times
-journalists at an /industrial scale/, impossible for humans.
+journalists at an /industrial scale/, a scale impossible for
+humans to match.
 
 * Copyright is About the /Value/ of Information
 
