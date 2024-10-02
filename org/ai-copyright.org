@@ -104,16 +104,17 @@ of the market for creative works, the fact that people can do this is
 a /very good/ thing. Here's why:
 
 - The musicians can create songs that are highly similar stylistically
-  to ther musicians, but if they create a song that is /sufficiently/ the
+  to other musicians, but if they create a song that is /sufficiently/ the
   same as another, they are in violation of copyright. I.e. singing a
   song that has the same lyrics, melody, and chord progression, and
   selling that without the original musician's consent.
 - Musicians creating similar music to each other is called a
   /genre/. Musicians operating within a genre are encouraged, by the
-  design of copyright, to create distinct, compelling
-  works that diversify them from other musicians in that genre. The
-  best musicians advance their genre, making significant stylistic
-  contributions to the context in which they built their career.
+  design of copyright, to create distinct, compelling works that
+  diversify them from other musicians in that genre. The best
+  musicians push the boundaries of their genre, making significant
+  stylistic contributions to the musical culture which incubated their
+  career.
 - Musicians operating within a genre have a bounded skillset, meaning
   that the level of talent among these musicians is relatively
   comparable. If there's a musician who dominates a genre, this is
