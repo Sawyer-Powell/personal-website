@@ -41,7 +41,7 @@ the New York Times. Use another large language model to pull out each
 article's key pieces of information.
 
 This produces a collection of articles alongside cliff notes on what
-they cover. And this point we've preserved none of the original
+they cover. At this point we've preserved none of the original
 content that was in those articles. Only the critical facts and
 information.
 
