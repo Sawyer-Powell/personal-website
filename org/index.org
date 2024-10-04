@@ -1,17 +1,15 @@
 :PROPERTIES:
 #+TITLE: Hey! I'm Sawyer.
-#+SUBTITLE: project manager / technical lead / developer at [[https://counterpart.biz][counterpart]]
+#+SUBTITLE: software engineer technical lea at [[https://counterpart.biz][counterpart]]
 #+HERO: https://i.imgur.com/HfX05i1.jpg
 #+OPTIONS: html-style:nil
 #+MACRO: imglnk @@html:<img src="$1">@@
 #+OPTIONS: num:nil
 :END:
 
-* Posts
+* Suggested Posts
 - [[file:ai-copyright.org][Thoughts on the Economics of AI and Copyright]]
 - [[file:lisp-machines.org][The Magic of Lisp Machines]]
-- [[file:art.org][Programmatic Art]]
-- [[file:deep-learning-ethics.org][Deep Learning: Data Ethics]] 
 - [[file:deep-learning-getting-started.org][Deep Learning: Getting Started]]
 
 * Professional Inquiries

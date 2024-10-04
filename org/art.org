@@ -1,7 +1,7 @@
 :PROPERTIES:
-#+TITLE: Programmatic Art
-#+SUBTITLE: Selected pieces
-#+HERO: https://sawyer-p.me/images/cloudy_summer.webp
+#+TITLE: Art
+#+SUBTITLE: image by [[https://www.artstation.com/alariko][alariko]]
+#+HERO: https://cdnb.artstation.com/p/assets/images/images/071/086/259/large/alariko-img-5767.jpg?1704400805
 #+OPTIONS: html-style:nil
 #+MACRO: imglnk @@html:<img src="$1">@@
 #+OPTIONS: num:nil

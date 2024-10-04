@@ -149,14 +149,14 @@ To make this possible, if a company wants to sell an AI product, they
 need to provide detailed documentation on what data they used to train
 it.
 
-If they then wants to use their AI model to create another AI model,
+If they then want to use their AI model to create another AI model,
 using generated data. I.e. they train a model to produce news
 articles, and train another model to mimic that news producing AI. If
-that company chooses to sell that derivative AI, again they're still
-obligated to report the source data that was used to train all the AIs
-in their whole system. Most of the value of their models /comes from/
-that original training data. That company should be forever obligated
-to compensate the creators of that data, as long as their commercial
+they chooose to sell that derivative AI, they're still obligated to
+report the source data that was used to train all the AIs in their
+whole system. Most of the value of their models /comes from/ that
+original training data. That company should be forever obligated to
+compensate the creators of that data, as long as their commercial
 products use it.
 
 This is not a simple task, but not an impossible one. To achieve this
