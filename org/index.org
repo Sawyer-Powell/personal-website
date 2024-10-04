@@ -1,6 +1,6 @@
 :PROPERTIES:
 #+TITLE: Hey! I'm Sawyer.
-#+SUBTITLE: software engineer technical lea at [[https://counterpart.biz][counterpart]]
+#+SUBTITLE: indie software enthusiast / software engineer / technical lead
 #+HERO: https://i.imgur.com/HfX05i1.jpg
 #+OPTIONS: html-style:nil
 #+MACRO: imglnk @@html:<img src="$1">@@
