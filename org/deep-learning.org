@@ -21,5 +21,6 @@ this century.
 
 * Posts
 
+- [[file:search-engine.org][Case Study: ML Powered Product Substitutions]]
 - [[file:deep-learning-getting-started.org][Getting Started]]
 - [[file:deep-learning-ethics.org][Data Ethics]] 
