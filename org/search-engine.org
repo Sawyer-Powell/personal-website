@@ -25,7 +25,7 @@ can recommend new products contains around a quarter million unique
 items. Over the past two months I've been building a system that can
 automatically make these substitutions with greater than 70% accuracy
 in one-shot scenarios on products it has never seen before, and over
-92% accuracy when the system can suggest a list of substitutions. So,
+92% accuracy when the system can suggest a 5 substitutions. So,
 how do you build a system like this? How do you make it scalable and
 fast? Let's start engineering!
 
