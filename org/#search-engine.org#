@@ -1,44 +1,17 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-<!-- 2024-11-14 Thu 12:17 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Case Study: ML Powered Product Substitutions</title>
-<meta name="author" content="Sawyer Powell" />
-<meta name="generator" content="Org Mode" />
-<link rel="stylesheet" type="text/css" href="css/index.css"/>
-<script defer src="./js/fontawesome/all.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/gruvbox-light-medium.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script src="./js/index.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet"></head>
-<body>
-<div class="content">
-<div id="sidebar" class="sidebar">
-<div class="flex items-center mb-5" onclick="location.href='/'">
-<img src="./images/horse.svg" class="shadow-none h-12 rounded-none m-0"/>
-<span class="block text-2xl text-fg0 font-bold font-mono ms-2">sawyer-p</span>
-</div>
-<ul>
-<li><a href="about.html">About</a></li>
-<li><a href="professional-work.html">Professional Work</a></li>
-<hr/>
-<li><a href="art.html">Programmatic Art</a></li>
-<li><a href="deep-learning.html">Deep Learning</a></li>
-<hr/>
-<li><a href="posts.html">Posts</a></li>
-</ul>
-</div>
-<div class="org-content">
-<h1 class="title">Case Study: ML Powered Product Substitutions</h1>
-<div class="subtitle">image by paul kidby</div>
-<img src="https://www.paulkidby.com/wp-content/uploads/2016/01/gallery_2-650x884_c.jpg" class="hero">
-<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-11-14 Thu 12:17</p></div>
-<img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
+:PROPERTIES:
+#+TITLE: Case Study: ML Powered Product Substitutions
+#+SUBTITLE: image by paul kidby
+#+HERO: https://www.paulkidby.com/wp-content/uploads/2016/01/gallery_2-650x884_c.jpg
+#+OPTIONS: html-style:nil
+#+MACRO: imglnk @@html:<img src="$1">@@
+#+OPTIONS: num:nil
+:END:
 
-<div id="outline-container-orgbc49ff7" class="intro">
-<div class="outline-text-2" id="text-orgbc49ff7">
-<p>
+* INTRO
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+
 Recently at Counterpart I've had the opportunity to work with a
 medical supply company that helps doctors offices optimize their
 spending. This company takes a list of products that a clinic is
@@ -55,106 +28,74 @@ in one-shot scenarios on products it has never seen before, and over
 92% accuracy when the system can suggest a 5 substitutions. So, how do
 you build a system like this? How do you make it scalable and fast?
 Let's start engineering!
-</p>
-</div>
-</div>
 
-<div id="outline-container-org5b51f44" class="outline-2">
-<h2 id="org5b51f44">The Simplest and Cheapest Approach</h2>
-<div class="outline-text-2" id="text-org5b51f44">
-<p>
+* The Simplest and Cheapest Approach
+
 Instead of having the employees at the company manually go through
 their master list of products to find an appropriate substitution,
 we can design a piece of software that allows them to search
 across that master list.
-</p>
 
-<p>
 The two easiest approaches would be to implement keyword search, or a
 fuzzy matching algorithm like levenshtein distance. Employees could
 enter keywords from the product description or title, and find
 products that have matching words. The fuzzy matching approach would
 be better at handling letters and phrases being out of order. It would
 also excel at handling small typos and misspellings in the data.
-</p>
 
-<p>
 These approaches will certainly offer some efficiency gain for the
 employees, but they are still expected to have in-depth technical
 knowledge of the products they're working wit. Often times product
 names provided by a client will differ greatly from the product names
-in the database. Employees have to <b>know</b> what they're looking for
+in the database. Employees have to *know* what they're looking for
 ahead of time.
-</p>
 
-<p>
 Here's an example of what a hard substitution could look like:
-</p>
 
-<p>
 Provided by the client:
-<code>CONTAIN  SPC N/S W/LID 4OZ</code>
-</p>
+=CONTAIN  SPC N/S W/LID 4OZ=
 
-<p>
 Suggested substitution
-<code>ManDaq RMS f/Adv Gyn &amp; Surg</code>
-</p>
+=ManDaq RMS f/Adv Gyn & Surg=
 
-<p>
 Based on results I've seen, using levenshtein distance will provide
 around a 5-10% accuracy at best.
-</p>
-</div>
-</div>
 
-<div id="outline-container-orga9e9a2d" class="outline-2">
-<h2 id="orga9e9a2d">A Machine Learning Approach</h2>
-<div class="outline-text-2" id="text-orga9e9a2d">
-<p>
+* A Machine Learning Approach
+
 Clearly there are nuances in how substitutions are made. Making
 effective substitutions requires some level of domain expertise in the
 meaning of the medical terms. Effective substitions also require a
-sense of how to suggest an item that is <b>almost</b> the same, but
+sense of how to suggest an item that is *almost* the same, but
 provides a much better value. An example of this would be buying blue
 towels from one manufacturer instead of tan from another. This means
 data beyond just the product description is critical to making
 substitutions. Luckily, we have a lot of historical data on
 substitutions this company has made in the past. The challenge ahead
 is leveraging that data effectively.
-</p>
 
-<p>
 We need a to devise a system that allows employees to provide product
 information they've received from a client, and receive a list of
 products from this company's master list that are good
 substitutions. A straightforward approach to this problem is to create
-an <b>embedding model</b>.
-</p>
+an *embedding model*.
 
-<p>
 The model will accept as input either the product information from a
 client, or from the master sheet, and spit out a big vector of
 floats. The model should be trained such that vectors produced by
 substitutable products are separated by a very small angle. Ideally,
 substitutable products produce vectors that are collinear.
-</p>
 
-<p>
 Once this model is trained, we can go over every product in the master
 list and generate an index using the products' corresponding
 vectors. Every time we receive a product from a client, we query that
 index, finding items from the master list that are the most collinear
 with our client provided product vector. We can leverage libraries
-like <code>faiss</code> from Facebook to perform fast GPU powered vector search
+like =faiss= from Facebook to perform fast GPU powered vector search
 over that index.
-</p>
-</div>
 
-<div id="outline-container-org2693ed2" class="outline-3">
-<h3 id="org2693ed2">Cleaning our Data</h3>
-<div class="outline-text-3" id="text-org2693ed2">
-<p>
+** Cleaning our Data
+
 The data is provided to us in excel spreadsheets. These spreadsheets
 contain information about a client's products (description, unit of
 measure, price, manufacturer, etc.) and an id to the item it was
@@ -162,14 +103,12 @@ substituted for in the master list. Before doing any machine learning
 we should collate all of the client products across all of the
 spreadsheets, and match them to their corresponding item in the master
 list.
-</p>
 
-<p>
-Using the <code>pandas</code> library to parse and collate all the spreadsheet
-information, we end up with a <code>DataFrame</code> with these columns:
-</p>
+Using the =pandas= library to parse and collate all the spreadsheet
+information, we end up with a =DataFrame= with these columns:
 
-<pre><code class="language-text">manufacturer
+#+BEGIN_SRC text
+manufacturer
 description	uom
 uom_price
 schein_num
@@ -185,131 +124,95 @@ master_mfg_num
 
 file
 sheet
-</code></pre>
+#+END_SRC 
 
-<p>
 The first five columns are the client product information, the
 following seven columns are the substitution made from the master
 list, and the final two contain information on where this data was
 extracted from.
-</p>
 
-<p>
 Before using this to start learning, let's split the data into three
 parts: a set of data we'll use for training, a set of data we'll use
 for validation while training, and a test set that we won't touch at
 all for the entire learning process. For this project I went with a
 60/20/20 split across these categories.
-</p>
 
-<p>
 After cleaning and processing the data we end up with three csvs:
 train.csv, validation.csv, and test.csv.
-</p>
-</div>
-</div>
 
-<div id="outline-container-orgea418cd" class="outline-3">
-<h3 id="orgea418cd">Establishing a Baseline</h3>
-<div class="outline-text-3" id="text-orgea418cd">
-<p>
+** Establishing a Baseline
+
 Hugging Face provides a number of great embedding models that we can
-start experimenting with. Notable among these is <a href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2">minilm</a>, a sentence
+start experimenting with. Notable among these is [[https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2][minilm]], a sentence
 transformer embedding model that has great performance at a relatively
 small footprint. The fact that it's a sentence transformer is great,
 since it means the vectors produced by this model can effectively
 encode deep semantic relationships between words.
-</p>
 
-<p>
-After following the instructions provided in the page for <code>minilm</code>, we
+After following the instructions provided in the page for =minilm=, we
 can start passing through all of our product descriptions from the
 training set and master list. We use the vectors from the master list
-to form an index using <code>faiss</code>, and use the vectors from our training
+to form an index using =faiss=, and use the vectors from our training
 set to query that index.
-</p>
 
-<p>
 The response to the query is our model's prediction for how to
-substitute that client product. Using <code>minilm</code> as is, without any fine
+substitute that client product. Using =minilm= as is, without any fine
 tuning, yields us about 10% accuracy on the training set. Better than
 traditional text querying, but far off from being genuinely useful.
-</p>
 
-<p>
 To get better performance we need to fine tune the model.
-</p>
-</div>
-</div>
 
-<div id="outline-container-org2b04245" class="outline-3">
-<h3 id="org2b04245">Fine-tuning <code>minilm</code></h3>
-<div class="outline-text-3" id="text-org2b04245">
-<p>
-Luckily, <code>minilm</code>'s authors include source code in their HuggingFace
+** Fine-tuning =minilm=
+
+Luckily, =minilm='s authors include source code in their HuggingFace
 repo which details how they trained the model. The training of
-<code>minilm</code> is based around a few key principles:
-</p>
+=minilm= is based around a few key principles:
 
-<ol class="org-ol">
-<li>Prepare all of your sentences alongside an example of a sentence
-that should match the previous sentence, an a sentence that should
-not match. The matching sentence is the <i>positive</i> example, the
-non-matching sentence is the <i>negative</i> example. The original
-sentence is called the <i>anchor</i>.</li>
-<li>Use the model to produce vectors for the positive, negative, and
-anchor sentences.</li>
-<li>Compute scores for how <i>similar</i> the vectors are to each other,
-this is computed by taking the dot product of the anchor with the
-postiive and negative examples.</li>
-<li>Computing the loss is treated as equivalent to a classification
-problem. We have a score for the positive example, and a score for
-the negative example. Applying <code>softmax</code> to these scores allows us
-to treat them as probabilities. I.e. the model predicts the
-positive example is the correct substitution at 70% confidence, and
-the negative at 30%. Since this is a classification problem, we can
-make use of <i>cross-entropy-loss</i>.</li>
-<li>Once loss is calculated, we can do a backward pass on the network.</li>
-</ol>
+1. Prepare all of your sentences alongside an example of a sentence
+   that should match the previous sentence, an a sentence that should
+   not match. The matching sentence is the /positive/ example, the
+   non-matching sentence is the /negative/ example. The original
+   sentence is called the /anchor/.
+2. Use the model to produce vectors for the positive, negative, and
+   anchor sentences.
+3. Compute scores for how /similar/ the vectors are to each other,
+   this is computed by taking the dot product of the anchor with the
+   postiive and negative examples.
+4. Computing the loss is treated as equivalent to a classification
+   problem. We have a score for the positive example, and a score for
+   the negative example. Applying =softmax= to these scores allows us
+   to treat them as probabilities. I.e. the model predicts the
+   positive example is the correct substitution at 70% confidence, and
+   the negative at 30%. Since this is a classification problem, we can
+   make use of /cross-entropy-loss/.
+5. Once loss is calculated, we can do a backward pass on the network.
 
-<p>
-A very clever part of the design of <code>minilm</code> is that for step 4 it
-takes advantage of the fact we're passing <b>batches</b> of examples
+A very clever part of the design of =minilm= is that for step 4 it
+takes advantage of the fact we're passing *batches* of examples
 through the network every pass. The classification problem is not just
 against the positive and negative example associated with the anchor,
-it's against the positive and negative examples across <i>all</i> the
+it's against the positive and negative examples across /all/ the
 anchors in the batch. So, if our batch size is 32, we're comparing
-each anchor against <b>64</b> candidates.
-</p>
+each anchor against *64* candidates.
 
-<p>
-<code>minilm</code> uses the <code>AdamW</code> optimizer from PyTorch, alongside a learning
+=minilm= uses the =AdamW= optimizer from PyTorch, alongside a learning
 rate scheduler. Both useful for training deep networks.
-</p>
 
-<p>
 Using this strategy to fine tune the network on product descriptions,
 we are able to reach around 30% accuracy. A huge improvement!
-</p>
-</div>
-</div>
 
-<div id="outline-container-org8140e90" class="outline-3">
-<h3 id="org8140e90">Modeling More Than Just the Description</h3>
-<div class="outline-text-3" id="text-org8140e90">
-<p>
-Clearly just matching over the product description is <b>not</b> enough to
+** Modeling More Than Just the Description
+
+Clearly just matching over the product description is *not* enough to
 fully capture the process of making substitutions. Information like
 the manufacturer of the product, the price of the product, and the
 manufacturing number for the product could all play an important
-role. Currently our model is just a fine-tuned version of <code>minilm</code>, but
-features like <i>price</i> are not going to fare well if we just include
-them in the product description. We need a way to include <code>minilm</code> in
+role. Currently our model is just a fine-tuned version of =minilm=, but
+features like /price/ are not going to fare well if we just include
+them in the product description. We need a way to include =minilm= in
 a larger neural network so that product description information can
 interact with price information.
-</p>
 
-<p>
 For this next iteration of the model the outputs of minilm are
 combined with (normalized) price information and are fed into a 3
 layer deep fully connected network, with each layer containing 400
@@ -317,37 +220,26 @@ nodes. The layer depth and node size is somewhat arbitrary, and was
 tuned based on metrics like training speed, and subjective measures of
 model quality. The output layer is also 400 nodes. Nothing changes in
 how we calculate loss and do backpropagation.
-</p>
 
-<p>
 Another note about this iteration is that we can combine the product
 description information with the manufacturer and UOM information in
-the input to <code>minilm</code>. This is done by just concatenating these
+the input to =minilm=. This is done by just concatenating these
 strings together. A cheap trick to avoid having to model these inputs
 out separately, but one that ends up working quite well in the end. 
-</p>
 
-<p>
 This strategy is able to yield us around 40% accuracy.
-</p>
-</div>
-</div>
 
-<div id="outline-container-org335e3eb" class="outline-3">
-<h3 id="org335e3eb">Re-examining the Training Process</h3>
-<div class="outline-text-3" id="text-org335e3eb">
-<p>
-Key to our process is the notion of a <code>negative</code> example for each of
+** Re-examining the Training Process
+
+Key to our process is the notion of a =negative= example for each of
 our anchors. At the moment, these negative examples are chosen
 randomly from our master list. But, what if we could ramp up the
 difficulty of the negative examples over the course of training? What
 if we can start with random negatives, but over time replace all the
-random negatives with <i>incorrect</i> predictions from the previous
+random negatives with /incorrect/ predictions from the previous
 epoch. This way the model can focus on learning the minute differences
 betweeen products in the final stages of training.
-</p>
 
-<p>
 At the end of each training epoch we use our model to index a random
 subset of the master list. We index a subset since indexing a quarter
 million products at the end of each epoch would be far too slow. This
@@ -355,39 +247,28 @@ subset is designed such that for every anchor in the training set, the
 subset of the master list is guaranteed to contain the corresponding
 substitution. The rest of the data from the subset are randomly chosen
 products.
-</p>
 
-<p>
 Once we've indexed the subset, we make a prediction for every product
 in the training set, and note every prediction the model got
 wrong. For every product in the training set we predicted incorrectly,
 we can randomly choose to include it as that product's negative
 example in the upcoming epoch. This random choice is driven by a
 probability that we determine. This probability represents the
-<i>difficulty</i> of the upcoming epoch.
-</p>
+/difficulty/ of the upcoming epoch.
 
-<p>
-At the beginning of training we start with a <i>difficulty</i> of 0, and
+At the beginning of training we start with a /difficulty/ of 0, and
 then after a quarter of the way through training (after the learning
 rate scheduler has started to decay the learning rate) we can start
 ramping up the difficulty. I chose for the difficulty curve to
 exponentially increase up to 100%, giving a slow roll out of
 difficulty increases in the beginning, with a sharp increase in
 difficulty at the end.
-</p>
 
-<p>
 This strategy made a huge difference to performance, allowing the
 model to reach 60% accuracy.
-</p>
-</div>
-</div>
 
-<div id="outline-container-org9d829c9" class="outline-3">
-<h3 id="org9d829c9">Paying Attention To Manufacturing Number</h3>
-<div class="outline-text-3" id="text-org9d829c9">
-<p>
+** Paying Attention To Manufacturing Number
+
 The final piece of the puzzle is the manufacturing number. This is a
 unique number that manufacturers give to their products which is often
 useful for finding an appropriate substitution. Manufacturing number
@@ -395,17 +276,13 @@ is really important in situations where you need to select one product
 out of a list of very similar products. However, sometimes
 manufacturig number is not helpful at all, since the subsitution
 suggested is from a completely different manufacturer.
-</p>
 
-<p>
 The simplest way to incporporate manufacturing number would be to
 concatenate it to the end of the string we're passing through
-<code>minilm</code>, and hope that it figures out what to do with it. Since this
+=minilm=, and hope that it figures out what to do with it. Since this
 project is both work, and a learning experience, I was curious to see
 what would happen if I explicitly modeled the manufacturing number.
-</p>
 
-<p>
 To explicitly model manufacturing number I created a simple ASCII
 tokenizer, which takes the manufacturing number string and encodes it
 as an array of integers representing the corresponding character's
@@ -413,84 +290,43 @@ ASCII code. These integers are then normalized to floats around 0, to
 prepare them to be sent through the network. I then included this
 normalized vector as an input into the first fully connected layer of
 the network, alongside the minilm output and the price output.
-</p>
 
-<p>
 At first, training did not succeed. Explicitly modeling manufacturing
-number led to what I would call <i>training collapse</i> once we the
-<i>difficulty</i> started increasing. Once difficult negative examples
+number led to what I would call /training collapse/ once we the
+/difficulty/ started increasing. Once difficult negative examples
 started to be included, accuracy metrics during training started to
 plummet. I realized that this is likely caused by the model
 overfitting to the manufacturing number in the early phases of
 training.
-</p>
 
-<p>
 The trouble with explicitly modeling manufacturing number is that
-manufacturing number is only useful in <i>some</i> circumstances, for
-<i>some</i> products. But in the model above, manufacturing number is
-treated as important in <i>all</i> circumstances. The key to solving this
+manufacturing number is only useful in /some/ circumstances, for
+/some/ products. But in the model above, manufacturing number is
+treated as important in /all/ circumstances. The key to solving this
 problem is to realize that we can use the output from minilm as a
-mechanism for the model to <i>attend</i> to the manufacturing number. We
+mechanism for the model to /attend/ to the manufacturing number. We
 need some structure in the network that allows it to selectively pay
 attention to the manufacturing number.
-</p>
 
-<p>
 Doing this is relatively easy, and well documented. We just create an
 attention mechanism within the network. Basic attention mechanisms are
 surprisingly simple. To leverage it in our network we simply:
-</p>
-<ol class="org-ol">
-<li>Take the dot product of the <code>minilm</code> output and the vectorized
-manufacturing number</li>
-<li>Normalize that dot product, often times using <code>softmax</code></li>
-<li>Take that normalized score and multiply it against the vectorized
-manufacturing number.</li>
-</ol>
+1. Take the dot product of the =minilm= output and the vectorized
+   manufacturing number
+2. Normalize that dot product, often times using =softmax=
+3. Take that normalized score and multiply it against the vectorized
+   manufacturing number.
 
-<p>
-Notice that this step of taking the dot product allows the <code>minilm</code>
+Notice that this step of taking the dot product allows the =minilm=
 outputs to define a coefficient on the magnitude of the manufacturing
-number vector. This is what allows the <code>minilm</code> outputs to control how
+number vector. This is what allows the =minilm= outputs to control how
 much the model pays "attention" to the manufacturing number.
-</p>
 
-<p>
-One caveat here is that the <code>minilm</code> outputs and the manufacturing
+One caveat here is that the =minilm= outputs and the manufacturing
 number need to be the same dimension for the attention mechanism to
 work. This is easily solved by projecting both vectors to the same
 dimensionality before computing the attention score.
-</p>
 
-<p>
 This approach led to our best and current accuracy of 70% in one shot
 scenarios against completely foreign data, 92% in a five shot scenario
 on the same data.
-</p>
-</div>
-</div>
-</div>
-</div>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org5b51f44">The Simplest and Cheapest Approach</a></li>
-<li><a href="#orga9e9a2d">A Machine Learning Approach</a>
-<ul>
-<li><a href="#org2693ed2">Cleaning our Data</a></li>
-<li><a href="#orgea418cd">Establishing a Baseline</a></li>
-<li><a href="#org2b04245">Fine-tuning <code>minilm</code></a></li>
-<li><a href="#org8140e90">Modeling More Than Just the Description</a></li>
-<li><a href="#org335e3eb">Re-examining the Training Process</a></li>
-<li><a href="#org9d829c9">Paying Attention To Manufacturing Number</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="fixed bottom-10 flex space-x-3"><div id="menu-btn" class="h-12 w-12 p-2 rounded-full bg-aqua text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white 2xl:hidden"><i class="fa-regular fa-bars-sort fa-xl" style="color:white"></i></div><div id="toc-btn" class="h-12 w-12 p-2 rounded-full bg-blue text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white xl:hidden"><i class="fa-regular fa-list-tree fa-xl" style="color:white"></i></div></div></body>
-<script>hljs.highlightAll();</script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></html>
