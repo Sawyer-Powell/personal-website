@@ -25,9 +25,9 @@ can recommend new products contains around a quarter million unique
 items. Over the past two months I've been building a system that can
 automatically make these substitutions with greater than 70% accuracy
 in one-shot scenarios on products it has never seen before, and over
-92% accuracy when the system can suggest a 5 substitutions. So,
-how do you build a system like this? How do you make it scalable and
-fast? Let's start engineering!
+92% accuracy when the system can suggest a 5 substitutions. So, how do
+you build a system like this? How do you make it scalable and fast?
+Let's start engineering!
 
 * The Simplest and Cheapest Approach
 
@@ -273,11 +273,11 @@ The final piece of the puzzle is the manufacturing number. This is a
 unique number that manufacturers give to their products which is often
 useful for finding an appropriate substitution. Manufacturing number
 is really important in situations where you need to select one product
-out of a list of very similar products. However, sometimes
+out of a list of very similar products. However, sometimes the
 manufacturig number is not helpful at all, since the subsitution
 suggested is from a completely different manufacturer.
 
-The simplest way to incporporate manufacturing number would be to
+The simplest way to incorporate the manufacturing number would be to
 concatenate it to the end of the string we're passing through
 =minilm=, and hope that it figures out what to do with it. Since this
 project is both work, and a learning experience, I was curious to see
@@ -300,7 +300,7 @@ overfitting to the manufacturing number in the early phases of
 training.
 
 The trouble with explicitly modeling manufacturing number is that
-manufacturing number is only useful in /some/ circumstances, for
+the manufacturing number is only useful in /some/ circumstances, for
 /some/ products. But in the model above, manufacturing number is
 treated as important in /all/ circumstances. The key to solving this
 problem is to realize that we can use the output from minilm as a

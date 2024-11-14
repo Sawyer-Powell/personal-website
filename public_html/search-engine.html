@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- 2024-11-14 Thu 12:17 -->
+<!-- 2024-11-14 Thu 12:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Case Study: ML Powered Product Substitutions</title>
@@ -33,7 +33,7 @@
 <h1 class="title">Case Study: ML Powered Product Substitutions</h1>
 <div class="subtitle">image by paul kidby</div>
 <img src="https://www.paulkidby.com/wp-content/uploads/2016/01/gallery_2-650x884_c.jpg" class="hero">
-<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-11-14 Thu 12:17</p></div>
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-11-14 Thu 12:24</p></div>
 <img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
 
 <div id="outline-container-orgbc49ff7" class="intro">
@@ -392,13 +392,13 @@ The final piece of the puzzle is the manufacturing number. This is a
 unique number that manufacturers give to their products which is often
 useful for finding an appropriate substitution. Manufacturing number
 is really important in situations where you need to select one product
-out of a list of very similar products. However, sometimes
+out of a list of very similar products. However, sometimes the
 manufacturig number is not helpful at all, since the subsitution
 suggested is from a completely different manufacturer.
 </p>
 
 <p>
-The simplest way to incporporate manufacturing number would be to
+The simplest way to incorporate the manufacturing number would be to
 concatenate it to the end of the string we're passing through
 <code>minilm</code>, and hope that it figures out what to do with it. Since this
 project is both work, and a learning experience, I was curious to see
@@ -427,7 +427,7 @@ training.
 
 <p>
 The trouble with explicitly modeling manufacturing number is that
-manufacturing number is only useful in <i>some</i> circumstances, for
+the manufacturing number is only useful in <i>some</i> circumstances, for
 <i>some</i> products. But in the model above, manufacturing number is
 treated as important in <i>all</i> circumstances. The key to solving this
 problem is to realize that we can use the output from minilm as a
