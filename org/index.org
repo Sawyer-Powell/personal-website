@@ -8,6 +8,7 @@
 :END:
 
 * Suggested Posts
+- [[file:engineer-solutions.org][Engineer Your Software]]
 - [[file:search-engine.org][Case Study: ML Powered Product Substitutions]]
 - [[file:monads.org][Monads: Explained Simply]]
 - [[file:ai-copyright.org][Thoughts on the Economics of AI and Copyright]]
