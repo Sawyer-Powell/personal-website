@@ -1,7 +1,7 @@
 :PROPERTIES:
 #+TITLE: How Raft Safeguards Kubernetes
-#+SUBTITLE: image by N. C. Wyeth
-#+HERO: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/The_Adventure_of_the_Giant_Squid.jpg/345px-The_Adventure_of_the_Giant_Squid.jpg 
+#+SUBTITLE: image by piero di cosimo
+#+HERO: https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=0.25&h=550&w=1920%20207w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=0.5&h=550&w=1920%20414w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=0.75&h=550&w=1920%20622w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&h=550&w=1920%20829w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=1.5&h=550&w=1920%201244w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=2&h=550&w=1920%201659w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=3&h=550&w=1920%202488w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=4&h=550&w=1920%203318w  
 #+OPTIONS: html-style:nil
 #+MACRO: imglnk @@html:<img src="$1">@@
 #+OPTIONS: num:nil
@@ -13,6 +13,8 @@
 :END:
 
 Raft is a brilliantly simple algorithm for guaranteeing consistent state across computers connected in a network. This guarantee is extremely valuable when administering software running on dozens, hundreds, or even thousands of computers. To demonstrate Raft's importance, let's examine its roles in Kubernetes, one of the world's most popular platforms for building distributed systems. I want to specifically illustrate how the Raft algorithm makes Kubernetes highly fault tolerant.
+
+* Motivating Kubernetes
 
 Let's start with an example distributed application to illustrate what Kubernetes is, and why it's useful. In our example, clients issue their requests to a single entry point server - called the load balancer. The load balancer takes each request and randomly assigns it to one of our web servers. The web servers process that query, and if they need to store or fetch information, they reach out to a beefy database server to do that operation.
 
@@ -67,7 +69,22 @@ When a client issues a command to one of the control servers, if it's a follower
 
 An important component to how leaders forward updates to their followers is a recursive error correction mechanism that rewrites the logs of the follower if there's an inconsistency. When the leader issues the command to update the followers log, it will include data on the previous entry in the leader's log. If this is inconsistent with the follower, the follower will refuse the update request. The leader will then retry, sending the entry that precedes the unmatched entry. This process will continue until the leader and the follower establish a common point in history, from there the leader will issue update commands for every entry that follows. In real situations, this comparison is not done on the actual log entries, but on log entry metadata, achieving the same effect.
 
-What happens if the leader crashes? This is solved in Raft by each node initiating an election on a random interval. Each node has a random election timeout, meaning if it doesn't receive a ping from the leader for a given period of time, it will initiate an election. This random timeout is done to help prevent nodes initiating elections at the same time, as that would lead to a contested election, and the possibility of no majority forming. The node that initiates an election is the candidate, and upon initiating an election it broadcasts the state of its log to the other nodes. If a node realizes that the candidate's log is at least as up to date as its own, it issues a vote for the candidate, withholding its vote otherwise. Note that candidates don't broadcast their entire log to the other nodes, due to some guarantees Raft offers (which are better explained in the [paper](https://raft.github.io/raft.pdf), section 5.4.1), candidates only have to broadcast a few indexes, and the last entry in their log to communicate how up to date their replica is.
+What happens if the leader crashes? This is solved in Raft by each
+node initiating an election on a random interval. Each node has a
+random election timeout, meaning if it doesn't receive a ping from the
+leader for a given period of time, it will initiate an election. This
+random timeout is done to help prevent nodes initiating elections at
+the same time, as that would lead to a contested election, and the
+possibility of no majority forming. The node that initiates an
+election is the candidate, and upon initiating an election it
+broadcasts the state of its log to the other nodes. If a node realizes
+that the candidate's log is at least as up to date as its own, it
+issues a vote for the candidate, withholding its vote otherwise. Note
+that candidates don't broadcast their entire log to the other nodes,
+due to some guarantees Raft offers (which are better explained in the
+[[https://raft.github.io/raft.pdf][paper]], section 5.4.1), candidates
+only have to broadcast a few indexes, and the last entry in their log
+to communicate how up to date their replica is.
 
 Raft solves the problem of replicating data consistently through a leader/follower system. The leader is primarily responsible for ensuring that at least a majority of nodes have committed changes before considering any change to be permanent. If the leader crashes, Raft has an election mechanism to instate a node with the most up to date log as the new leader. While the leader is active, it is solely responsible for all read and write requests on the log. Followers forward any requests they receive to the leader.
 

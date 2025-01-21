@@ -7,6 +7,8 @@
 :END:
 
 * All
+- [[file:raft-kubernetes.org][How Raft Safeguards Kubernetes]]
+- [[file:capitalism.org][How to Criticise Capitalism]]
 - [[file:engineer-solutions.org][Engineer Your Software]]
 - [[file:search-engine.org][Case Study: ML Powered Product Substitutions]]
 - [[file:monads.org][Monads: Explained Simply]]

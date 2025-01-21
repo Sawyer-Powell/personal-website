@@ -8,12 +8,12 @@
 :END:
 
 * Suggested Posts
+- [[file:raft-kubernetes.org][How Raft Safeguards Kubernetes]]
 - [[file:engineer-solutions.org][Engineer Your Software]]
 - [[file:search-engine.org][Case Study: ML Powered Product Substitutions]]
 - [[file:monads.org][Monads: Explained Simply]]
 - [[file:ai-copyright.org][Thoughts on the Economics of AI and Copyright]]
 - [[file:lisp-machines.org][The Magic of Lisp Machines]]
-- [[file:deep-learning-getting-started.org][Deep Learning: Getting Started]]
 
 * Professional Inquiries
 
