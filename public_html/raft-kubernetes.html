@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- 2025-01-20 Mon 21:45 -->
+<!-- 2025-01-21 Tue 21:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>How Raft Safeguards Kubernetes</title>
@@ -33,26 +33,26 @@
 <h1 class="title">How Raft Safeguards Kubernetes</h1>
 <div class="subtitle">image by piero di cosimo</div>
 <img src="https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=0.25&h=550&w=1920%20207w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=0.5&h=550&w=1920%20414w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=0.75&h=550&w=1920%20622w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&h=550&w=1920%20829w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=1.5&h=550&w=1920%201244w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=2&h=550&w=1920%201659w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=3&h=550&w=1920%202488w,https://www.datocms-assets.com/103094/1689259602-1506269777891914-7.jpg?auto=format%2Ccompress&dpr=4&h=550&w=1920%203318w" class="hero">
-<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2025-01-20 Mon 21:45</p></div>
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2025-01-21 Tue 21:02</p></div>
 <img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
 
-<div id="outline-container-org9fcd44c" class="intro">
-<div class="outline-text-2" id="text-org9fcd44c">
+<div id="outline-container-orgf848d6f" class="intro">
+<div class="outline-text-2" id="text-orgf848d6f">
 <p>
 Raft is a brilliantly simple algorithm for guaranteeing consistent state across computers connected in a network. This guarantee is extremely valuable when administering software running on dozens, hundreds, or even thousands of computers. To demonstrate Raft's importance, let's examine its roles in Kubernetes, one of the world's most popular platforms for building distributed systems. I want to specifically illustrate how the Raft algorithm makes Kubernetes highly fault tolerant.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgc0784b3" class="outline-2">
-<h2 id="orgc0784b3">Motivating Kubernetes</h2>
-<div class="outline-text-2" id="text-orgc0784b3">
+<div id="outline-container-orgf5c52f7" class="outline-2">
+<h2 id="orgf5c52f7">Motivating Kubernetes</h2>
+<div class="outline-text-2" id="text-orgf5c52f7">
 <p>
 Let's start with an example distributed application to illustrate what Kubernetes is, and why it's useful. In our example, clients issue their requests to a single entry point server - called the load balancer. The load balancer takes each request and randomly assigns it to one of our web servers. The web servers process that query, and if they need to store or fetch information, they reach out to a beefy database server to do that operation.
 </p>
 
 
-<div id="org230fd21" class="figure">
+<div id="orgdb81488" class="figure">
 <p><img src="https://i.postimg.cc/1tLM8pDF/Pasted-image-20250120111322.png" alt="Pasted-image-20250120111322.png" />
 </p>
 </div>
@@ -71,9 +71,9 @@ The trouble comes when we need to scale this system up to hundreds or thousands 
 </div>
 </div>
 
-<div id="outline-container-org0920c39" class="outline-2">
-<h2 id="org0920c39">Kubernetes</h2>
-<div class="outline-text-2" id="text-org0920c39">
+<div id="outline-container-orge8e79a6" class="outline-2">
+<h2 id="orge8e79a6">Kubernetes</h2>
+<div class="outline-text-2" id="text-orge8e79a6">
 <p>
 Kubernetes is a system that allows us to define a bunch of pieces of software that we want to run on a collection of computers. Kubernetes will handle deploying those pieces of software across those machines (called a cluster), and gracefully handle failures when a machine dies. With Kubernetes (abbreviated as k8s), we define what we want our distributed system to look like, and k8s will continually work to satisfy that definition.
 </p>
@@ -106,9 +106,9 @@ The trouble comes in realizing our central control computer is a single point of
 </div>
 </div>
 
-<div id="outline-container-org5e3a012" class="outline-2">
-<h2 id="org5e3a012">Creating Redundancy</h2>
-<div class="outline-text-2" id="text-org5e3a012">
+<div id="outline-container-org47965bf" class="outline-2">
+<h2 id="org47965bf">Creating Redundancy</h2>
+<div class="outline-text-2" id="text-org47965bf">
 <p>
 We need redundancy, not a problem! We can set up two control servers, and make sure to duplicate the state between them&#x2026; Wait.. Which computer controls the cluster and issues commands? Well&#x2026; flip a coin? One is the leader, and one is the backup. What if the leader goes down, how does the backup computer know to take over? Okay, what if we make the leader send pings to the backup, and if the backup doesn't receive pings then it decides to take over. Okay&#x2026; so if the leader goes down, we have a backup. The backup detects there's no more pings and takes over as the leader, and when the leader comes back online it checks with the other computer to see if the backup is now the leader. If there's already a leader, then it becomes the new backup. The system can prepare itself for the next failure.
 </p>
@@ -127,9 +127,9 @@ In order to achieve our requirement for redundancy, if we want a robust solution
 </div>
 </div>
 
-<div id="outline-container-orge8183f9" class="outline-2">
-<h2 id="orge8183f9">Raft</h2>
-<div class="outline-text-2" id="text-orge8183f9">
+<div id="outline-container-org1035865" class="outline-2">
+<h2 id="org1035865">Raft</h2>
+<div class="outline-text-2" id="text-org1035865">
 <p>
 The Raft consensus algorithm elegantly solves all of these issues. In the Raft algorithm there are leaders, and there are followers. These computers work together to create a consistent append-only <b>log</b> of activity. For the purpose of controlling our cluster, we can imagine this log as a series of commands issued by clients to modify the active configuration. An entry in the log might look like "change the number of replicas of the web server from 3 to 4". An important quality of this log is that it's designed to be <b>identical</b> across elected leaders in the system. We don't want a command chain like "set web server replicas to 1" -&gt; "set web server replicas to 3" to be executed out of order, much less partially.
 </p>
@@ -167,9 +167,9 @@ Raft solves the problem of replicating data consistently through a leader/follow
 </div>
 </div>
 
-<div id="outline-container-org3cc34c8" class="outline-2">
-<h2 id="org3cc34c8">Kubernetes and `etcd`</h2>
-<div class="outline-text-2" id="text-org3cc34c8">
+<div id="outline-container-org2bc2f3b" class="outline-2">
+<h2 id="org2bc2f3b">Kubernetes and `etcd`</h2>
+<div class="outline-text-2" id="text-org2bc2f3b">
 <p>
 Kubernetes allows us to create control nodes, which form what is called the "control-plane". The Kubernetes control plane is powered by `etcd`, which is an implementation of the Raft algorithm in Go. In Kubernetes, `etcd` is responsible for maintaining the state of the k8s cluster. Worker nodes in the cluster regularly poll the control plane to determine what their state should be, if they detect an update, they will adjust their configuration, and what software is locally running. `etcd` also provides an interface that allows other programs to "watch" values, receiving a ping when they change. This allows more sophisticated control mechanisms to be built on top of system health information, like when nodes go offline.
 </p>
@@ -184,11 +184,11 @@ Raft is an algorithm for redundancy. Its focus is on ensuring <b>strong consiste
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc0784b3">Motivating Kubernetes</a></li>
-<li><a href="#org0920c39">Kubernetes</a></li>
-<li><a href="#org5e3a012">Creating Redundancy</a></li>
-<li><a href="#orge8183f9">Raft</a></li>
-<li><a href="#org3cc34c8">Kubernetes and `etcd`</a></li>
+<li><a href="#orgf5c52f7">Motivating Kubernetes</a></li>
+<li><a href="#orge8e79a6">Kubernetes</a></li>
+<li><a href="#org47965bf">Creating Redundancy</a></li>
+<li><a href="#org1035865">Raft</a></li>
+<li><a href="#org2bc2f3b">Kubernetes and `etcd`</a></li>
 </ul>
 </div>
 </div>

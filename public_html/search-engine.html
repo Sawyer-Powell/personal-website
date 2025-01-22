@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- 2024-11-14 Thu 12:30 -->
+<!-- 2025-01-21 Tue 21:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Case Study: ML Powered Product Substitutions</title>
@@ -33,11 +33,11 @@
 <h1 class="title">Case Study: ML Powered Product Substitutions</h1>
 <div class="subtitle">image by paul kidby</div>
 <img src="https://www.paulkidby.com/wp-content/uploads/2016/01/gallery_2-650x884_c.jpg" class="hero">
-<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-11-14 Thu 12:30</p></div>
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2025-01-21 Tue 21:02</p></div>
 <img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
 
-<div id="outline-container-orgbc49ff7" class="intro">
-<div class="outline-text-2" id="text-orgbc49ff7">
+<div id="outline-container-orgea9ec9b" class="intro">
+<div class="outline-text-2" id="text-orgea9ec9b">
 <p>
 Recently at Counterpart I've had the opportunity to work with a
 medical supply company that helps doctors offices optimize their
@@ -59,9 +59,9 @@ Let's start engineering!
 </div>
 </div>
 
-<div id="outline-container-org5b51f44" class="outline-2">
-<h2 id="org5b51f44">The Simplest and Cheapest Approach</h2>
-<div class="outline-text-2" id="text-org5b51f44">
+<div id="outline-container-org23ba95a" class="outline-2">
+<h2 id="org23ba95a">The Simplest and Cheapest Approach</h2>
+<div class="outline-text-2" id="text-org23ba95a">
 <p>
 Instead of having the employees at the company manually go through
 their master list of products to find an appropriate substitution,
@@ -108,9 +108,9 @@ around a 5-10% accuracy at best.
 </div>
 </div>
 
-<div id="outline-container-orga9e9a2d" class="outline-2">
-<h2 id="orga9e9a2d">A Machine Learning Approach</h2>
-<div class="outline-text-2" id="text-orga9e9a2d">
+<div id="outline-container-org216242a" class="outline-2">
+<h2 id="org216242a">A Machine Learning Approach</h2>
+<div class="outline-text-2" id="text-org216242a">
 <p>
 Clearly there are nuances in how substitutions are made. Making
 effective substitutions requires some level of domain expertise in the
@@ -151,9 +151,9 @@ over that index.
 </p>
 </div>
 
-<div id="outline-container-org2693ed2" class="outline-3">
-<h3 id="org2693ed2">Cleaning our Data</h3>
-<div class="outline-text-3" id="text-org2693ed2">
+<div id="outline-container-org3acfff5" class="outline-3">
+<h3 id="org3acfff5">Cleaning our Data</h3>
+<div class="outline-text-3" id="text-org3acfff5">
 <p>
 The data is provided to us in excel spreadsheets. These spreadsheets
 contain information about a client's products (description, unit of
@@ -209,9 +209,9 @@ train.csv, validation.csv, and test.csv.
 </div>
 </div>
 
-<div id="outline-container-orgea418cd" class="outline-3">
-<h3 id="orgea418cd">Establishing a Baseline</h3>
-<div class="outline-text-3" id="text-orgea418cd">
+<div id="outline-container-org13c2d11" class="outline-3">
+<h3 id="org13c2d11">Establishing a Baseline</h3>
+<div class="outline-text-3" id="text-org13c2d11">
 <p>
 Hugging Face provides a number of great embedding models that we can
 start experimenting with. Notable among these is <a href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2">minilm</a>, a sentence
@@ -242,9 +242,9 @@ To get better performance we need to fine tune the model.
 </div>
 </div>
 
-<div id="outline-container-org2b04245" class="outline-3">
-<h3 id="org2b04245">Fine-tuning <code>minilm</code></h3>
-<div class="outline-text-3" id="text-org2b04245">
+<div id="outline-container-org5a2d955" class="outline-3">
+<h3 id="org5a2d955">Fine-tuning <code>minilm</code></h3>
+<div class="outline-text-3" id="text-org5a2d955">
 <p>
 Luckily, <code>minilm</code>'s authors include source code in their HuggingFace
 repo which details how they trained the model. The training of
@@ -294,9 +294,9 @@ we are able to reach around 30% accuracy. A huge improvement!
 </div>
 </div>
 
-<div id="outline-container-org8140e90" class="outline-3">
-<h3 id="org8140e90">Modeling More Than Just the Description</h3>
-<div class="outline-text-3" id="text-org8140e90">
+<div id="outline-container-org17124e1" class="outline-3">
+<h3 id="org17124e1">Modeling More Than Just the Description</h3>
+<div class="outline-text-3" id="text-org17124e1">
 <p>
 Clearly just matching over the product description is <b>not</b> enough to
 fully capture the process of making substitutions. Information like
@@ -333,9 +333,9 @@ This strategy is able to yield us around 40% accuracy.
 </div>
 </div>
 
-<div id="outline-container-org335e3eb" class="outline-3">
-<h3 id="org335e3eb">Re-examining the Training Process</h3>
-<div class="outline-text-3" id="text-org335e3eb">
+<div id="outline-container-org3aef9a0" class="outline-3">
+<h3 id="org3aef9a0">Re-examining the Training Process</h3>
+<div class="outline-text-3" id="text-org3aef9a0">
 <p>
 Key to our process is the notion of a <code>negative</code> example for each of
 our anchors. At the moment, these negative examples are chosen
@@ -384,9 +384,9 @@ model to reach 60% accuracy.
 </div>
 </div>
 
-<div id="outline-container-org9d829c9" class="outline-3">
-<h3 id="org9d829c9">Paying Attention To Manufacturing Number</h3>
-<div class="outline-text-3" id="text-org9d829c9">
+<div id="outline-container-orgf742dca" class="outline-3">
+<h3 id="orgf742dca">Paying Attention To Manufacturing Number</h3>
+<div class="outline-text-3" id="text-orgf742dca">
 <p>
 The final piece of the puzzle is the manufacturing number. This is a
 unique number that manufacturers give to their products which is often
@@ -476,15 +476,15 @@ on the same data.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5b51f44">The Simplest and Cheapest Approach</a></li>
-<li><a href="#orga9e9a2d">A Machine Learning Approach</a>
+<li><a href="#org23ba95a">The Simplest and Cheapest Approach</a></li>
+<li><a href="#org216242a">A Machine Learning Approach</a>
 <ul>
-<li><a href="#org2693ed2">Cleaning our Data</a></li>
-<li><a href="#orgea418cd">Establishing a Baseline</a></li>
-<li><a href="#org2b04245">Fine-tuning <code>minilm</code></a></li>
-<li><a href="#org8140e90">Modeling More Than Just the Description</a></li>
-<li><a href="#org335e3eb">Re-examining the Training Process</a></li>
-<li><a href="#org9d829c9">Paying Attention To Manufacturing Number</a></li>
+<li><a href="#org3acfff5">Cleaning our Data</a></li>
+<li><a href="#org13c2d11">Establishing a Baseline</a></li>
+<li><a href="#org5a2d955">Fine-tuning <code>minilm</code></a></li>
+<li><a href="#org17124e1">Modeling More Than Just the Description</a></li>
+<li><a href="#org3aef9a0">Re-examining the Training Process</a></li>
+<li><a href="#orgf742dca">Paying Attention To Manufacturing Number</a></li>
 </ul>
 </li>
 </ul>

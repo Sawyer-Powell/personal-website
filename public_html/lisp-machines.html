@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- 2024-10-02 Wed 09:15 -->
+<!-- 2025-01-21 Tue 21:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Magic of Lisp Machines</title>
@@ -32,11 +32,11 @@
 <div class="org-content">
 <h1 class="title">The Magic of Lisp Machines</h1>
 <img src="https://sawyer-p.me/images/lisp_machine.jpg" class="hero">
-<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2024-10-02 Wed 09:15</p></div>
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2025-01-21 Tue 21:02</p></div>
 <img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
 
-<div id="outline-container-orgd9421fe" class="intro">
-<div class="outline-text-2" id="text-orgd9421fe">
+<div id="outline-container-orgf138f67" class="intro">
+<div class="outline-text-2" id="text-orgf138f67">
 <p>
 Recently, I've been discussing with some friends around why I like to
 use Emacs as my primary text editor, and it's got me thinking about
@@ -52,9 +52,9 @@ why its design and philosophy is compelling, and worth iterating on.
 </div>
 </div>
 
-<div id="outline-container-orge93c245" class="outline-2">
-<h2 id="orge93c245">Preface</h2>
-<div class="outline-text-2" id="text-orge93c245">
+<div id="outline-container-orgd55ea2c" class="outline-2">
+<h2 id="orgd55ea2c">Preface</h2>
+<div class="outline-text-2" id="text-orgd55ea2c">
 <p>
 Emacs, at its core, is a Lisp interpreter. The Emacs codebase has two
 major sections, its <code>src</code> folder, which contains the core of the
@@ -83,9 +83,9 @@ self-documenting nature of Emacs.
 </div>
 </div>
 
-<div id="outline-container-orgac5af70" class="outline-2">
-<h2 id="orgac5af70">Why Lisp is Unique</h2>
-<div class="outline-text-2" id="text-orgac5af70">
+<div id="outline-container-org7077b13" class="outline-2">
+<h2 id="org7077b13">Why Lisp is Unique</h2>
+<div class="outline-text-2" id="text-org7077b13">
 <p>
 If you're already familiar with Lisp, feel free to skip this section
 without missing key content, but for those of you who are new to, or
@@ -99,9 +99,9 @@ Interpretation of Computer Programs</a> (henceforth referred to as
 </p>
 </div>
 
-<div id="outline-container-org3588d2c" class="outline-3">
-<h3 id="org3588d2c">Symbolic Differentiation in Lisp</h3>
-<div class="outline-text-3" id="text-org3588d2c">
+<div id="outline-container-org5627f22" class="outline-3">
+<h3 id="org5627f22">Symbolic Differentiation in Lisp</h3>
+<div class="outline-text-3" id="text-org5627f22">
 <p>
 I want to write a program that can transform simple mathematical
 expressions into their derivates.
@@ -308,9 +308,9 @@ That's it!
 </div>
 </div>
 
-<div id="outline-container-org7e28e03" class="outline-3">
-<h3 id="org7e28e03">Lisp is Functional</h3>
-<div class="outline-text-3" id="text-org7e28e03">
+<div id="outline-container-org914a194" class="outline-3">
+<h3 id="org914a194">Lisp is Functional</h3>
+<div class="outline-text-3" id="text-org914a194">
 <p>
 For most functions you write in Lisp, you cannot change the data in
 your inputs. A key part of Lisp being <i>functional</i> is that its
@@ -345,9 +345,9 @@ very few restrictions as to how we can compose them.
 </div>
 </div>
 
-<div id="outline-container-orga7e7cfb" class="outline-2">
-<h2 id="orga7e7cfb">Properties of Lisp Machines</h2>
-<div class="outline-text-2" id="text-orga7e7cfb">
+<div id="outline-container-orgf302e25" class="outline-2">
+<h2 id="orgf302e25">Properties of Lisp Machines</h2>
+<div class="outline-text-2" id="text-orgf302e25">
 <p>
 Lisp is highly expressive, functional, and also (generally)
 interpreted. Let's take a moment and think about what each of these
@@ -357,9 +357,9 @@ environment.
 </p>
 </div>
 
-<div id="outline-container-orgfc1657f" class="outline-3">
-<h3 id="orgfc1657f">Expressive</h3>
-<div class="outline-text-3" id="text-orgfc1657f">
+<div id="outline-container-orga021a0c" class="outline-3">
+<h3 id="orga021a0c">Expressive</h3>
+<div class="outline-text-3" id="text-orga021a0c">
 <p>
 Lisp's syntax is a simple data structure, a list, which allows us to
 easily create parsers for custom syntax within Lisp itself. This
@@ -415,9 +415,9 @@ computing.
 </div>
 </div>
 
-<div id="outline-container-orgb06af63" class="outline-3">
-<h3 id="orgb06af63">Modular</h3>
-<div class="outline-text-3" id="text-orgb06af63">
+<div id="outline-container-orgc35046e" class="outline-3">
+<h3 id="orgc35046e">Modular</h3>
+<div class="outline-text-3" id="text-orgc35046e">
 <p>
 Since Lisp is (mostly) functional, its much easier for us to reuse
 existing code, and compose it into new systems.
@@ -483,9 +483,9 @@ placing their cursor over a function call and invoking the
 </div>
 </div>
 
-<div id="outline-container-org464b334" class="outline-3">
-<h3 id="org464b334">Iterative</h3>
-<div class="outline-text-3" id="text-org464b334">
+<div id="outline-container-orgb4a8ffd" class="outline-3">
+<h3 id="orgb4a8ffd">Iterative</h3>
+<div class="outline-text-3" id="text-orgb4a8ffd">
 <p>
 Programs made using interpreted languages can be modified <i>while they
 are running</i>. This is what allows web developers to modify websites
@@ -546,9 +546,9 @@ interpreter.
 </div>
 </div>
 
-<div id="outline-container-orgbc04124" class="outline-2">
-<h2 id="orgbc04124">Thesis</h2>
-<div class="outline-text-2" id="text-orgbc04124">
+<div id="outline-container-org2b550fc" class="outline-2">
+<h2 id="org2b550fc">Thesis</h2>
+<div class="outline-text-2" id="text-org2b550fc">
 <p>
 Highly productive computing environments put few conceptual
 limitations on its users. These types of computing environments allow
@@ -593,21 +593,21 @@ environments that are productive, exciting, and creatively fulfilling.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge93c245">Preface</a></li>
-<li><a href="#orgac5af70">Why Lisp is Unique</a>
+<li><a href="#orgd55ea2c">Preface</a></li>
+<li><a href="#org7077b13">Why Lisp is Unique</a>
 <ul>
-<li><a href="#org3588d2c">Symbolic Differentiation in Lisp</a></li>
-<li><a href="#org7e28e03">Lisp is Functional</a></li>
+<li><a href="#org5627f22">Symbolic Differentiation in Lisp</a></li>
+<li><a href="#org914a194">Lisp is Functional</a></li>
 </ul>
 </li>
-<li><a href="#orga7e7cfb">Properties of Lisp Machines</a>
+<li><a href="#orgf302e25">Properties of Lisp Machines</a>
 <ul>
-<li><a href="#orgfc1657f">Expressive</a></li>
-<li><a href="#orgb06af63">Modular</a></li>
-<li><a href="#org464b334">Iterative</a></li>
+<li><a href="#orga021a0c">Expressive</a></li>
+<li><a href="#orgc35046e">Modular</a></li>
+<li><a href="#orgb4a8ffd">Iterative</a></li>
 </ul>
 </li>
-<li><a href="#orgbc04124">Thesis</a></li>
+<li><a href="#org2b550fc">Thesis</a></li>
 </ul>
 </div>
 </div>

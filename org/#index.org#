@@ -1,20 +1,26 @@
 :PROPERTIES:
-#+TITLE: Posts
-#+HERO: https://i.imgur.com/hVjmLUL.jpeg
+#+TITLE: Hey! I'm Sawyer.
+#+SUBTITLE: indie software enthusiast / software engineer / technical lead
+#+HERO: https://i.imgur.com/HfX05i1.jpg
 #+OPTIONS: html-style:nil
 #+MACRO: imglnk @@html:<img src="$1">@@
 #+OPTIONS: num:nil
 :END:
 
-* All
+* Suggested Posts
 - [[file:fossora.org][Fossora: A Distributed Mesh for Running Containers]]
 - [[file:raft-kubernetes.org][How Raft Safeguards Kubernetes]]
-- [[file:capitalism.org][How to Criticise Capitalism]]
 - [[file:engineer-solutions.org][Engineer Your Software]]
 - [[file:search-engine.org][Case Study: ML Powered Product Substitutions]]
 - [[file:monads.org][Monads: Explained Simply]]
 - [[file:ai-copyright.org][Thoughts on the Economics of AI and Copyright]]
 - [[file:lisp-machines.org][The Magic of Lisp Machines]]
-- [[file:art.org][Programmatic Art]]
-- [[file:deep-learning-ethics.org][Deep Learning: Data Ethics]] 
-- [[file:deep-learning-getting-started.org][Deep Learning: Getting Started]]
+
+* Professional Inquiries
+
+For those interested in me professionally, check out my [[file:professional-work.org][professional work]]. Or reach out to me by email at
+[[mailto:sawyer@sawyer-p.me][sawyer@sawyer-p.me]].
+
+* Great websites
+- [[https://shiraz-k.com/][Shiraz Khan's Blog]]
+

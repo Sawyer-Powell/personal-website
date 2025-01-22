@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<!-- 2025-01-21 Tue 21:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fossora</title>
+<meta name="author" content="Sawyer Powell" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<script defer src="./js/fontawesome/all.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/gruvbox-light-medium.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="./js/index.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet"></head>
+<body>
+<div class="content">
+<div id="sidebar" class="sidebar">
+<div class="flex items-center mb-5" onclick="location.href='/'">
+<img src="./images/horse.svg" class="shadow-none h-12 rounded-none m-0"/>
+<span class="block text-2xl text-fg0 font-bold font-mono ms-2">sawyer-p</span>
+</div>
+<ul>
+<li><a href="about.html">About</a></li>
+<li><a href="professional-work.html">Professional Work</a></li>
+<hr/>
+<li><a href="art.html">Programmatic Art</a></li>
+<li><a href="deep-learning.html">Deep Learning</a></li>
+<hr/>
+<li><a href="posts.html">Posts</a></li>
+</ul>
+</div>
+<div class="org-content">
+<h1 class="title">Fossora</h1>
+<div class="subtitle">a distributed mesh for running containers</div>
+<img src="https://the-public-domain-review.imgix.net/collections/atlas-des-champignons/deschampignonscatladesc_0011-featured.jpeg" class="hero">
+<div class="status"><p class="author">Written by <a target="_blank" href="https://www.linkedin.com/in/sawyerhpowell/">Sawyer Powell</a> - 2025-01-21 Tue 21:02</p></div>
+<img src="./images/tiger.svg" class="justify-self-center shadow-none h-12 rounded-none m-0 mb-5"/>
+
+<div id="outline-container-org0484243" class="intro">
+<div class="outline-text-2" id="text-org0484243">
+<p>
+Fossora is a new project I'm working on to make it simple to build a
+highly fault-tolerant home mesh networks for running containerized
+services. In simpler terms, Fossora is a piece of software you can
+install on any number of your computers, which provides a web
+interface for you to run network apps (think jellyfin, plex, etc)
+across those machines. The unique offering of Fossora is that it
+ensures if one of your computers dies, needs to have a new OS
+installed, or crashes, your services and Fossora remains
+available. Fossora is designed to be simple, install a binary onto a
+machine that has docker installed, and it will instantly network with
+other devices on your network also running Fossora. When run in tandem
+with a tool like Tailscale, Fossora will work to automatically
+configure custom DNS and reverse proxy settings such that you can
+access all of your services by their name, instead of their port
+number. In this post, I want to elaborate on the design of Fossora,
+and jump into how it leverages Tailscale in its discovery algorithm.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1c10a52" class="outline-2">
+<h2 id="org1c10a52">Fossora is built on Raft</h2>
+<div class="outline-text-2" id="text-org1c10a52">
+<p>
+Much like Kubernetes, core to the control infrastructure of Fossora is
+<code>etcd</code>, an implementation of the Raft consensus algorithm in Go. In
+Fossora, every node can operate as a member of the control plane,
+meaning it runs its own <code>etcd</code> server and client. Nodes can write to
+and update the <code>etcd</code> state to alert other nodes to changes in the
+services that need to be run, or to give updates on system
+status. Think of the <code>etcd</code> layer as providing a set of keys and
+values, with the property that these keys and values are guaranteed to
+be identical across all machines. The first challenge comes with the
+fact that <code>etcd</code> has specific rules about how to add members to a
+cluster, and much prefers you configure your cluster ahead of time,
+instead of at runtime.
+</p>
+
+<p>
+One of the design goals of Fossora is that users shouldn't have to
+think about messing with configuration files, and should be able to
+start with just one machine. This means the first step of building
+Fossora requires puzzling out how to leverage <code>etcd</code>'s <b>runtime
+reconfiguration</b> abilities.
+</p>
+</div>
+
+<div id="outline-container-org1af3317" class="outline-3">
+<h3 id="org1af3317">Rules of the <code>etcd</code> runtime reconfiguration game</h3>
+<div class="outline-text-3" id="text-org1af3317">
+<ol class="org-ol">
+<li>To add a member, you have to first have to request the cluster
+approve them. The cluster will take some time to agree on how to
+adjust its configuration, replying with the new structure the
+member should adhere to.</li>
+<li>Once this new structure is obtained, the member can join the
+cluster, after which they immediately start getting caught up with
+the cluster state.</li>
+<li>Members should be added one at a time.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7bba404" class="outline-2">
+<h2 id="org7bba404">Fossora Discovery Mechanism</h2>
+<div class="outline-text-2" id="text-org7bba404">
+<p>
+Okay, these rules are straightforward to implement, except for line 3
+where things get tricky. Let's say I start up my first computer,
+computer A, with Fossora. After some time I load up computers B, and
+C. I could easily create a race condition when reconfiguring the
+runtime where B and C overlap with each other. This means that our
+service discovery mechanism needs some form of queuing. But who
+maintains the queue? Well, <code>etcd</code> should. Okay, but how do B and C
+know to contact A, are they configured to do so? This is where
+Tailscale comes in. Let me walk through how the discovery mechanism
+works:
+</p>
+
+<ol class="org-ol">
+<li>Computer B boots up Fossora and detects that it has not integrated
+itself with an <code>etcd</code> cluster. Fossora pings Tailscale for a list
+of all devices in the user's tailnet. And for each device, pings
+the predetermined discovery port to see if that node is also
+running Fossora. If it is, it makes a request to join the mesh.</li>
+<li>If that computer is part of an <code>etcd</code> cluster, it responds with a
+success and adds the computer's IP to a queue persisted in <code>etcd</code>
+of devices that want to join.</li>
+<li>All the members of the cluster are set up to watch when that queue
+changes. When there's a new entry, each member consults <code>etcd</code> to
+see if they are the current leader. If they are, they send a
+"request admission" message to computer B.</li>
+<li>Computer B responds with its request to <code>etcd</code>, which then responds
+with the configuration it should adopt. This triggers the node
+responding to B to remove its entry from the queue.</li>
+<li>Computer B then fully joins the cluster.</li>
+</ol>
+
+
+<div id="orga37ead1" class="figure">
+<p><img src="https://i.postimg.cc/T1pXws42/Untitled-2025-01-20-1110.png" alt="Untitled-2025-01-20-1110.png" />
+</p>
+</div>
+
+<p>
+There are some nuances here to how the admission queue should work,
+since there are three failures that we should be aware of. Computer B
+requests to join to a member of the cluster, that member might never
+respond to B. Computer B waits for a "request admission" response,
+that response might not ever come. Upon following up on the "request
+admission" request, the receiver might have gone offline.
+</p>
+
+<p>
+The first problem can be solved with a timeout and retry
+mechanism. The second problem is more subtle. Setting a fixed timeout
+here doesn't make sense, since B might have many computers queued
+ahead of it. What does make sense is for the leader of the <code>etcd</code>
+cluster to broadcast the "request admission" message to <b>all</b> members
+of the queue. Only the member of the queue that matches the IP address
+in the contents of the request actually follows up to join the
+queue. With this caveat, a timeout does make sense. Every time it sees
+a request admission broadcast, it resets its counter. If the counter
+runs out, it re-initiates the entire process over again. Note that
+since the system supports re-initiation, some additional queue
+management to deduplicate would be wise.
+</p>
+
+<p>
+The final problem can be solved by including the IPs of all the <code>etcd</code>
+nodes in the "request admission" response to B. This way, if it
+doesn't get a response in its request to its original contact, it can
+try again with another member of the cluster.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge6df0a1" class="outline-2">
+<h2 id="orge6df0a1">Next steps</h2>
+<div class="outline-text-2" id="text-orge6df0a1">
+<p>
+Fossora is being written in Go, embedding <code>etcd</code> and the Tailscale
+API. The next step for development will be implementing the discovery
+mechanism, as this forms the foundation of the entire mesh
+network. Once this is established, work will move onto integrating a
+docker API for managing containers across nodes. This work will
+include a reverse proxy service and DNS server to facilitate
+convenient routing to services. Once this core functionality is
+established, a strategy for implementing virtual file systems that can
+be shared across nodes and replicated will become the focus.
+</p>
+
+<p>
+Fossora will first be implemented as a CLI application, with a
+replicated web frontend coming later.
+</p>
+
+<p>
+Development is happening in public at
+<a href="https://github.com/Sawyer-Powell/fossora">https://github.com/Sawyer-Powell/fossora</a>, alongside my website.
+</p>
+</div>
+</div>
+</div>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org1c10a52">Fossora is built on Raft</a>
+<ul>
+<li><a href="#org1af3317">Rules of the <code>etcd</code> runtime reconfiguration game</a></li>
+</ul>
+</li>
+<li><a href="#org7bba404">Fossora Discovery Mechanism</a></li>
+<li><a href="#orge6df0a1">Next steps</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fixed bottom-10 flex space-x-3"><div id="menu-btn" class="h-12 w-12 p-2 rounded-full bg-aqua text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white 2xl:hidden"><i class="fa-regular fa-bars-sort fa-xl" style="color:white"></i></div><div id="toc-btn" class="h-12 w-12 p-2 rounded-full bg-blue text-fg flex justify-center items-center cursor-pointer shadow-lg fill-white xl:hidden"><i class="fa-regular fa-list-tree fa-xl" style="color:white"></i></div></div></body>
+<script>hljs.highlightAll();</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></html>
