@@ -11,7 +11,6 @@
 :PROPERTIES:
 :UNNUMBERED: notoc
 :END:
-
 Fossora is a new project I'm working on to make it simple to build a
 highly fault-tolerant home mesh networks for running containerized
 services. In simpler terms, Fossora is a piece of software you can

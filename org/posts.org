@@ -7,6 +7,7 @@
 :END:
 
 * All
+- [[file:stargate-agi.org][Stargate and the Problem With AGI]]
 - [[file:fossora.org][Fossora: A Distributed Mesh for Running Containers]]
 - [[file:raft-kubernetes.org][How Raft Safeguards Kubernetes]]
 - [[file:capitalism.org][How to Criticise Capitalism]]

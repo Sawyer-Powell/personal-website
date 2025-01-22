@@ -8,6 +8,8 @@
 :END:
 
 * Suggested Posts
+- [[file:stargate-agi.org][Stargate and the Problem With AGI]]
+- [[file:fossora.org][Fossora: A Distributed Mesh for Running Containers]]
 - [[file:raft-kubernetes.org][How Raft Safeguards Kubernetes]]
 - [[file:engineer-solutions.org][Engineer Your Software]]
 - [[file:search-engine.org][Case Study: ML Powered Product Substitutions]]
